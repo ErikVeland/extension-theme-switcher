@@ -1,0 +1,56 @@
+// macOS Tahoe Theme Details
+// Additional styling for specific components
+
+@import 'variables';
+
+// Button styling
+.btn {
+  border-radius: $border-radius-medium;
+  font-weight: $font-weight-medium;
+  letter-spacing: -0.01em;
+  transition: $transition-fast;
+  
+  &.btn-primary {
+    background-color: $primary-color;
+    border-color: $primary-color;
+    
+    &:hover {
+      background-color: darken($primary-color, 10%);
+      border-color: darken($primary-color, 10%);
+    }
+  }
+}
+
+// Form controls
+.form-control {
+  border-radius: $border-radius-medium;
+  border: 1px solid $border-color;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: $text-color;
+  
+  &:focus {
+    border-color: $primary-color;
+    box-shadow: 0 0 0 2px $focus-ring-color;
+  }
+}
+
+// Navigation pills
+.nav-pills {
+  > li {
+    > a {
+      border-radius: $border-radius-medium;
+      color: $text-color-secondary;
+      transition: $transition-fast;
+      
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: $text-color;
+      }
+    }
+    
+    &.active > a {
+      background-color: $primary-color;
+      color: white;
+    }
+  }
+}
