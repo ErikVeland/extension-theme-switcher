@@ -1,0 +1,224 @@
+// macOS Tahoe Theme Styles
+// Additional styling to create a native macOS look and feel
+
+// Import variables
+@import 'variables';
+
+// Global typography improvements
+body {
+  font-family: $font-family-base;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "liga", "kern";
+  font-size: $font-size-base;
+  font-weight: $font-weight-regular;
+  letter-spacing: -0.003em;
+  line-height: $line-height-base;
+}
+
+// Enhanced sidebar styling - clean floating design with proper width constraints
+#main-nav-sidebar {
+  background: $translucent-menu;
+  backdrop-filter: $backdrop-filter;
+  border: 1px solid $separator-color;
+  border-radius: $border-radius-xl;
+  font-family: $font-family-base;
+  margin: $spacing-md $spacing-sm $spacing-md $spacing-md;
+  padding: $spacing-md $spacing-sm;
+  box-shadow: 
+    0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  max-height: calc(100vh - 120px);
+  
+  // Proper width constraints to prevent overflow
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+  
+  // Enhanced states for proper width management
+  &.sidebar-expanded {
+    #main-nav-container {
+      max-width: 100% !important;
+      min-width: 180px !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+    }
+  }
+  
+  &.sidebar-compact {
+    #main-nav-container {
+      max-width: 40px !important;
+      min-width: 40px !important;
+      width: 40px !important;
+      box-sizing: border-box !important;
+    }
+    
+    .menu-label {
+      display: none !important;
+    }
+    
+    .main-nav-group-title {
+      display: none !important;
+    }
+  }
+}
+
+// Remove horizontal dividers under sidebar headlines
+#main-nav-container {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  overflow-x: hidden !important;
+  
+  > :not(:last-child) {
+    box-shadow: none !important;
+    margin-bottom: 0 !important;
+  }
+  
+  > * {
+    box-shadow: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+  }
+  
+  .main-nav-group {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    
+    > li {
+      width: 100% !important;
+      max-width: 100% !important;
+      box-sizing: border-box !important;
+      
+      > a {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        white-space: nowrap !important;
+      }
+    }
+  }
+  
+  .main-nav-group-title {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    padding-right: $spacing-sm !important;
+  }
+  
+  .menu-label {
+    max-width: calc(100% - 40px) !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    box-sizing: border-box !important;
+  }
+}
+
+// macOS-style sidebar collapse/expand button
+#btn-minimize-menu {
+  position: absolute;
+  bottom: $spacing-md;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: $text-color;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  z-index: 100;
+  cursor: pointer;
+  transition: $transition-fast;
+  font-size: 10px;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateX(-50%) scale(1.05);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  }
+  
+  &:active {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateX(-50%) scale(0.95);
+    transition: all 0.1s ease;
+  }
+  
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px $focus-ring-color;
+  }
+  
+  .icon {
+    width: 12px !important;
+    height: 12px !important;
+    opacity: 0.8;
+    transition: opacity $transition-fast;
+  }
+  
+  &:hover .icon {
+    opacity: 1;
+  }
+  
+  .sidebar-compact & {
+    left: 50%;
+    width: 16px;
+    height: 16px;
+    
+    .icon {
+      width: 10px !important;
+      height: 10px !important;
+    }
+  }
+  
+  // Remove default button styling
+  background-image: none !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  
+  &:hover,
+  &:focus,
+  &:active {
+    background-image: none !important;
+    text-shadow: none !important;
+  }
+  
+  svg {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+// Toolbar styling with macOS appearance
+#main-toolbar {
+  background: $translucent-menu;
+  backdrop-filter: $backdrop-filter;
+  border-bottom: none;
+  height: $toolbar-height;
+  padding: $spacing-sm $spacing-lg $spacing-sm 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  font-size: $font-size-base;
+  font-weight: $font-weight-regular;
+  letter-spacing: -0.003em;
+}
