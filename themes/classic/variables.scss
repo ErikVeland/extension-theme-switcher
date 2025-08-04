@@ -27,7 +27,9 @@ $brand-secondary: $brand-primary;
 $brand-clickable: $brand-primary;
 
 
+@use 'sass:color';
+
 $text-color:            $white;
-$text-color-disabled:   darken($text-color, 40%);
+$text-color-disabled:   color.scale($text-color, $lightness: -40%);
 $link-color: $brand-primary;
-$link-hover-color:      darken($link-color, 15%);
+$link-hover-color:      color.scale($link-color, $lightness: -15%);

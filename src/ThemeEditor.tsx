@@ -2,7 +2,6 @@ import { TFunction } from 'i18next';
 import * as React from 'react';
 import { Button, Col, ControlLabel, Form, FormControl, FormGroup,
          Grid, OverlayTrigger, Panel, Popover, Row } from 'react-bootstrap';
-import { ChromePicker } from 'react-color';
 import { ComponentEx, More, Toggle } from 'vortex-api';
 
 interface IColor {
@@ -61,35 +60,26 @@ function renderColorBox(color: IColor): JSX.Element {
 class ColorPreview extends React.Component<IColorProps, never> {
   public render(): JSX.Element {
     const { color, disabled } = this.props;
-    const popover = (
-      <Popover
-        id='color-preview'
-      >
-        <ChromePicker
-          color={color}
-          disableAlpha={true}
-          onChangeComplete={this.onUpdate}
-        />
-      </Popover>
-    );
 
     const content = (
-      <div>
-        {colorToHex(color)}
-        {renderColorBox(color)}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <input
+          type="color"
+          value={colorToHex(color)}
+          disabled={disabled}
+          onChange={this.onUpdate}
+          style={{ width: '40px', height: '30px', border: 'none', cursor: disabled ? 'default' : 'pointer' }}
+        />
+        <span>{colorToHex(color)}</span>
       </div>
     );
 
-    return disabled ? content : (
-      <OverlayTrigger trigger='click' rootClose placement='top' overlay={popover}>
-        {content}
-      </OverlayTrigger>
-    );
+    return content;
   }
 
-  private onUpdate = (color: any) => {
+  private onUpdate = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, onUpdateColor } = this.props;
-    onUpdateColor(name, color.hex);
+    onUpdateColor(name, event.target.value);
   }
 }
 

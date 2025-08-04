@@ -25,17 +25,17 @@ function applyTheme(api: types.IExtensionApi, theme: string, initial: boolean) {
         return Promise.resolve();
       }
 
-      return fs.statAsync(path.join(selected, 'variables.scss'))
-        .then(() => api.setStylesheet('variables', path.join(selected, 'variables')))
+      return fs.statAsync(path.join(selected, 'variables.css'))
+        .then(() => api.setStylesheet('variables', path.join(selected, 'variables.css')))
         .catch(() => api.setStylesheet('variables', undefined))
-        .then(() => fs.statAsync(path.join(selected, 'details.scss')))
-        .then(() => api.setStylesheet('details', path.join(selected, 'details')))
+        .then(() => fs.statAsync(path.join(selected, 'details.css')))
+        .then(() => api.setStylesheet('details', path.join(selected, 'details.css')))
         .catch(() => api.setStylesheet('details', undefined))
-        .then(() => fs.statAsync(path.join(selected, 'fonts.scss')))
-        .then(() => api.setStylesheet('fonts', path.join(selected, 'fonts')))
+        .then(() => fs.statAsync(path.join(selected, 'fonts.css')))
+        .then(() => api.setStylesheet('fonts', path.join(selected, 'fonts.css')))
         .catch(() => api.setStylesheet('fonts', undefined))
-        .then(() => fs.statAsync(path.join(selected, 'style.scss')))
-        .then(() => api.setStylesheet('style', path.join(selected, 'style')))
+        .then(() => fs.statAsync(path.join(selected, 'style.css')))
+        .then(() => api.setStylesheet('style', path.join(selected, 'style.css')))
         .catch(() => api.setStylesheet('style', undefined));
     });
 }

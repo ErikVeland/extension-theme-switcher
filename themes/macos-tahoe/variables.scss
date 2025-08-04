@@ -1,6 +1,8 @@
 // macOS Tahoe Theme Variables
 // Inspired by macOS Monterey/Ventura design language
 
+@use 'sass:color';
+
 // Typography - San Francisco font family
 $font-family-base: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $font-family-headings: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -12,9 +14,11 @@ $font-weight-medium: 500;
 $font-weight-semibold: 600;
 $font-weight-bold: 700;
 
-// Font sizes following macOS interface guidelines
-$font-size-base: 13px; // Standard macOS interface size
-$font-size-large: 15px;
+// Font sizes following macOS interface// Font sizes
+$font-size-base: 14px; // Standard macOS interface size
+$font-size-lg: 16px;
+$font-size-large: 16px;
+$font-size-sm: 11px;
 $font-size-small: 11px;
 $font-size-xs: 10px;
 
@@ -62,18 +66,29 @@ $border-radius-xl: 10px;
 
 // Spacing scale
 $spacing-xs: 4px;
-$spacing-sm: 8px;
+$spacing-sm: 7px;
 $spacing-md: 12px;
 $spacing-lg: 16px;
 $spacing-xl: 20px;
 $spacing-xxl: 24px;
 
 // Layout dimensions
-$sidebar-width-expanded: 200px;
-$sidebar-width-compact: 48px;
+$sidebar-width-expanded: 240px;
+$sidebar-width-compact: 60px;
 $toolbar-height: 52px;
 
 // Animation timing
 $transition-fast: 0.15s ease;
 $transition-medium: 0.25s ease;
 $transition-slow: 0.35s ease;
+
+// Additional transition variables for compatibility
+$transition-duration-fast: 0.15s;
+$transition-easing: ease;
+
+// Hover colors
+$primary-color-hover: color.scale($primary-color, $lightness: -10%);
+$danger-color-hover: color.scale($danger-color, $lightness: -10%);
+
+// Additional spacing for compatibility
+$spacing-small: $spacing-sm;

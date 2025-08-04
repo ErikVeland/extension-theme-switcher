@@ -1,0 +1,7 @@
+{
+  "name": "Theme Switcher",
+  "author": "Vortex Team",
+  "version": "1.0.0",
+  "description": "Allows switching between different UI themes in Vortex",
+  "main": "index.js"
+}
