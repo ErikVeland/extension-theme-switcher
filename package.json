@@ -7,10 +7,10 @@
     "tsc": "tsc -p .",
     "webpack": "yarn node ./node_modules/webpack/bin/webpack --config webpack.config.js --stats-error-details --progress --profile --color",
     "copy_lib": "node -e \"try { require('copyfiles')('-u 4 node_modules/font-scanner/build/Release/fontmanager.node dist'); } catch(e) { console.log('Skipping font-scanner copy on non-Windows platforms'); }\"",
-    "compile_scss": "mkdir -p dist/themes/compact dist/themes/contrast dist/themes/macos-tahoe dist/themes/classic && /Users/veland/.nvm/versions/node/v16.20.2/bin/sass themes/compact/style.scss:dist/themes/compact/style.css themes/contrast/style.scss:dist/themes/contrast/style.css themes/macos-tahoe/style.scss:dist/themes/macos-tahoe/style.css themes/classic/variables.scss:dist/themes/classic/variables.css themes/compact/variables.scss:dist/themes/compact/variables.css themes/contrast/variables.scss:dist/themes/contrast/variables.css themes/macos-tahoe/variables.scss:dist/themes/macos-tahoe/variables.css themes/macos-tahoe/details.scss:dist/themes/macos-tahoe/details.css themes/macos-tahoe/fonts.scss:dist/themes/macos-tahoe/fonts.css --style=compressed --source-map",
+    "compile_scss_disabled": "echo 'SCSS compilation disabled - StyleManager handles runtime compilation'",
     "copy_themes": "yarn copyfiles themes/**/*.scss themes/**/*.json themes/**/*.md dist",
     "copy_to_out": "rm -rf ../../out/bundledPlugins/theme-switcher && mkdir -p ../../out/bundledPlugins/theme-switcher && rsync -av dist/ ../../out/bundledPlugins/theme-switcher/ && cp info.json ../../out/bundledPlugins/theme-switcher/",
-    "build": "yarn run tsc && yarn run copy_lib && yarn run compile_scss && yarn run copy_themes && yarn run copy_to_out && yarn run copy_js_to_out && yarn run copy_to_app",
+    "build": "yarn run webpack && yarn run copy_themes && yarn run copy_lib && yarn run copy_to_out && yarn run copy_to_app",
     "copy_js_to_out": "sh -c 'if ls out/*.js 1> /dev/null 2>&1; then rsync -av out/*.js out/*.js.map ../../out/bundledPlugins/theme-switcher/ 2>/dev/null || true; fi'",
     "copy_to_app": "rm -rf ../../app/bundledPlugins/theme-switcher && mkdir -p ../../app/bundledPlugins/theme-switcher && rsync -av ../../out/bundledPlugins/theme-switcher/ ../../app/bundledPlugins/theme-switcher/"
   },
@@ -18,8 +18,8 @@
   "license": "GPL-3.0",
   "devDependencies": {
     "@types/bluebird": "^3.5.29",
-    "@types/react": "^16.4.11",
-    "@types/react-bootstrap": "^0.32.16",
+    "@types/react": "^16.14.34",
+    "@types/react-bootstrap": "^0.32.20",
     "@types/react-color": "^2.14.0",
     "@types/react-dom": "^16.8.0",
     "@types/react-redux": "^6.0.6",
@@ -28,10 +28,10 @@
     "bluebird": "3.7.1",
     "copyfiles": "^2.1.1",
     "prop-types": "^15.6.1",
-    "react-bootstrap": "^0.31.0",
+    "react-bootstrap": "^0.33.0",
     "react-color": "^2.17.0",
     "redux": "^3.7.2",
-    "sass": "^1.32.0",
+    "sass": "^1.33.0",
     "ts-loader": "4.4.2",
     "vortex-api": "Nexus-Mods/vortex-api",
     "webpack": "^5.61.0",
@@ -39,5 +39,15 @@
   },
   "optionalDependencies": {
     "font-scanner": "^0.2.1"
+  },
+  "resolutions": {
+    "dir-compare/minimatch": "file:../../vendor/bsdiff-node-js",
+    "cheerio": "file:../../vendor/bsdiff-node-js",
+    "vortexmt": "file:../../vendor/vortexmt-js",
+    "bsdiff-node": "file:../../vendor/bsdiff-node-js",
+    "electron-redux": "file:../../vendor/electron-redux-compat",
+    "fomod-installer": "file:../../vendor/fomod-installer-mac",
+    "@types/react": "^16.14.34",
+    "**/@types/react": "^16.14.34"
   }
 }

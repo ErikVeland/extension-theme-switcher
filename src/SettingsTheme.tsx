@@ -267,7 +267,8 @@ function SettingsThemeWrapper(props: IWrapperProps) {
   return null;
 }
 
-export default
-  withTranslation(['common'])(
-    connect(mapStateToProps, mapDispatchToProps)(
-      SettingsThemeWrapper)) as React.ComponentClass<ISettingsThemeProps>;
+const SettingsThemeConnected = withTranslation(['common', 'theme-switcher'])(
+  connect(mapStateToProps, mapDispatchToProps)(SettingsThemeWrapper)
+);
+
+export default SettingsThemeConnected;

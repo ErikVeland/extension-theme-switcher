@@ -11,7 +11,8 @@
     "jsx": "react",
     "sourceMap": true,
     "skipLibCheck": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "types": ["node", "react", "react-dom"]
   },
     "exclude": [
       "node_modules"
