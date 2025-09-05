@@ -1089,6 +1089,15 @@ a {
       background: transparent;
       padding: 0;
       padding-right: $spacing-lg;
+      // Use CSS Grid to prevent dashlet overlapping
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      grid-auto-rows: minmax(200px, auto);
+      grid-gap: $spacing-md;
+      
+      // Remove positioning styles that interfere with grid
+      position: relative;
+      height: auto !important;
     }
 
     .dashboard-background-grid {
@@ -1104,12 +1113,12 @@ a {
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: $border-radius-large;
       padding: $spacing-md;
-      margin: $spacing-sm;
+      // Remove margins that interfere with grid layout
+      margin: 0;
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
       position: relative;
       width: 100%;
       box-sizing: border-box;
-      margin-bottom: $spacing-lg;
 
       // Headers within applets
       .dashlet-header,
@@ -1279,20 +1288,18 @@ a {
 
     // Go Premium Dashlet - Premium banner style integrated with dashlet system
     .dashlet-go-premium {
-      // Reset positioning to integrate with content flow
-      width: 100%;
-      max-width: 100%;
-      height: 100%;
-      box-sizing: border-box;
-      display: block;
+      background: rgba(28, 28, 30, 0.6);
+      backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: $border-radius-large;
+      padding: $spacing-md;
+      // Remove margins that interfere with grid layout
+      margin: 0;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
       position: relative;
-      margin-bottom: $spacing-lg;
-      float: none;
-      clear: both;
-      margin: 7px;
-      order: -1; // Show at the top of dashlets
+      width: 100%;
       box-sizing: border-box;
-
+      
       // Premium banner styling
       background: linear-gradient(135deg, #007AFF 0%, #5856D6 100%);
       backdrop-filter: blur(20px) saturate(180%);
@@ -1384,11 +1391,11 @@ a {
       }
     }
 
-    // Ensure dashlet container flows properly
+    // Dashlet container - ensure proper grid behavior
     .dashlet-container,
     .content-dashlets,
     .main-content-dashlets {
-      display: block;
+      display: contents;
       width: 100%;
       box-sizing: border-box;
     }
