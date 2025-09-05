@@ -69,6 +69,12 @@ $brand-danger: $danger-color;
 $brand-info: $primary-color;
 $brand-highlight: $primary-color;
 
+// Brand color lighter variants for compatibility with plugins
+$brand-success-lighter: lighten($brand-success, 15%);
+$brand-info-lighter: lighten($brand-info, 15%);
+$brand-warning-lighter: lighten($brand-warning, 15%);
+$brand-danger-lighter: lighten($brand-danger, 15%);
+
 // Translucent materials (macOS vibrancy)
 $translucent-menu: rgba(30, 30, 30, 0.8);
 $translucent-sidebar: rgba(40, 40, 40, 0.85);
