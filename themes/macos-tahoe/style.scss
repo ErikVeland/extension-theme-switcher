@@ -1552,3 +1552,51 @@ body * {
 #titlebar-starter {
   grid-template-rows: repeat(1, auto);
 }
+
+// === LEGIBILITY ENHANCEMENTS ===
+// Development button legibility fix
+.toolbar-version-dev {
+  background-color: rgba(255, 59, 48, 0.2); // Semi-transparent danger color
+  color: rgba(255, 255, 255, 0.95); // High contrast white text
+  border: 1px solid rgba(255, 59, 48, 0.4); // Subtle border for definition
+  border-radius: $border-radius-medium; // Consistent border radius
+  backdrop-filter: blur(10px); // Add macOS-style vibrancy
+  font-weight: $font-weight-semibold; // Make text more prominent
+}
+
+// Enhanced error message styling for dropdowns
+.has-error {
+  .control-label {
+    color: $danger-color;
+    font-weight: $font-weight-semibold; // Make error text more prominent
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); // Subtle shadow for better contrast
+  }
+  
+  .form-control {
+    border-color: rgba(255, 59, 48, 0.6); // More visible error border
+    background-color: rgba(255, 59, 48, 0.05); // Subtle error background
+    
+    &:focus {
+      border-color: $danger-color;
+      box-shadow: 0 0 0 2px rgba(255, 59, 48, 0.3); // Error focus ring
+    }
+    
+    // Dropdown-specific enhancements
+    &.dropdown-error {
+      background-color: rgba(255, 59, 48, 0.1); // More visible in dropdowns
+      color: rgba(255, 255, 255, 0.95); // High contrast text
+    }
+  }
+  
+  // Dropdown menu error items
+  .dropdown-menu {
+    .has-error > a {
+      background-color: rgba(255, 59, 48, 0.15);
+      color: rgba(255, 255, 255, 0.95);
+      
+      &:hover {
+        background-color: rgba(255, 59, 48, 0.25);
+      }
+    }
+  }
+}

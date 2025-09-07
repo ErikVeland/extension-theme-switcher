@@ -25,12 +25,25 @@
 .form-control {
   border-radius: $border-radius-medium;
   border: 1px solid $border-color;
-  background-color: rgba(255, 255, 255, 0.05);
-  color: $text-color;
+  background-color: rgba(255, 255, 255, 0.08); // Slightly more opaque background
+  color: rgba(255, 255, 255, 0.95); // Higher contrast text
+  backdrop-filter: blur(10px); // Add subtle backdrop filter for depth
   
   &:focus {
     border-color: $primary-color;
     box-shadow: 0 0 0 2px $focus-ring-color;
+    background-color: rgba(255, 255, 255, 0.12); // Slightly lighter on focus
+  }
+  
+  // Placeholder text styling
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.6); // More visible placeholder text
+  }
+  
+  // Ensure proper contrast in all states
+  &:disabled {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.5);
   }
 }
 
@@ -284,12 +297,35 @@
 // Input group styling
 .input-group {
   .input-group-addon {
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.12); // More visible addon background
     border: 1px solid $border-color;
-    color: $text-color-secondary;
+    color: rgba(255, 255, 255, 0.9); // Higher contrast addon text
+    backdrop-filter: blur(10px); // Consistent with macOS styling
   }
   
   .input-group-btn .btn {
     border-color: $border-color;
+    background: rgba(255, 255, 255, 0.1); // Consistent button background
+    color: rgba(255, 255, 255, 0.9); // Higher contrast button text
+    
+    &:hover {
+      background: rgba(255, 255, 255, 0.15); // Slightly lighter on hover
+    }
+    
+    // Focus state for better accessibility
+    &:focus {
+      box-shadow: 0 0 0 2px $focus-ring-color;
+    }
+  }
+  
+  // Search box specific styling
+  &.search-input-group {
+    .form-control {
+      background-color: rgba(255, 255, 255, 0.08);
+      
+      &:focus {
+        background-color: rgba(255, 255, 255, 0.12);
+      }
+    }
   }
 }
