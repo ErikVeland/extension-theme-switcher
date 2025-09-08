@@ -101,41 +101,6 @@ function applyTheme(api: types.IExtensionApi, theme: string, initial: boolean) {
           api.setStylesheet('style', path.join(selected, 'style'));
         })
         .then(() => {
-          log('debug', 'Theme stylesheets set, waiting for CSS injection verification');
-          
-          // Force a render to ensure CSS gets injected
-          // This is critical for initial theme loading when StyleManager auto-refresh isn't enabled yet
-          setTimeout(() => {
-            const themeElement = document.getElementById('theme');
-            const headElement = document.getElementsByTagName('head')[0];
-            
-            log('debug', 'CSS injection verification check', {
-              themeElementExists: !!themeElement,
-              themeElementContent: themeElement?.innerHTML?.substring(0, 200) || 'none',
-              themeElementContentLength: themeElement?.innerHTML?.length || 0,
-              totalHeadChildren: headElement?.children?.length || 0,
-              headChildrenWithThemeId: Array.from(headElement?.children || []).filter(el => el.id === 'theme').length,
-              timestamp: new Date().toISOString()
-            });
-            
-            if (!themeElement || !themeElement.innerHTML) {
-              log('warn', 'CSS injection verification FAILED - theme element missing or empty', {
-                theme,
-                selectedPath: selected,
-                themeElementExists: !!themeElement,
-                themeElementContent: themeElement?.innerHTML || 'none'
-              });
-            } else {
-              log('info', 'CSS injection verification SUCCESS - theme element found with content', {
-                theme,
-                selectedPath: selected,
-                contentLength: themeElement.innerHTML.length,
-                contentPreview: themeElement.innerHTML.substring(0, 100)
-              });
-            }
-          }, 500);
-        })
-        .then(() => {
           log('info', 'Theme applied successfully', { theme, selectedPath: selected });
         });
     });

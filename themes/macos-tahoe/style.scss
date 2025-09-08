@@ -1089,13 +1089,6 @@ a {
       background: transparent;
       padding: 0;
       padding-right: $spacing-lg;
-      // Use CSS Grid to prevent dashlet overlapping
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      grid-auto-rows: minmax(200px, auto);
-      grid-gap: $spacing-md;
-      
-      // Remove positioning styles that interfere with grid
       position: relative;
       height: auto !important;
     }
@@ -1395,7 +1388,7 @@ a {
     .dashlet-container,
     .content-dashlets,
     .main-content-dashlets {
-      display: contents;
+      // display: contents;
       width: 100%;
       box-sizing: border-box;
     }
