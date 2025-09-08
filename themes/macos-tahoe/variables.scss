@@ -291,3 +291,49 @@ $table-header-separator: 1px;
 // Hover colors
 $primary-color-hover: darken($primary-color, 10%);
 $danger-color-hover: darken($danger-color, 10%);
+
+//== Form states and alerts
+//
+//## Define colors for form feedback states and, by default, alerts.
+//## macOS-inspired colors that are legible with white text
+
+// Success state - macOS green with proper contrast for white text
+$state-success-text:             $white;
+$state-success-bg:               rgba(52, 199, 89, 0.25); // macOS green with transparency
+$state-success-border:           rgba(52, 199, 89, 0.4); // Slightly more opaque border
+
+// Info state - macOS blue with proper contrast for white text
+$state-info-text:                $white;
+$state-info-bg:                  rgba(0, 122, 255, 0.25); // macOS blue with transparency
+$state-info-border:              rgba(0, 122, 255, 0.4); // Slightly more opaque border
+
+// Warning state - macOS orange with proper contrast for white text
+$state-warning-text:             $white;
+$state-warning-bg:               rgba(255, 149, 0, 0.25); // macOS orange with transparency
+$state-warning-border:           rgba(255, 149, 0, 0.4); // Slightly more opaque border
+
+// Danger state - macOS red with proper contrast for white text
+$state-danger-text:              $white;
+$state-danger-bg:                rgba(255, 59, 48, 0.25); // macOS red with transparency
+$state-danger-border:            rgba(255, 59, 48, 0.4); // Slightly more opaque border
+
+// Alert variables using the same colors
+$alert-padding:                  15px;
+$alert-border-radius:            $border-radius-base;
+$alert-link-font-weight:         bold;
+
+$alert-success-bg:               $state-success-bg;
+$alert-success-text:             $state-success-text;
+$alert-success-border:           $state-success-border;
+
+$alert-info-bg:                  $state-info-bg;
+$alert-info-text:                $state-info-text;
+$alert-info-border:              $state-info-border;
+
+$alert-warning-bg:               $state-warning-bg;
+$alert-warning-text:             $state-warning-text;
+$alert-warning-border:           $state-warning-border;
+
+$alert-danger-bg:                $state-danger-bg;
+$alert-danger-text:              $state-danger-text;
+$alert-danger-border:            $state-danger-border;

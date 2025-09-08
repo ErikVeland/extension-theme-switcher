@@ -591,8 +591,8 @@ a {
   
   // Improved height calculation to prevent cutoff - shorter height
   height: auto;
-  min-height: calc(100vh - #{$toolbar-height-expanded + $layout-margin-base * 6}); // More conservative height
-  max-height: calc(100vh - #{$toolbar-height-expanded + $layout-margin-base * 6}); // Prevent bottom cutoff with extra margin
+  min-height: calc(100vh - 172px); // More conservative height
+  max-height: calc(100vh - -172px); // Prevent bottom cutoff with extra margin
   
   // Enhanced shadows
   box-shadow: 
@@ -1541,20 +1541,19 @@ body * {
   filter: none;
 }
 
-// Titlebar starter grid adjustments
-#titlebar-starter {
-  grid-template-rows: repeat(1, auto);
-}
-
 // === LEGIBILITY ENHANCEMENTS ===
 // Development button legibility fix
 .toolbar-version-dev {
-  background-color: rgba(255, 59, 48, 0.2); // Semi-transparent danger color
+  background-color: rgba(255, 59, 48, 0.8); // Semi-transparent danger color
   color: rgba(255, 255, 255, 0.95); // High contrast white text
-  border: 1px solid rgba(255, 59, 48, 0.4); // Subtle border for definition
+  border: 1px solid rgba(255, 59, 48, 0.95); // Subtle border for definition
   border-radius: $border-radius-medium; // Consistent border radius
   backdrop-filter: blur(10px); // Add macOS-style vibrancy
   font-weight: $font-weight-semibold; // Make text more prominent
+}
+
+.toolbar-version-text {
+  background-color: rgba(255, 255, 255, 0.08) !important;
 }
 
 // Enhanced error message styling for dropdowns
