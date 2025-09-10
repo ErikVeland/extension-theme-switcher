@@ -405,6 +405,7 @@ a {
       position: relative;
       font-size: $font-size-small;
       color: $text-color-secondary;
+      gap: $spacing-sm;
     }
   }
 
@@ -1502,6 +1503,10 @@ body * {
       font-family: $theme-font-family-base !important;
       font-size: $font-size-small;
       color: $text-color-secondary;
+
+      .toolbar-version-text {
+        color: rgba(0, 0, 0, 0.9) !important;
+      }
     }
   }
 }
@@ -1539,21 +1544,6 @@ body * {
 .has-error .control-label {
   color: $danger-color;
   filter: none;
-}
-
-// === LEGIBILITY ENHANCEMENTS ===
-// Development button legibility fix
-.toolbar-version-dev {
-  background-color: rgba(255, 59, 48, 0.8); // Semi-transparent danger color
-  color: rgba(255, 255, 255, 0.95); // High contrast white text
-  border: 1px solid rgba(255, 59, 48, 0.95); // Subtle border for definition
-  border-radius: $border-radius-medium; // Consistent border radius
-  backdrop-filter: blur(10px); // Add macOS-style vibrancy
-  font-weight: $font-weight-semibold; // Make text more prominent
-}
-
-.toolbar-version-text {
-  background-color: rgba(255, 255, 255, 0.08) !important;
 }
 
 // Enhanced error message styling for dropdowns
