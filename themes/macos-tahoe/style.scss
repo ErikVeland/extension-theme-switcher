@@ -1582,3 +1582,167 @@ body * {
     }
   }
 }
+
+// === MODAL/DIALOG STYLING FOR DARK MODE READABILITY ===
+// Enhanced modal styling with proper contrast for dark mode
+
+.modal-content {
+  background-color: $modal-content-bg;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  
+  .modal-header {
+    border-bottom: 1px solid $modal-header-border-color;
+    
+    .modal-title {
+      color: $text-color;
+    }
+  }
+  
+  .modal-body {
+    color: $text-color;
+  }
+  
+  .modal-footer {
+    border-top: 1px solid $modal-footer-border-color;
+    background-color: rgba(28, 28, 30, 0.5);
+  }
+}
+
+// === DROPDOWN MENU STYLING FOR DARK MODE READABILITY ===
+// Enhanced dropdown styling with proper contrast for dark mode
+
+.dropdown-menu {
+  background-color: $dropdown-bg;
+  border: 1px solid $dropdown-border;
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  
+  > li > a {
+    color: $dropdown-link-color;
+    
+    &:hover,
+    &:focus {
+      background-color: $dropdown-link-hover-bg;
+      color: $dropdown-link-color;
+    }
+  }
+  
+  > .active > a {
+    &,
+    &:hover,
+    &:focus {
+      background-color: $dropdown-link-active-bg;
+      color: white;
+    }
+  }
+}
+
+// === TOOLBAR DROPDOWN SPECIFIC STYLING ===
+// Enhanced toolbar dropdowns with macOS aesthetic
+
+.main-toolbar-right .dropdown-menu,
+.main-toolbar-left .dropdown-menu,
+.main-toolbar-center .dropdown-menu {
+  background-color: rgba(28, 28, 30, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-radius: $border-radius-medium;
+  
+  > li > a {
+    color: $text-color;
+    padding: $spacing-sm $spacing-md;
+    
+    &:hover,
+    &:focus {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: $text-color;
+    }
+  }
+}
+
+// === POPOVER AND NOTIFICATION STYLING ===
+// Enhanced popover styling for proper contrast in dark mode
+
+.popover {
+  background-color: rgba(28, 28, 30, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-radius: $border-radius-medium;
+  color: $text-color;
+  
+  &.bottom .arrow {
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+    
+    &:after {
+      border-bottom-color: rgba(28, 28, 30, 0.95);
+    }
+  }
+  
+  .popover-content {
+    color: $text-color;
+  }
+}
+
+.notification {
+  background-color: rgba(58, 58, 60, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: $border-radius-small;
+  color: $text-color;
+  
+  .notification-textbox {
+    color: $text-color;
+  }
+  
+  .notification-message {
+    color: $text-color;
+  }
+  
+  .notification-title {
+    color: $text-color;
+    font-weight: $font-weight-semibold;
+  }
+  
+  &.alert-warning {
+    background-color: rgba(255, 149, 0, 0.15);
+    border-color: rgba(255, 149, 0, 0.3);
+    color: $text-color;
+  }
+  
+  &.alert-info {
+    background-color: rgba(0, 122, 255, 0.15);
+    border-color: rgba(0, 122, 255, 0.3);
+    color: $text-color;
+  }
+  
+  &.alert-danger {
+    background-color: rgba(255, 59, 48, 0.15);
+    border-color: rgba(255, 59, 48, 0.3);
+    color: $text-color;
+  }
+  
+  .btn {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: $text-color;
+    
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+  }
+  
+  .icon-button {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: $text-color;
+    
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+  }
+}

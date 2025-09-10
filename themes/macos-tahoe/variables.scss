@@ -337,3 +337,15 @@ $alert-warning-border:           $state-warning-border;
 $alert-danger-bg:                $state-danger-bg;
 $alert-danger-text:              $state-danger-text;
 $alert-danger-border:            $state-danger-border;
+
+// Modal variables for dark mode readability
+$modal-content-bg: rgba(28, 28, 30, 0.95); // Dark background with slight transparency
+$modal-header-border-color: rgba(255, 255, 255, 0.1);
+$modal-footer-border-color: rgba(255, 255, 255, 0.1);
+
+// Dropdown variables for dark mode readability
+$dropdown-bg: rgba(28, 28, 30, 0.95);
+$dropdown-border: rgba(255, 255, 255, 0.1);
+$dropdown-link-color: $text-color;
+$dropdown-link-hover-bg: rgba(255, 255, 255, 0.1);
+$dropdown-link-active-bg: $primary-color;
