@@ -80,8 +80,8 @@ $translucent-menu: rgba(30, 30, 30, 0.8);
 $translucent-sidebar: rgba(40, 40, 40, 0.85);
 $translucent-toolbar: rgba(50, 50, 50, 0.9);
 
-// Backdrop filter for vibrancy effect
-$backdrop-filter: blur(20px) saturate(180%);
+// Backdrop filter for vibrancy effect (reduced intensity to prevent tile memory issues)
+$backdrop-filter: blur(10px) saturate(120%);
 
 // Text colors
 $text-color: rgba(255, 255, 255, 0.85);
@@ -115,7 +115,7 @@ $sidebar-width-compact: 52px;        // Standard macOS sidebar compact width
 $toolbar-height: 32px;               // Compact toolbar height
 $toolbar-height-expanded: 44px;      // Expanded toolbar when hovered
 $titlebar-height: 28px;              // macOS titlebar height
-$traffic-light-width: 80px;          // Space for macOS traffic light buttons
+$traffic-light-width: 70px;          // Space for macOS traffic light buttons
 
 // Layout spacing and margins
 $layout-margin-base: 12px;           // Base margin for layout elements  
@@ -156,6 +156,7 @@ $transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);    // Quick interactions
 $transition-medium: 0.25s cubic-bezier(0.4, 0, 0.2, 1);  // Standard transitions
 $transition-slow: 0.35s cubic-bezier(0.4, 0, 0.2, 1);    // Slower, more dramatic
 $transition-bounce: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55); // Subtle bounce
+$transition-notification: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); // Notification animations
 
 // Button system variables
 $button-border-radius-small: 4px;

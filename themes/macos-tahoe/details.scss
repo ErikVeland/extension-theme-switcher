@@ -8,8 +8,6 @@
   border-radius: 6px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
   color: rgba(255, 255, 255, 0.85);
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', sans-serif;
   font-size: 13px;
@@ -19,6 +17,12 @@
   height: 24px;
   min-height: 24px;
   transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  // Apply glass effect only to buttons with text content, not to icon-only buttons
+  &:not(.icon-button) {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
   
   &:hover {
     background: rgba(255, 255, 255, 0.12);
@@ -121,6 +125,31 @@
       background: rgba(52, 199, 89, 0.7);
       border-color: rgba(52, 199, 89, 0.8);
       box-shadow: 0 1px 3px rgba(52, 199, 89, 0.2);
+    }
+  }
+  
+  // Icon button variant - completely minimal styling without glass effect
+  &.icon-button {
+    background: transparent;
+    border: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    padding: 4px; // Add padding to prevent icons from touching edges
+    width: 24px;
+    min-width: 24px;
+    height: 24px;
+    min-height: 24px;
+    
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+    
+    &:active {
+      background: rgba(255, 255, 255, 0.05);
+    }
+    
+    &:focus {
+      box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.3);
     }
   }
 }

@@ -53,8 +53,12 @@
     justify-content: center;
     min-width: 28px;
     height: 24px;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    
+    // Apply glass effect only to buttons with text content
+    &:not(.toolbar-icon-btn) {
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
     
     // Text initially hidden, shown on hover
     .button-text {
@@ -70,8 +74,6 @@
       font-size: $font-size-small;
       pointer-events: none;
       white-space: nowrap;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
       box-shadow: $button-shadow-hover;
     }
     
@@ -124,8 +126,6 @@
   background: $button-secondary-bg;
   border: 1px solid $button-secondary-border;
   border-radius: $button-border-radius-small;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
   margin-left: $spacing-sm;
   padding: $spacing-xs $spacing-sm;
   position: absolute;
@@ -176,7 +176,7 @@ body {
 }
 
 // Typography hierarchy with proper macOS sizing and spacing
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, .menu-label {
   font-family: $theme-font-family-headings !important;
   font-weight: $font-weight-semibold;
   letter-spacing: $letter-spacing-headings;
@@ -308,6 +308,20 @@ a {
   -webkit-app-region: none;
 }
 
+// Ensure proper traffic light positioning
+#main-toolbar {
+  margin-left: $traffic-light-width; // Space for traffic lights
+  
+  // Add padding to ensure content doesn't overlap with traffic lights
+  @media (max-width: 1200px) {
+    margin-left: $spacing-lg; // Reduce traffic light spacing on smaller screens
+  }
+  
+  @media (max-width: 768px) {
+    margin-left: $spacing-md;
+  }
+}
+
 // Hide any Windows-style maximize, minimize, close buttons in toolbar - comprehensive
 .main-toolbar-right .btn-close,
 .main-toolbar-right .btn-minimize,
@@ -426,8 +440,8 @@ a {
       background: rgba(0, 122, 255, 0.12);
       border: 1px solid rgba(0, 122, 255, 0.25);
       border-radius: $border-radius-medium;
-      backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      backdrop-filter: blur(20px) saturate(120%);
+      -webkit-backdrop-filter: blur(20px) saturate(120%);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -504,8 +518,7 @@ a {
     font-weight: $font-weight-medium;
     letter-spacing: $letter-spacing-base;
     transition: all $transition-fast;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    // Removed backdrop-filter for icon buttons to reduce GPU load
     box-shadow: $button-shadow-default;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -514,6 +527,7 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 0 2px; // Add margin to prevent buttons from touching edges
     
     &:hover {
       background: $button-secondary-bg-hover;
@@ -566,17 +580,17 @@ a {
       }
     }
     
-    // Toolbar icon buttons
+    // Toolbar icon buttons - completely minimal styling
     &.toolbar-icon-btn {
       background: transparent;
-      border: 1px solid transparent;
+      border: none;
       width: 28px;
       min-width: 28px;
-      padding: 0;
+      padding: 4px; // Add padding to prevent icons from touching edges
+      margin: 0 2px; // Keep small margin for spacing
       
       &:hover {
         background: rgba(255, 255, 255, 0.1);
-        border-color: rgba(255, 255, 255, 0.15);
       }
       
       &:active {
@@ -603,11 +617,11 @@ a {
   display: flex;
   flex-direction: column;
   
-  // Enhanced glass styling
-  background: rgba(28, 28, 30, 0.75);
-  backdrop-filter: blur(40px) saturate(200%);
-  -webkit-backdrop-filter: blur(40px) saturate(200%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  // Enhanced glass styling with improved translucency
+  background: rgba(28, 28, 30, 0.85);
+  backdrop-filter: blur(20px) saturate(120%);
+  -webkit-backdrop-filter: blur(20px) saturate(120%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: $border-radius-large;
   
   // Proper sizing and spacing with better alignment
@@ -628,8 +642,8 @@ a {
     0 2px 16px rgba(0, 0, 0, 0.25),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
   
-  // Smooth transitions
-  transition: all $transition-medium;
+  // Smooth transitions (reduced to prevent flickering)
+  transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
   
   // Overflow management
   overflow-y: auto;
@@ -706,6 +720,7 @@ a {
           div span {
             font-size: $font-size-base;
             letter-spacing: -0.007em;
+            font-weight: 500;
           }
 
           &:hover {
@@ -763,8 +778,6 @@ a {
       height: 20px;
       border-radius: 4px; // Smaller radius for native feel
       background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
       border: 0.5px solid rgba(255, 255, 255, 0.12);
       color: rgba(255, 255, 255, 0.85);
       font-size: 11px;
@@ -939,8 +952,8 @@ a {
   background: rgba(50, 50, 52, 0.65);
   border-radius: $border-radius-medium;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(20px) saturate(150%);
-  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  backdrop-filter: blur(20px) saturate(120%);
+  -webkit-backdrop-filter: blur(20px) saturate(120%);
   box-shadow: 
     0 4px 16px rgba(0, 0, 0, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
@@ -993,8 +1006,8 @@ a {
   background: rgba(50, 50, 52, 0.65);
   border-radius: $border-radius-medium;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(20px) saturate(150%);
-  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  backdrop-filter: blur(20px) saturate(120%);
+  -webkit-backdrop-filter: blur(20px) saturate(120%);
   box-shadow: 
     0 4px 16px rgba(0, 0, 0, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
@@ -1130,7 +1143,7 @@ a {
     .applet,
     .widget {
       background: rgba(28, 28, 30, 0.6);
-      backdrop-filter: blur(20px) saturate(180%);
+      backdrop-filter: blur(20px) saturate(120%);
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: $border-radius-large;
       padding: $spacing-md;
@@ -1310,7 +1323,7 @@ a {
     // Go Premium Dashlet - Premium banner style integrated with dashlet system
     .dashlet-go-premium {
       background: rgba(28, 28, 30, 0.6);
-      backdrop-filter: blur(20px) saturate(180%);
+      backdrop-filter: blur(20px) saturate(120%);
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: $border-radius-large;
       padding: $spacing-md;
@@ -1323,8 +1336,8 @@ a {
       
       // Premium banner styling
       background: linear-gradient(135deg, #007AFF 0%, #5856D6 100%);
-      backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      backdrop-filter: blur(20px) saturate(120%);
+      -webkit-backdrop-filter: blur(20px) saturate(120%);
       border: 1px solid rgba(0, 122, 255, 0.3);
       border-radius: $border-radius-large;
       box-shadow: 0 7px 32px rgba(0, 122, 255, 0.2),
@@ -1531,8 +1544,10 @@ body * {
       font-size: $font-size-small;
       color: $text-color-secondary;
 
-      .toolbar-version-text {
-        color: rgba(0, 0, 0, 0.9) !important;
+      .toolbar-version-stable {
+        .toolbar-version-text {
+          color: rgba(255, 255, 255, 0.9) !important;
+        }
       }
     }
   }
@@ -1557,9 +1572,11 @@ body * {
 }
 
 // Table hover effects with macOS styling
+// Optimized to prevent flickering by using specific properties instead of !important
 .table-hover > .xtbody > .xtr:hover {
-  background-color: rgba(255, 255, 255, 0.08) !important;
-  transition: background-color $transition-fast;
+  background-color: rgba(255, 255, 255, 0.08);
+  transition: background-color 0.15s ease;
+  will-change: background-color;
 }
 
 // Form validation styling
@@ -1614,26 +1631,38 @@ body * {
 // Enhanced modal styling with proper contrast for dark mode
 
 .modal-content {
-  background-color: $modal-content-bg;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  background-color: rgba(28, 28, 30, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px) saturate(120%);
+  -webkit-backdrop-filter: blur(20px) saturate(120%);
+  border-radius: $border-radius-large;
+  box-shadow: 
+    0 24px 48px rgba(0, 0, 0, 0.35),
+    0 8px 24px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
   
   .modal-header {
     border-bottom: 1px solid $modal-header-border-color;
+    border-radius: $border-radius-large $border-radius-large 0 0;
+    padding: $spacing-md $spacing-lg;
     
     .modal-title {
       color: $text-color;
+      font-weight: $font-weight-semibold;
+      font-size: $font-size-large;
     }
   }
   
   .modal-body {
     color: $text-color;
+    padding: $spacing-lg;
   }
   
   .modal-footer {
     border-top: 1px solid $modal-footer-border-color;
-    background-color: rgba(28, 28, 30, 0.5);
+    background-color: rgba(28, 28, 30, 0.7);
+    border-radius: 0 0 $border-radius-large $border-radius-large;
+    padding: $spacing-md $spacing-lg;
   }
 }
 
@@ -1643,8 +1672,8 @@ body * {
 .dropdown-menu {
   background-color: $dropdown-bg;
   border: 1px solid $dropdown-border;
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(120%);
+  -webkit-backdrop-filter: blur(20px) saturate(120%);
   
   > li > a {
     color: $dropdown-link-color;
@@ -1674,8 +1703,8 @@ body * {
 .main-toolbar-center .dropdown-menu {
   background-color: rgba(28, 28, 30, 0.95);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(120%);
+  -webkit-backdrop-filter: blur(20px) saturate(120%);
   border-radius: $border-radius-medium;
   
   > li > a {
@@ -1694,60 +1723,100 @@ body * {
 // Enhanced popover styling for proper contrast in dark mode
 
 .popover {
-  background-color: rgba(28, 28, 30, 0.95);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  background-color: rgba(28, 28, 30, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px) saturate(120%);
+  -webkit-backdrop-filter: blur(20px) saturate(120%);
   border-radius: $border-radius-medium;
   color: $text-color;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.35),
+    0 4px 16px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
   
   &.bottom .arrow {
-    border-bottom-color: rgba(255, 255, 255, 0.1);
+    border-bottom-color: rgba(255, 255, 255, 0.15);
     
     &:after {
-      border-bottom-color: rgba(28, 28, 30, 0.95);
+      border-bottom-color: rgba(28, 28, 30, 0.9);
     }
+  }
+  
+  .popover-title {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: $spacing-sm $spacing-md;
+    margin-bottom: $spacing-sm;
+    font-weight: $font-weight-semibold;
   }
   
   .popover-content {
     color: $text-color;
+    padding: $spacing-sm $spacing-md;
   }
 }
 
+// === NOTIFICATION STYLING ===
+// Enhanced notification styling with proper vertical alignment
+
 .notification {
-  background-color: rgba(58, 58, 60, 0.95);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: $border-radius-small;
+  background-color: rgba(58, 58, 60, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: $border-radius-medium;
   color: $text-color;
+  backdrop-filter: blur(20px) saturate(120%);
+  -webkit-backdrop-filter: blur(20px) saturate(120%);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.35),
+    0 4px 16px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all $transition-notification;
+  display: flex;
+  align-items: center;
   
   .notification-textbox {
     color: $text-color;
+    flex: 1 1 0;
+    margin-left: 10px;
+    margin-right: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 1;
+    overflow: hidden;
+    
+    span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
   
   .notification-message {
     color: $text-color;
+    font-size: $font-size-base;
+    line-height: $line-height-base;
   }
   
   .notification-title {
     color: $text-color;
     font-weight: $font-weight-semibold;
+    font-size: $font-size-large;
   }
   
   &.alert-warning {
-    background-color: rgba(255, 149, 0, 0.15);
-    border-color: rgba(255, 149, 0, 0.3);
+    background-color: rgba(255, 149, 0, 0.2);
+    border-color: rgba(255, 149, 0, 0.4);
     color: $text-color;
   }
   
   &.alert-info {
-    background-color: rgba(0, 122, 255, 0.15);
-    border-color: rgba(0, 122, 255, 0.3);
+    background-color: rgba(0, 122, 255, 0.2);
+    border-color: rgba(0, 122, 255, 0.4);
     color: $text-color;
   }
   
   &.alert-danger {
-    background-color: rgba(255, 59, 48, 0.15);
-    border-color: rgba(255, 59, 48, 0.3);
+    background-color: rgba(255, 59, 48, 0.2);
+    border-color: rgba(255, 59, 48, 0.4);
     color: $text-color;
   }
   
@@ -1755,22 +1824,75 @@ body * {
     background-color: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: $text-color;
+    border-radius: $border-radius-small;
+    transition: all $transition-fast;
     
     &:hover {
       background-color: rgba(255, 255, 255, 0.15);
       border-color: rgba(255, 255, 255, 0.25);
+      transform: translateY(-1px);
+    }
+    
+    &:active {
+      background-color: rgba(255, 255, 255, 0.08);
+      transform: translateY(0);
+    }
+    
+    &:focus {
+      box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.3);
+    }
+    
+    &:disabled {
+      background-color: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.25);
+      box-shadow: none;
+    }
+
+    &.icon-button {
+      background-color: transparent;
+      border: none;
+      background-filter: none;
+      color: $text-color;
+      border-radius: unset;
+      transition: all $transition-fast;
+      
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.15);
+        border-color: rgba(255, 255, 255, 0.25);
+      }
+      
+      &:active {
+        background-color: rgba(255, 255, 255, 0.08);
+      }
+      
+      &:focus {
+        box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.3);
+      }
     }
   }
+
   
-  .icon-button {
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: $text-color;
-    
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.15);
-      border-color: rgba(255, 255, 255, 0.25);
-    }
+  // Notification entrance animation
+  &.notification-enter {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  
+  &.notification-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  // Notification exit animation
+  &.notification-exit {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  &.notification-exit-active {
+    opacity: 0;
+    transform: translateX(100%);
   }
 }
 
@@ -1914,13 +2036,96 @@ body * {
   }
 }
 
+// Enhanced filter styling for Downloads screen
+.download-panel {
+  // Style the filter controls in the Downloads screen
+  .select-filter {
+    .Select-control {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.15);
+      border-radius: 6px;
+      height: 26px;
+      min-height: 26px;
+      
+      &:hover {
+        background: rgba(255, 255, 255, 0.12);
+        border-color: rgba(255, 255, 255, 0.2);
+      }
+      
+      &:focus {
+        background: rgba(255, 255, 255, 0.12);
+        border-color: rgba(0, 122, 255, 0.5);
+        box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.3);
+      }
+    }
+    
+    .Select-placeholder {
+      color: rgba(255, 255, 255, 0.6);
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', sans-serif;
+      font-size: 13px;
+      line-height: 24px;
+    }
+    
+    .Select-value {
+      color: rgba(255, 255, 255, 0.85);
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', sans-serif;
+      font-size: 13px;
+      line-height: 24px;
+    }
+    
+    .Select-arrow {
+      border-color: rgba(255, 255, 255, 0.7) transparent transparent;
+    }
+  }
+  
+  // Style the compact select filters used in tables
+  .select-compact {
+    .Select-control {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.15);
+      border-radius: 6px;
+      height: 24px;
+      min-height: 24px;
+      
+      &:hover {
+        background: rgba(255, 255, 255, 0.12);
+        border-color: rgba(255, 255, 255, 0.2);
+      }
+      
+      &:focus {
+        background: rgba(255, 255, 255, 0.12);
+        border-color: rgba(0, 122, 255, 0.5);
+        box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.3);
+      }
+    }
+    
+    .Select-placeholder {
+      color: rgba(255, 255, 255, 0.6);
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', sans-serif;
+      font-size: 12px;
+      line-height: 22px;
+    }
+    
+    .Select-value {
+      color: rgba(255, 255, 255, 0.85);
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', sans-serif;
+      font-size: 12px;
+      line-height: 22px;
+    }
+    
+    .Select-arrow {
+      border-color: rgba(255, 255, 255, 0.7) transparent transparent;
+    }
+  }
+}
+
 // Dropdown menu styling
 .Select-menu-outer {
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 6px;
   background: rgba(28, 28, 30, 0.95);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(10px) saturate(120%);
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
   
   .Select-option {
@@ -1950,12 +2155,11 @@ body * {
 // Native macOS button styling with proper states
 
 // Mac-like button styling
+* .hover-menu .hover-content .buttons .btn,
 .btn {
   border-radius: 6px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
   color: rgba(255, 255, 255, 0.85);
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', sans-serif;
   font-size: 13px;
@@ -1964,7 +2168,13 @@ body * {
   padding: 4px 12px;
   height: 24px;
   min-height: 24px;
-  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+  
+  // Apply glass effect only to buttons with text content, not to icon-only buttons
+  &:not(.icon-button) {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
   
   &:hover {
     background: rgba(255, 255, 255, 0.12);
@@ -2069,4 +2279,320 @@ body * {
       box-shadow: 0 1px 3px rgba(52, 199, 89, 0.2);
     }
   }
+  
+  // Icon button variant - completely minimal styling without glass effect
+  &.icon-button,
+  &.btn-embed {
+    background: transparent;
+    border: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    padding: 4px; // Add padding to prevent icons from touching edges
+    width: 24px;
+    min-width: 24px;
+    height: 24px;
+    min-height: 24px;
+    
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+    
+    &:active {
+      background: rgba(255, 255, 255, 0.05);
+    }
+    
+    &:focus {
+      box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.3);
+    }
+  }
 }
+
+// === ENHANCED TABLE HEADER STYLING ===
+// Ensure all controls in table header cells sit in a single line with proper alignment
+
+.table-header {
+  .xthead {
+    background: rgba(28, 28, 30, 0.7);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px) saturate(120%);
+    -webkit-backdrop-filter: blur(10px) saturate(120%);
+    
+    .xtr {
+      display: flex;
+      align-items: center;
+      
+      .xth {
+        padding: $spacing-sm;
+        border-right: 1px solid rgba(255, 255, 255, 0.05);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        
+        &:last-child {
+          border-right: none;
+        }
+        
+        // Main header content container - ensure single line layout
+        > div[style*="flex-direction: column"] {
+          display: flex !important;
+          flex-direction: row !important;
+          align-items: center !important;
+          width: 100%;
+          gap: $spacing-xs;
+          
+          // Header label and controls container
+          > .flex-fill {
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            flex: 1;
+            min-width: 0; // Allow text truncation
+            
+            // Header text
+            > div[style*="display: flex; align-items: center"] {
+              flex: 1;
+              min-width: 0; // Allow text truncation
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              font-weight: $font-weight-semibold;
+              color: rgba(255, 255, 255, 0.9);
+              font-size: $font-size-small;
+            }
+            
+            // Cell controls (sort icons, group buttons)
+            .cell-controls {
+              display: flex !important;
+              align-items: center !important;
+              gap: $spacing-xs;
+              margin-left: $spacing-xs;
+              
+              // Sort icons
+              .icon {
+                width: 14px;
+                height: 14px;
+                opacity: 0.7;
+              }
+              
+              // Group buttons
+              .btn-embed {
+                padding: 2px;
+                min-width: 20px;
+                height: 20px;
+                
+                .icon {
+                  width: 12px;
+                  height: 12px;
+                }
+              }
+            }
+          }
+          
+          // Filter controls container
+          > :not(.flex-fill) {
+            display: flex !important;
+            align-items: center !important;
+            margin-left: $spacing-xs;
+            min-width: 120px; // Ensure consistent width for filter controls
+            
+            // Text filter input
+            .form-field-compact {
+              height: 24px;
+              padding: 2px 6px;
+              font-size: $font-size-small;
+              background: rgba(255, 255, 255, 0.05);
+              border: 1px solid rgba(255, 255, 255, 0.15);
+              border-radius: 4px;
+              
+              &:focus {
+                background: rgba(255, 255, 255, 0.08);
+                border-color: rgba(0, 122, 255, 0.5);
+                box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.3);
+              }
+            }
+            
+            // Select filter controls
+            .select-compact {
+              height: 24px;
+              min-height: 24px;
+              font-size: $font-size-small;
+              
+              .Select-control {
+                height: 24px;
+                min-height: 24px;
+                border-radius: 4px;
+                background: rgba(255, 255, 255, 0.05);
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                
+                &:hover {
+                  background: rgba(255, 255, 255, 0.08);
+                  border-color: rgba(255, 255, 255, 0.2);
+                }
+                
+                &:focus {
+                  background: rgba(255, 255, 255, 0.08);
+                  border-color: rgba(0, 122, 255, 0.5);
+                  box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.3);
+                }
+                
+                .Select-placeholder {
+                  line-height: 22px;
+                  font-size: $font-size-small;
+                }
+                
+                .Select-value {
+                  line-height: 22px;
+                  font-size: $font-size-small;
+                }
+                
+                .Select-input {
+                  height: 22px;
+                  
+                  input {
+                    height: 22px;
+                    padding: 0;
+                  }
+                }
+                
+                .Select-arrow {
+                  top: 8px;
+                }
+              }
+            }
+            
+            // Date filter controls
+            .datetime-filter {
+              height: 24px;
+              font-size: $font-size-small;
+              
+              .input-group-addon {
+                padding: 2px 6px;
+                font-size: $font-size-small;
+                height: 24px;
+                border-radius: 4px 0 0 4px;
+              }
+              
+              .datetime-picker {
+                height: 24px;
+                padding: 2px 6px;
+                font-size: $font-size-small;
+                border-radius: 0 4px 4px 0;
+              }
+            }
+          }
+        }
+        
+        // Actions column
+        &.header-action,
+        &.table-downloads {
+          min-width: 100px;
+          justify-content: flex-end;
+          
+          > div {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            
+            .header-action-label {
+              flex: 1;
+              font-weight: $font-weight-semibold;
+              color: rgba(255, 255, 255, 0.9);
+              font-size: $font-size-small;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+            
+            .table-actions {
+              display: flex;
+              align-items: center;
+              
+              .btn-embed {
+                padding: 4px;
+                min-width: 24px;
+                height: 24px;
+                
+                .icon {
+                  width: 14px;
+                  height: 14px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Ensure consistent icon button styling in table headers
+.table-header .icon-button {
+  background: transparent;
+  border: none;
+  padding: 4px;
+  min-width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  &:active {
+    background: rgba(255, 255, 255, 0.05);
+  }
+  
+  .icon {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+// === COMPACT FILTER STYLING FOR DOWNLOADS SCREEN ===
+// Enhanced filter styling for Downloads screen with single-line layout
+
+.download-panel {
+  // Style the filter controls in the Downloads screen
+  .select-filter,
+  .select-compact {
+    .Select-control {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.15);
+      border-radius: 6px;
+      height: 26px;
+      min-height: 26px;
+      
+      &:hover {
+        background: rgba(255, 255, 255, 0.12);
+        border-color: rgba(255, 255, 255, 0.2);
+      }
+      
+      &:focus {
+        background: rgba(255, 255, 255, 0.12);
+        border-color: rgba(0, 122, 255, 0.5);
+        box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.3);
+      }
+    }
+    
+    .Select-placeholder {
+      color: rgba(255, 255, 255, 0.6);
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', sans-serif;
+      font-size: 13px;
+      line-height: 24px;
+    }
+    
+    .Select-value {
+      color: rgba(255, 255, 255, 0.85);
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', sans-serif;
+      font-size: 13px;
+      line-height: 24px;
+    }
+    
+    .Select-arrow {
+      border-color: rgba(255, 255, 255, 0.7) transparent transparent;
+    }
+  }
+}
+
