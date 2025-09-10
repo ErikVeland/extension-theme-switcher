@@ -5,45 +5,156 @@
 
 // Button styling
 .btn {
-  border-radius: $border-radius-medium;
-  font-weight: $font-weight-medium;
-  letter-spacing: -0.01em;
-  transition: all $transition-duration-fast $transition-easing;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: rgba(255, 255, 255, 0.85);
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: -0.003em;
+  padding: 4px 12px;
+  height: 24px;
+  min-height: 24px;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   
+  &:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.25);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  }
+  
+  &:active {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(0);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+  
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.3);
+  }
+  
+  &:disabled {
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.35);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+  
+  // Primary button variant
   &.btn-primary {
-    background-color: $primary-color;
-    border-color: $primary-color;
+    background: rgba(0, 122, 255, 0.8);
+    border-color: rgba(0, 122, 255, 0.9);
+    color: white;
+    font-weight: 500;
     
     &:hover {
-      background: $primary-color-hover;
-      border-color: $primary-color-hover;
+      background: rgba(0, 122, 255, 0.9);
+      border-color: rgba(0, 122, 255, 1);
+      box-shadow: 0 2px 8px rgba(0, 122, 255, 0.3);
+    }
+    
+    &:active {
+      background: rgba(0, 122, 255, 0.7);
+      border-color: rgba(0, 122, 255, 0.8);
+      box-shadow: 0 1px 3px rgba(0, 122, 255, 0.2);
+    }
+  }
+  
+  // Ghost button variant
+  &.btn-ghost {
+    background: transparent;
+    border-color: transparent;
+    
+    &:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+    
+    &:active {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+  }
+  
+  // Danger button variant
+  &.btn-danger {
+    background: rgba(255, 59, 48, 0.8);
+    border-color: rgba(255, 59, 48, 0.9);
+    color: white;
+    font-weight: 500;
+    
+    &:hover {
+      background: rgba(255, 59, 48, 0.9);
+      border-color: rgba(255, 59, 48, 1);
+      box-shadow: 0 2px 8px rgba(255, 59, 48, 0.3);
+    }
+    
+    &:active {
+      background: rgba(255, 59, 48, 0.7);
+      border-color: rgba(255, 59, 48, 0.8);
+      box-shadow: 0 1px 3px rgba(255, 59, 48, 0.2);
+    }
+  }
+  
+  // Success button variant
+  &.btn-success {
+    background: rgba(52, 199, 89, 0.8);
+    border-color: rgba(52, 199, 89, 0.9);
+    color: white;
+    font-weight: 500;
+    
+    &:hover {
+      background: rgba(52, 199, 89, 0.9);
+      border-color: rgba(52, 199, 89, 1);
+      box-shadow: 0 2px 8px rgba(52, 199, 89, 0.3);
+    }
+    
+    &:active {
+      background: rgba(52, 199, 89, 0.7);
+      border-color: rgba(52, 199, 89, 0.8);
+      box-shadow: 0 1px 3px rgba(52, 199, 89, 0.2);
     }
   }
 }
 
 // Form controls
 .form-control {
-  border-radius: $border-radius-medium;
-  border: 1px solid $border-color;
-  background-color: rgba(255, 255, 255, 0.08); // Slightly more opaque background
-  color: rgba(255, 255, 255, 0.95); // Higher contrast text
-  backdrop-filter: blur(10px); // Add subtle backdrop filter for depth
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 4px 8px;
+  color: rgba(255, 255, 255, 0.85);
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: -0.003em;
+  
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.45);
+  }
   
   &:focus {
-    border-color: $primary-color;
-    box-shadow: 0 0 0 2px $focus-ring-color;
-    background-color: rgba(255, 255, 255, 0.12); // Slightly lighter on focus
+    outline: none;
+    border-color: rgba(0, 122, 255, 0.5);
+    box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.3);
+    background: rgba(255, 255, 255, 0.08);
   }
   
-  // Placeholder text styling
-  &::placeholder {
-    color: rgba(255, 255, 255, 0.6); // More visible placeholder text
-  }
-  
-  // Ensure proper contrast in all states
   &:disabled {
-    background-color: rgba(255, 255, 255, 0.05);
-    color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.35);
+    cursor: not-allowed;
   }
 }
 
