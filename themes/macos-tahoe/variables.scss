@@ -95,12 +95,12 @@ $separator-color: rgba(255, 255, 255, 0.08);
 // Focus ring color (macOS blue)
 $focus-ring-color: rgba(0, 122, 255, 0.4);
 
-// Border radius values
+// Border radius for macOS-style rounded corners
 $border-radius-small: 4px;
 $border-radius-medium: 6px;
 $border-radius-large: 8px;
 $border-radius-xl: 10px;
-
+$border-radius-pill: 50px; // For pill-shaped buttons
 // Spacing scale
 $spacing-xs: 4px;
 $spacing-sm: 8px;
@@ -164,10 +164,10 @@ $transition-bounce: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55); // Subtle bounc
 $transition-notification: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); // Notification animations
 
 // Button system variables
-$button-border-radius-small: 4px;
-$button-border-radius-medium: 6px;
-$button-border-radius-large: 8px;
-$button-border-radius-pill: 20px;
+$button-border-radius-small: $border-radius-medium;
+$button-border-radius-medium: $border-radius-large;
+$button-border-radius-large: $border-radius-xl;
+$button-border-radius-pill: $border-radius-pill;
 
 // Button padding scales
 $button-padding-xs: 4px 8px;
