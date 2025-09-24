@@ -1,8 +1,13 @@
 // macOS Tahoe Theme Styles with Compact Integration
 // Enhanced styling to create a native macOS look and feel with compact toolbar behavior
 
-// Import variables
+// Import variables and mixins
 @import 'variables';
+@import 'mixins';
+
+// Import component styles
+@import 'components';
+@import 'toolbar';
 
 // === COMPACT THEME INTEGRATION ===
 // Import compact theme toolbar behaviors and extend with macOS styling
@@ -1889,38 +1894,137 @@ body * {
 // Enhanced modal styling with proper contrast for dark mode
 
 .modal-content {
-  background-color: rgba(28, 28, 30, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(20px) saturate(120%);
-  -webkit-backdrop-filter: blur(20px) saturate(120%);
-  border-radius: $border-radius-large;
+  background-color: rgba(28, 28, 30, 0.85); // More translucent like macOS system dialogs
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(40px) saturate(180%); // Stronger blur for system dialog feel
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  border-radius: 12px; // macOS system dialog corner radius
   box-shadow:
-    0 24px 48px rgba(0, 0, 0, 0.35),
-    0 8px 24px rgba(0, 0, 0, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    0 32px 64px rgba(0, 0, 0, 0.5), // Deeper shadow like system dialogs
+    0 16px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  min-width: 320px; // Minimum width for system dialogs
+  max-width: 480px; // Maximum width for system dialogs
 
   .modal-header {
-    border-bottom: 1px solid $modal-header-border-color;
-    border-radius: $border-radius-large $border-radius-large 0 0;
-    padding: $spacing-md $spacing-lg;
+    border-bottom: none; // Remove horizontal border for macOS Tahoe
+    border-radius: 12px 12px 0 0;
+    padding: 20px 24px 16px 24px; // macOS system dialog padding
+    text-align: left; // Left-aligned for macOS Tahoe system dialogs
 
     .modal-title {
       color: $text-color;
-      font-weight: $font-weight-semibold;
-      font-size: $font-size-large;
+      font-weight: 600; // System font weight
+      font-size: 17px; // macOS system dialog title size
+      line-height: 1.3;
+      margin: 0;
     }
   }
 
   .modal-body {
-    color: $text-color;
-    padding: $spacing-lg;
+    color: rgba(255, 255, 255, 0.85); // Slightly muted body text
+    padding: 16px 24px 20px 24px; // System dialog body padding
+    text-align: left; // Left-aligned for macOS Tahoe system dialogs
+    font-size: 13px; // macOS system dialog body text size
+    line-height: 1.4;
   }
 
   .modal-footer {
-    border-top: 1px solid $modal-footer-border-color;
-    background-color: rgba(28, 28, 30, 0.7);
-    border-radius: 0 0 $border-radius-large $border-radius-large;
-    padding: $spacing-md $spacing-lg;
+    border-top: none; // Remove horizontal border for macOS Tahoe
+    background-color: rgba(28, 28, 30, 0.6); // More translucent footer
+    border-radius: 0 0 12px 12px;
+    padding: 16px 24px 20px 24px; // System dialog footer padding
+    display: flex;
+    justify-content: flex-end; // Right-aligned buttons like system dialogs
+    gap: 12px; // Space between buttons
+
+    .btn {
+      min-width: 80px; // Minimum button width
+      height: 32px; // macOS system button height
+      padding: 0 16px; // System button padding
+      border-radius: 6px; // System button corner radius
+      font-size: 13px; // System button font size
+      font-weight: 500; // System button font weight
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background-color: rgba(255, 255, 255, 0.1);
+      color: $text-color;
+      transition: all 0.15s ease; // Quick system-like transition
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.15);
+        border-color: rgba(255, 255, 255, 0.2);
+        transform: none; // No transform for system dialogs
+      }
+
+      &:active {
+        background-color: rgba(255, 255, 255, 0.08);
+        transform: none;
+      }
+
+      &:focus {
+        outline: 2px solid rgba(0, 122, 255, 0.5); // System focus ring
+        outline-offset: 2px;
+        box-shadow: none;
+      }
+
+      // Primary button (usually the rightmost)
+      &.btn-primary {
+        background-color: rgba(0, 122, 255, 0.9); // System blue
+        border-color: rgba(0, 122, 255, 1);
+        color: white;
+
+        &:hover {
+          background-color: rgba(0, 122, 255, 1);
+          border-color: rgba(0, 122, 255, 1);
+        }
+
+        &:active {
+          background-color: rgba(0, 100, 210, 0.9);
+        }
+      }
+
+      // Destructive button
+      &.btn-danger {
+        background-color: rgba(255, 59, 48, 0.9); // System red
+        border-color: rgba(255, 59, 48, 1);
+        color: white;
+
+        &:hover {
+          background-color: rgba(255, 59, 48, 1);
+          border-color: rgba(255, 59, 48, 1);
+        }
+
+        &:active {
+          background-color: rgba(215, 0, 21, 0.9);
+        }
+      }
+    }
+  }
+}
+
+// Modal backdrop styling to match macOS system dialogs
+.modal-backdrop {
+  background-color: rgba(0, 0, 0, 0.25); // Reduced opacity for less intrusive background
+  backdrop-filter: blur(20px) saturate(120%);
+  -webkit-backdrop-filter: blur(20px) saturate(120%);
+
+  &.in {
+    opacity: 1;
+  }
+}
+
+// Modal dialog positioning for better centering
+.modal {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  
+  .modal-dialog {
+    margin: auto;
+    max-width: 90vw;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
   }
 }
 
@@ -2031,12 +2135,16 @@ body * {
   transition: all $transition-notification;
   display: flex;
   align-items: center;
+  padding: 8px 12px; // Compact padding for content-only container
+  margin: 4px; // Minimal margin
+  min-height: auto; // Remove fixed height constraints
+  max-width: fit-content; // Only as wide as content needs
 
   .notification-textbox {
     color: $text-color;
-    flex: 1 1 0;
-    margin-left: 10px;
-    margin-right: 10px;
+    flex: 1 1 auto;
+    margin: 0; // Remove extra margins
+    padding: 0; // Remove extra padding
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -2046,19 +2154,24 @@ body * {
     span {
       overflow: hidden;
       text-overflow: ellipsis;
+      white-space: nowrap; // Prevent text wrapping for compact display
     }
   }
 
   .notification-message {
     color: $text-color;
-    font-size: $font-size-base;
-    line-height: $line-height-base;
+    font-size: $font-size-small; // Smaller font for compact display
+    line-height: 1.3; // Tighter line height
+    margin: 0; // Remove default margins
+    padding: 0; // Remove default padding
   }
 
   .notification-title {
     color: $text-color;
     font-weight: $font-weight-semibold;
-    font-size: $font-size-large;
+    font-size: $font-size-base; // Slightly smaller title
+    margin: 0 0 2px 0; // Minimal bottom margin
+    padding: 0; // Remove default padding
   }
 
   &.alert-warning {
@@ -2171,6 +2284,7 @@ body * {
   font-size: 13px;
   font-weight: 400;
   letter-spacing: -0.003em;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 
   &::placeholder {
     color: rgba(255, 255, 255, 0.45);
@@ -2211,6 +2325,7 @@ body * {
   font-size: 13px;
   font-weight: 400;
   letter-spacing: -0.003em;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 
   &::placeholder {
     color: rgba(255, 255, 255, 0.45);
@@ -2735,6 +2850,7 @@ body .main-window {
           align-items: center !important;
           width: 100%;
           gap: $spacing-xs;
+          justify-content: space-between; // Ensure proper spacing
 
           // Header label and controls container
           > .flex-fill {
@@ -2754,6 +2870,7 @@ body .main-window {
               font-weight: $font-weight-semibold;
               color: rgba(255, 255, 255, 0.9);
               font-size: $font-size-small;
+              line-height: 1.2; // Ensure consistent line height
             }
 
             // Cell controls (sort icons, group buttons)
@@ -2789,41 +2906,48 @@ body .main-window {
           > :not(.flex-fill) {
             display: flex !important;
             align-items: center !important;
-            margin-top: 0; // remove second-row spacing
+            margin-top: 0 !important; // remove second-row spacing
             margin-left: $spacing-sm; // small separation from title
             min-height: 26px; // Ensure consistent height for filter controls
-            flex: 0 1 auto;
+            flex: 0 0 auto; // Don't allow shrinking
             min-width: 0;
-            max-width: 50%;
+            max-width: 200px; // Increase max width for better usability
 
             // Text filter input
             .form-field-compact {
-              flex: 0 1 160px; // allow shrinking as needed
+              flex: 0 0 120px; // Fixed width for consistency
               height: 24px;
               padding: 2px 6px;
               font-size: $font-size-small;
               background: rgba(255, 255, 255, 0.05);
               border: 1px solid rgba(255, 255, 255, 0.15);
               border-radius: 4px;
-              min-width: 64px;
-              max-width: 100%;
+              min-width: 80px;
+              max-width: 160px;
+              color: rgba(255, 255, 255, 0.85);
+              transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+              &::placeholder {
+                color: rgba(255, 255, 255, 0.45);
+              }
 
               &:focus {
                 background: rgba(255, 255, 255, 0.08);
                 border-color: rgba(0, 122, 255, 0.5);
                 box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.3);
+                outline: none;
               }
             }
 
             // Select filter controls
             .select-compact,
             .Select {
-              flex: 0 1 180px;
+              flex: 0 0 120px; // Fixed width for consistency
               height: 24px;
               min-height: 24px;
               font-size: $font-size-small;
-              min-width: 64px;
-              max-width: 100%;
+              min-width: 80px;
+              max-width: 160px;
 
               .Select-control {
                 height: 24px;
@@ -2831,37 +2955,47 @@ body .main-window {
                 border-radius: 4px;
                 background: rgba(255, 255, 255, 0.05);
                 border: 1px solid rgba(255, 255, 255, 0.15);
+                transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 
                 &:hover {
                   background: rgba(255, 255, 255, 0.08);
                   border-color: rgba(255, 255, 255, 0.2);
                 }
 
-                &:focus {
+                &:focus,
+                &.is-focused {
                   background: rgba(255, 255, 255, 0.08);
                   border-color: rgba(0, 122, 255, 0.5);
                   box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.3);
+                  outline: none;
                 }
 
                 .Select-placeholder {
                   line-height: 22px;
                   font-size: $font-size-small;
-                  color: rgba(255, 255, 255, 0.6);
+                  color: rgba(255, 255, 255, 0.45);
+                  padding-left: 6px;
+                  padding-right: 6px;
                 }
 
                 .Select-value {
                   line-height: 22px;
                   font-size: $font-size-small;
                   color: rgba(255, 255, 255, 0.85);
+                  padding-left: 6px;
+                  padding-right: 6px;
                 }
 
                 .Select-input {
                   height: 22px;
+                  padding-left: 6px;
+                  padding-right: 6px;
 
                   input {
                     height: 22px;
                     padding: 0;
                     width: auto; // allow shrink
+                    color: rgba(255, 255, 255, 0.85);
                   }
                 }
 

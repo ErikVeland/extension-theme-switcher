@@ -1,0 +1,362 @@
+// macOS Tahoe Toolbar Styles with Safari-style Liquid Glass Effects
+// Enhanced toolbar styling for authentic macOS experience
+
+// === MAIN TOOLBAR CONTAINER ===
+#main-toolbar {
+  // Clean toolbar without background - only the icon group has styling
+  background: transparent;
+  height: 48px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: none;
+  
+  // Toolbar sections
+  .main-toolbar-left,
+  .main-toolbar-center,
+  .main-toolbar-right {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+  
+  .main-toolbar-left {
+    flex: 0 0 auto;
+    gap: $spacing-sm;
+  }
+  
+  .main-toolbar-center {
+    flex: 1 1 auto;
+    justify-content: center;
+    padding: 0 $spacing-md;
+  }
+  
+  .main-toolbar-right {
+    flex: 0 0 auto;
+    gap: $spacing-xs;
+    margin-left: auto;
+  }
+}
+
+// === TOOLBAR BUTTONS ===
+.toolbar {
+  .btn,
+  button {
+    @include button-glass;
+    height: 32px;
+    padding: 0 12px;
+    border-radius: 8px;
+    font-size: $font-size-small;
+    font-weight: $font-weight-medium;
+    
+    // Icon styling
+    .icon,
+    svg {
+      width: 16px;
+      height: 16px;
+      opacity: 0.8;
+      transition: opacity $transition-fast;
+    }
+    
+    &:hover .icon,
+    &:hover svg {
+      opacity: 1;
+    }
+  }
+  
+  // Button groups
+  .btn-group {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 2px;
+    
+    .btn {
+      margin: 0;
+      border-radius: 6px;
+      background: transparent;
+      border: none;
+      
+      &:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+    }
+  }
+}
+
+// === MENU BAR INTEGRATION ===
+.menubar {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  
+  .menu-item {
+    padding: 0 12px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    border-radius: 6px;
+    transition: background-color $transition-fast;
+    
+    &:hover {
+      background: rgba(255, 255, 255, 0.08);
+    }
+  }
+}
+
+// === SEARCH BAR ===
+.search-container {
+  position: relative;
+  max-width: 400px;
+  flex: 1 1 auto;
+  
+  .search-input {
+    @include liquid-glass-base;
+    width: 100%;
+    height: 32px;
+    padding: 0 12px 0 36px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: $text-color;
+    font-size: $font-size-small;
+    
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+    
+    &:focus {
+      outline: none;
+      background: rgba(255, 255, 255, 0.12);
+      border-color: $primary-color;
+      box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.2);
+    }
+  }
+  
+  .search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    opacity: 0.6;
+    pointer-events: none;
+  }
+}
+
+// === BREADCRUMB NAVIGATION ===
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  
+  .breadcrumb-item {
+    display: flex;
+    align-items: center;
+    font-size: $font-size-small;
+    color: $text-color-secondary;
+    
+    &:not(:last-child)::after {
+      content: '›';
+      margin-left: $spacing-xs;
+      opacity: 0.5;
+    }
+    
+    &.active {
+      color: $text-color;
+      font-weight: $font-weight-medium;
+    }
+  }
+}
+
+// === TOOLBAR UTILITIES ===
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+.toolbar-divider {
+  width: 1px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 0 $spacing-xs;
+}
+
+// === RESPONSIVE BEHAVIOR ===
+@media (max-width: 768px) {
+  #main-toolbar {
+    padding: 0 12px;
+    
+    .main-toolbar-center {
+      padding: 0 $spacing-sm;
+    }
+    
+    .search-container {
+      max-width: 200px;
+    }
+  }
+}
+
+// Titlebar Starter (Windows compatibility)
+#titlebar-starter {
+  display: none;
+  visibility: hidden;
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+
+// Application Icons Group - Safari-style pill-shaped container
+.application-icons-group {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  
+  // Create the pill-shaped container with sharp borders
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px; // More pill-shaped
+  padding: 6px 8px;
+  gap: 4px;
+  backdrop-filter: blur(20px) saturate(1.8);
+  -webkit-backdrop-filter: blur(20px) saturate(1.8);
+  box-shadow: 
+    0 1px 2px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  
+  // Application icons container - grouped buttons
+  .application-icons,
+  > div {
+    display: flex;
+    align-items: center;
+    gap: 2px; // Small gap between icons
+    
+    // All buttons in the group
+    button,
+    .btn {
+      background: transparent;
+      border: none;
+      border-radius: 8px;
+      padding: 6px;
+      margin: 0;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      
+      // Icons styling - uniform size
+      .icon,
+      svg {
+        width: 18px;
+        height: 18px;
+        opacity: 0.7;
+        transition: all 0.15s ease;
+        flex-shrink: 0;
+      }
+      
+      // Hover state - subtle highlight within the group
+      &:hover {
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        
+        .icon,
+        svg {
+          opacity: 1;
+        }
+      }
+      
+      // Active/pressed state
+      &:active {
+        background: rgba(255, 255, 255, 0.1);
+        transform: scale(0.95);
+      }
+    }
+    
+    // Login control specific styling
+    #login-control {
+      #btn-login {
+        .icon-user {
+          width: 16px;
+          height: 16px;
+        }
+      }
+    }
+  }
+  
+  // Notifications button with progress indicator
+  #notifications-button {
+    position: relative;
+    
+    .notifications-progress {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      width: 10px;
+      height: 10px;
+      opacity: 0.9;
+      pointer-events: none;
+    }
+  }
+  
+  // Global icons menu
+  .global-icons {
+    &.btngroup-collapsed {
+      // Collapsed state styling if needed
+    }
+    
+    #btn-menu-global-icons {
+      .icon-menu {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+  
+  // Hide only actual Windows control buttons, not the entire group
+  .btn-close,
+  .btn-minimize,
+  .btn-maximize,
+  .window-controls,
+  [class*="window-control"],
+  [class*="titlebar-control"] {
+    display: none !important;
+    visibility: hidden !important;
+    position: absolute !important;
+    top: -9999px !important;
+    left: -9999px !important;
+  }
+}
+
+// Hide Windows-style controls comprehensively
+.main-toolbar-right .btn-close,
+.main-toolbar-right .btn-minimize,
+.main-toolbar-right .btn-maximize,
+.main-toolbar-right .window-controls,
+#main-toolbar .btn-close,
+#main-toolbar .btn-minimize,
+#main-toolbar .btn-maximize,
+#main-toolbar .window-controls,
+.toolbar .btn-close,
+.toolbar .btn-minimize,
+.toolbar .btn-maximize,
+.toolbar .window-controls,
+[class*="window-control"],
+[class*="titlebar-control"],
+[id*="window-control"],
+[id*="titlebar-control"],
+[data-id*="window-control"],
+[data-id*="titlebar-control"] {
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}

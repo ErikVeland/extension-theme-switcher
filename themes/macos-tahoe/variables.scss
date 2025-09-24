@@ -369,10 +369,10 @@ $glass-bg-primary: rgba(30, 30, 30, 0.7);
 $glass-bg-secondary: rgba(40, 40, 40, 0.6);
 $glass-bg-tertiary: rgba(50, 50, 50, 0.5);
 
-// Glass border colors
-$glass-border-primary: rgba(255, 255, 255, 0.15);
-$glass-border-secondary: rgba(255, 255, 255, 0.1);
-$glass-border-hover: rgba(255, 255, 255, 0.25);
+// Glass border colors - sharper 1px borders
+$glass-border-primary: rgba(255, 255, 255, 0.25);
+$glass-border-secondary: rgba(255, 255, 255, 0.2);
+$glass-border-hover: rgba(255, 255, 255, 0.4);
 
 // Glass shadow values
 $glass-shadow-light: 0 2px 10px rgba(0, 0, 0, 0.3);
@@ -400,7 +400,7 @@ $glass-shadow-heavy: 0 8px 30px rgba(0, 0, 0, 0.5);
 }
 
 // Button-specific liquid glass effect
-@mixin button-glass($bg-color: rgba(255, 255, 255, 0.08), $border-color: rgba(255, 255, 255, 0.12)) {
+@mixin button-glass($bg-color: rgba(255, 255, 255, 0.08), $border-color: rgba(255, 255, 255, 0.2)) {
   @include liquid-glass-base($bg-color, $border-color);
   transition: all $transition-fast;
   

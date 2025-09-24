@@ -1,0 +1,356 @@
+// UI Components
+// Buttons, forms, and other interactive elements with liquid glass effects
+
+// Base Button Styles
+.btn {
+  @include button-glass();
+  
+  // Remove default button styling
+  background-image: none;
+  text-shadow: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  
+  // Button variants
+  &.btn-primary {
+    background: rgba($primary-color, 0.8);
+    border-color: rgba($primary-color, 0.9);
+    color: white;
+    
+    &:hover {
+      background: rgba($primary-color, 0.9);
+      border-color: rgba($primary-color, 1);
+    }
+    
+    &:active,
+    &.active {
+      background: rgba($primary-color, 0.7);
+    }
+  }
+  
+  &.btn-secondary {
+    background: rgba($secondary-color, 0.8);
+    border-color: rgba($secondary-color, 0.9);
+    color: white;
+    
+    &:hover {
+      background: rgba($secondary-color, 0.9);
+      border-color: rgba($secondary-color, 1);
+    }
+  }
+  
+  &.btn-success {
+    background: rgba($success-color, 0.8);
+    border-color: rgba($success-color, 0.9);
+    color: white;
+    
+    &:hover {
+      background: rgba($success-color, 0.9);
+      border-color: rgba($success-color, 1);
+    }
+  }
+  
+  &.btn-warning {
+    background: rgba($warning-color, 0.8);
+    border-color: rgba($warning-color, 0.9);
+    color: white;
+    
+    &:hover {
+      background: rgba($warning-color, 0.9);
+      border-color: rgba($warning-color, 1);
+    }
+  }
+  
+  &.btn-danger {
+    background: rgba($danger-color, 0.8);
+    border-color: rgba($danger-color, 0.9);
+    color: white;
+    
+    &:hover {
+      background: rgba($danger-color, 0.9);
+      border-color: rgba($danger-color, 1);
+    }
+  }
+  
+  // Button sizes
+  &.btn-sm {
+    padding: $spacing-xs $spacing-sm;
+    font-size: $font-size-small;
+  }
+  
+  &.btn-lg {
+    padding: $spacing-md $spacing-lg;
+    font-size: $font-size-large;
+  }
+  
+  // Icon buttons
+  &.btn-icon {
+    padding: $spacing-xs;
+    min-width: 32px;
+    height: 32px;
+    
+    .icon {
+      width: 16px;
+      height: 16px;
+      opacity: 0.85;
+      transition: opacity $transition-fast;
+    }
+    
+    &:hover .icon {
+      opacity: 1;
+    }
+  }
+}
+
+// Form Controls
+.form-control {
+  @include liquid-glass-enhanced(0.05, 0.1);
+  @include text-primary();
+  
+  padding: $spacing-sm $spacing-md;
+  border-radius: $border-radius-medium;
+  font-size: $font-size-base;
+  font-family: $theme-font-family-base;
+  transition: all $transition-medium;
+  
+  &:focus {
+    @include focus-ring();
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba($primary-color, 0.5);
+  }
+  
+  &::placeholder {
+    @include text-secondary();
+  }
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+// Navigation Tabs
+.nav-tabs {
+  @include flex-start();
+  gap: $spacing-xs;
+  padding: $spacing-xs;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: $border-radius-medium;
+  border: none;
+  
+  .nav-item {
+    margin: 0;
+    
+    .nav-link {
+      @include button-glass($spacing-xs $spacing-sm);
+      
+      border: none;
+      border-radius: $border-radius-small;
+      color: $text-color-secondary;
+      text-decoration: none;
+      font-weight: $font-weight-medium;
+      
+      &:hover {
+        color: $text-color;
+        background: rgba(255, 255, 255, 0.12);
+      }
+      
+      &.active {
+        @include liquid-glass-active();
+        color: rgba($primary-color, 1);
+      }
+    }
+  }
+}
+
+// List Groups
+.list-group {
+  background: transparent;
+  border: none;
+  
+  .list-group-item {
+    @include panel-glass($spacing-sm $spacing-md);
+    
+    margin-bottom: $spacing-xs;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: $text-color;
+    
+    &:hover {
+      @include hover-lift();
+      background: rgba(255, 255, 255, 0.08);
+    }
+    
+    &.active {
+      @include liquid-glass-active();
+      color: rgba($primary-color, 1);
+    }
+    
+    // List item heading
+    .list-group-item-heading {
+      @include text-heading();
+      margin-bottom: $spacing-xs;
+    }
+  }
+}
+
+// Pagination
+.pagination {
+  @include flex-center();
+  gap: $spacing-xs;
+  
+  .page-item {
+    .page-link {
+      @include button-glass($spacing-xs $spacing-sm);
+      
+      color: $text-color;
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      
+      &:hover {
+        color: $text-color;
+        background: rgba(255, 255, 255, 0.12);
+      }
+    }
+    
+    &.active .page-link {
+      @include liquid-glass-active();
+      color: rgba($primary-color, 1);
+    }
+    
+    &.disabled .page-link {
+      opacity: 0.5;
+      cursor: not-allowed;
+      
+      &:hover {
+        background: rgba(255, 255, 255, 0.08);
+      }
+    }
+  }
+}
+
+// Progress Bars
+.progress {
+  @include liquid-glass-enhanced(0.05, 0.1);
+  
+  height: 8px;
+  border-radius: $border-radius-small;
+  overflow: hidden;
+  
+  .progress-bar {
+    background: linear-gradient(90deg, $primary-color, lighten($primary-color, 10%));
+    border-radius: $border-radius-small;
+    transition: width $transition-medium;
+  }
+}
+
+// Badges
+.badge {
+  @include liquid-glass-enhanced(0.1, 0.15);
+  
+  padding: $spacing-xs $spacing-sm;
+  border-radius: $border-radius-small;
+  font-size: $font-size-small;
+  font-weight: $font-weight-medium;
+  color: $text-color;
+  
+  &.badge-primary {
+    background: rgba($primary-color, 0.8);
+    color: white;
+  }
+  
+  &.badge-secondary {
+    background: rgba($secondary-color, 0.8);
+    color: white;
+  }
+  
+  &.badge-success {
+    background: rgba($success-color, 0.8);
+    color: white;
+  }
+  
+  &.badge-warning {
+    background: rgba($warning-color, 0.8);
+    color: white;
+  }
+  
+  &.badge-danger {
+    background: rgba($danger-color, 0.8);
+    color: white;
+  }
+}
+
+// Tooltips
+.tooltip {
+  .tooltip-inner {
+    @include liquid-glass-enhanced(0.9, 0.95);
+    
+    padding: $spacing-xs $spacing-sm;
+    border-radius: $border-radius-small;
+    font-size: $font-size-small;
+    color: $text-color;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+  
+  .tooltip-arrow {
+    &::before {
+      border-color: rgba(255, 255, 255, 0.9);
+    }
+  }
+}
+
+// Popovers
+.popover {
+  @include panel-glass();
+  
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  
+  .popover-header {
+    @include text-heading();
+    background: rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: $spacing-sm $spacing-md;
+  }
+  
+  .popover-body {
+    @include text-primary();
+    padding: $spacing-md;
+  }
+}
+
+// Wells/Panels
+.well {
+  @include panel-glass();
+  
+  margin-bottom: $spacing-md;
+}
+
+// Input Groups
+.input-group {
+  @include flex-start();
+  
+  .input-group-prepend,
+  .input-group-append {
+    .input-group-text {
+      @include liquid-glass-enhanced(0.08, 0.12);
+      
+      padding: $spacing-sm $spacing-md;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: $text-color-secondary;
+      font-size: $font-size-base;
+    }
+  }
+  
+  .form-control {
+    border-radius: 0;
+    
+    &:first-child {
+      border-top-left-radius: $border-radius-medium;
+      border-bottom-left-radius: $border-radius-medium;
+    }
+    
+    &:last-child {
+      border-top-right-radius: $border-radius-medium;
+      border-bottom-right-radius: $border-radius-medium;
+    }
+  }
+}

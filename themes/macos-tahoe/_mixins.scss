@@ -1,0 +1,226 @@
+// macOS Tahoe Theme Mixins
+// Liquid glass effects and reusable patterns
+
+// Liquid Glass Base Mixin
+@mixin liquid-glass-base($opacity: 0.08, $blur: 20px, $saturation: 180%) {
+  backdrop-filter: blur($blur) saturate($saturation);
+  -webkit-backdrop-filter: blur($blur) saturate($saturation);
+  background: rgba(255, 255, 255, $opacity);
+}
+
+// Enhanced Liquid Glass with Border
+@mixin liquid-glass-enhanced($bg-opacity: 0.08, $border-opacity: 0.12, $blur: 20px) {
+  @include liquid-glass-base($bg-opacity, $blur);
+  border: 1px solid rgba(255, 255, 255, $border-opacity);
+  position: relative;
+  
+  // Subtle inner highlight
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      transparent 50%,
+      rgba(255, 255, 255, 0.05) 100%);
+    pointer-events: none;
+    z-index: 1;
+  }
+}
+
+// Liquid Glass with Gradient Border
+@mixin liquid-glass-gradient-border($bg-opacity: 0.08, $blur: 20px) {
+  @include liquid-glass-base($bg-opacity, $blur);
+  position: relative;
+  
+  // Gradient border using pseudo-element
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.2) 0%,
+      rgba(255, 255, 255, 0.05) 50%,
+      rgba(255, 255, 255, 0.15) 100%);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: xor;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    pointer-events: none;
+    z-index: 1;
+  }
+}
+
+// Liquid Glass Hover Effect
+@mixin liquid-glass-hover($hover-opacity: 0.12, $hover-border: 0.18) {
+  transition: all $transition-medium;
+  
+  &:hover {
+    background: rgba(255, 255, 255, $hover-opacity);
+    border-color: rgba(255, 255, 255, $hover-border);
+    transform: translateY(-1px);
+    box-shadow: 
+      0 4px 20px rgba(0, 0, 0, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+}
+
+// Liquid Glass Active/Focus State
+@mixin liquid-glass-active($active-color: $primary-color, $active-opacity: 0.15) {
+  &:active,
+  &:focus,
+  &.active {
+    background: rgba($active-color, $active-opacity);
+    border-color: rgba($active-color, 0.3);
+    box-shadow: 
+      0 0 0 2px rgba($active-color, 0.3),
+      0 2px 8px rgba($active-color, 0.2);
+    outline: none;
+  }
+}
+
+// Toolbar Glass Effect
+@mixin toolbar-glass($height: $toolbar-height-expanded) {
+  @include liquid-glass-enhanced(0.1, 0.15, 25px);
+  height: $height;
+  border-radius: $border-radius-large;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    0 2px 16px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+// Button Glass Effect
+@mixin button-glass($padding: $spacing-sm $spacing-md) {
+  @include liquid-glass-enhanced(0.08, 0.12);
+  @include liquid-glass-hover();
+  @include liquid-glass-active();
+  
+  padding: $padding;
+  border-radius: $border-radius-medium;
+  font-weight: $font-weight-medium;
+  font-size: $font-size-base;
+  color: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  
+  // Remove default button styles
+  background-image: none;
+  text-shadow: none;
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    
+    &:hover {
+      transform: none;
+      background: rgba(255, 255, 255, 0.08);
+    }
+  }
+}
+
+// Card/Panel Glass Effect
+@mixin panel-glass($padding: $spacing-md) {
+  @include liquid-glass-enhanced(0.06, 0.1);
+  padding: $padding;
+  border-radius: $border-radius-large;
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+// Sidebar Glass Effect
+@mixin sidebar-glass() {
+  @include liquid-glass-enhanced(0.08, 0.12, 25px);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    0 2px 16px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  
+  // Glass reflection enhancement
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.3) 50%,
+      transparent 100%);
+    pointer-events: none;
+    z-index: 1;
+  }
+}
+
+// Typography Mixins
+@mixin text-primary() {
+  color: $text-color;
+  font-weight: $font-weight-regular;
+  letter-spacing: $letter-spacing-base;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@mixin text-secondary() {
+  color: $text-color-secondary;
+  font-weight: $font-weight-regular;
+  letter-spacing: $letter-spacing-base;
+}
+
+@mixin text-heading($size: $font-size-large) {
+  color: $text-color;
+  font-size: $size;
+  font-weight: $font-weight-semibold;
+  letter-spacing: $letter-spacing-headings;
+  line-height: $line-height-headings;
+}
+
+// Layout Mixins
+@mixin flex-center() {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between() {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-start() {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+// Transition Mixins
+@mixin smooth-transition($properties: all, $duration: $transition-medium) {
+  transition: $properties $duration ease-out;
+}
+
+@mixin hover-lift($distance: 1px) {
+  @include smooth-transition(transform);
+  
+  &:hover {
+    transform: translateY(-$distance);
+  }
+}
+
+// Focus Ring Mixin (macOS style)
+@mixin focus-ring($color: $focus-ring-color) {
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px $color;
+  }
+}
