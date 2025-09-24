@@ -17,10 +17,6 @@
   padding: 2px 16px;
 }
 
-.xtable > .xtbody > .xtr > .xtd {
-  padding: 0.25rem 0.75rem;
-}
-
 // === COMPACT TOOLBAR WITH MACOS STYLING ===
 // Show only icons on toolbars unless hovered, with macOS appearance
 .mainpage-header {
@@ -924,15 +920,14 @@ a {
   border-radius: 8px 8px 0 0;
   padding: 12px 16px;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  align-items: start;
 }
 .modal-content .modal-header .modal-title {
   color: rgba(255, 255, 255, 0.85);
   font-weight: 600;
   font-size: 15px;
   display: flex;
-  align-items: center;
+  align-items: left;
   margin: 0; // Remove default margin
 
   // Hide icons for macOS Tahoe look
@@ -1755,21 +1750,6 @@ body * {
   -moz-osx-font-smoothing: grayscale;
 }
 
-// === ENHANCED COMPACT BEHAVIORS ===
-// Additional compact theme behaviors with macOS styling
-
-// Category names handling for tables
-.xtd.table-mods.cell-category {
-  white-space: nowrap;
-  max-width: 20em;
-  overflow-x: hidden;
-  text-overflow: ellipsis;
-  font-family: $theme-font-family-base !important;
-  font-size: $font-size-base;
-  font-weight: $font-weight-regular;
-  letter-spacing: $letter-spacing-base;
-}
-
 // Toolbar quick launch integration
 .toolbar-app-region .container-quicklaunch .tool-icon-container {
   width: 200px;
@@ -1927,6 +1907,16 @@ body * {
     text-align: left; // Left-aligned for macOS Tahoe system dialogs
     font-size: 13px; // macOS system dialog body text size
     line-height: 1.4;
+
+    .close-button {
+      position: absolute;
+      vertical-align: unset;
+
+        svg {
+          height: 12px;
+          width: 12px;
+        }
+    }
   }
 
   .modal-footer {
@@ -2018,7 +2008,7 @@ body * {
   display: flex !important;
   align-items: center;
   justify-content: center;
-  
+
   .modal-dialog {
     margin: auto;
     max-width: 90vw;
@@ -2026,6 +2016,11 @@ body * {
     display: flex;
     flex-direction: column;
   }
+}
+
+* #login-dialog .modal-dialog {
+  width: auto;
+  background: transparent;
 }
 
 // === DROPDOWN MENU STYLING FOR DARK MODE READABILITY ===
@@ -2092,6 +2087,7 @@ body * {
   -webkit-backdrop-filter: blur(20px) saturate(120%);
   border-radius: $border-radius-medium;
   color: $text-color;
+  max-width: fit-content; // Only as wide as content needs
   box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.35),
     0 4px 16px rgba(0, 0, 0, 0.25),
@@ -2147,7 +2143,7 @@ body * {
     padding: 0; // Remove extra padding
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: left;
     z-index: 1;
     overflow: hidden;
 
@@ -2410,90 +2406,6 @@ body * {
   }
 }
 
-// Enhanced filter styling for Downloads screen
-.download-panel {
-
-  // Style the filter controls in the Downloads screen
-  .select-filter {
-    .Select-control {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: rgba(255, 255, 255, 0.15);
-      border-radius: 6px;
-      height: 26px;
-      min-height: 26px;
-
-      &:hover {
-        background: rgba(255, 255, 255, 0.12);
-        border-color: rgba(255, 255, 255, 0.2);
-      }
-
-      &:focus {
-        background: rgba(255, 255, 255, 0.12);
-        border-color: rgba(0, 122, 255, 0.5);
-        box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.3);
-      }
-    }
-
-    .Select-placeholder {
-      color: rgba(255, 255, 255, 0.6);
-      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', sans-serif;
-      font-size: 13px;
-      line-height: 24px;
-    }
-
-    .Select-value {
-      color: rgba(255, 255, 255, 0.85);
-      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', sans-serif;
-      font-size: 13px;
-      line-height: 24px;
-    }
-
-    .Select-arrow {
-      border-color: rgba(255, 255, 255, 0.7) transparent transparent;
-    }
-  }
-
-  // Style the compact select filters used in tables
-  .select-compact {
-    .Select-control {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: rgba(255, 255, 255, 0.15);
-      border-radius: 6px;
-      height: 24px;
-      min-height: 24px;
-
-      &:hover {
-        background: rgba(255, 255, 255, 0.12);
-        border-color: rgba(255, 255, 255, 0.2);
-      }
-
-      &:focus {
-        background: rgba(255, 255, 255, 0.12);
-        border-color: rgba(0, 122, 255, 0.5);
-        box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.3);
-      }
-    }
-
-    .Select-placeholder {
-      color: rgba(255, 255, 255, 0.6);
-      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', sans-serif;
-      font-size: 12px;
-      line-height: 22px;
-    }
-
-    .Select-value {
-      color: rgba(255, 255, 255, 0.85);
-      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', sans-serif;
-      font-size: 12px;
-      line-height: 22px;
-    }
-
-    .Select-arrow {
-      border-color: rgba(255, 255, 255, 0.7) transparent transparent;
-    }
-  }
-}
-
 // === TAHOE-SPECIFIC CORE OVERRIDES ===
 // These styles override core Vortex components to match macOS Tahoe theme
 // Using high specificity and !important to ensure they override any existing bad styles
@@ -2501,41 +2413,6 @@ body * {
 // Logout avatar styling - override any red color from core
 .logout-avatar {
   color: inherit !important;
-}
-
-// Enhanced iconbar with glass effects and rounded buttons
-// Override any existing iconbar styles with high specificity
-body .iconbar {
-  background-color: rgba(255, 255, 255, 0.08) !important;
-  border: 1px solid rgba(255, 255, 255, 0.15) !important;
-  border-radius: 24px !important;
-  padding: 4px !important;
-  margin: 4px !important;
-  backdrop-filter: blur(15px) !important;
-  -webkit-backdrop-filter: blur(15px) !important;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
-  gap: 2px !important;
-
-  .btn {
-    justify-content: center !important;
-    width: 40px !important;
-    height: 40px !important;
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
-    border-radius: 50% !important;
-    background-color: rgba(255, 255, 255, 0.1) !important;
-    backdrop-filter: blur(10px) !important;
-    -webkit-backdrop-filter: blur(10px) !important;
-    flex: 0 0 auto !important;
-    max-width: 40px !important;
-    margin: 2px !important;
-    transition: all 0.2s ease !important;
-
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.2) !important;
-      border-color: rgba(255, 255, 255, 0.4) !important;
-      transform: scale(1.05) !important;
-    }
-  }
 }
 
 // Enhanced main window styling with glass effects
@@ -2575,7 +2452,7 @@ body .main-window {
 // Style the nexus-header-ad premium button to match toolbar icons
 #nexus-header-ad {
   // Keep container with pill border-radius
-  border-radius: $border-radius-pill !important;
+  border-radius: $border-radius-large !important;
 
   // Style the button inside to match pill shape
   button {
@@ -2591,7 +2468,7 @@ body .main-window {
       box-shadow: $button-shadow-hover !important;
 
       .hover-overlay {
-        border-radius: $border-radius-pill !important;
+        border-radius: $border-radius-large !important;
       }
     }
 
@@ -2604,7 +2481,7 @@ body .main-window {
 
   // Ensure hover overlay also has pill border-radius
   .hover-overlay {
-    border-radius: $border-radius-pill !important;
+    border-radius: $border-radius-large !important;
   }
 }
 
@@ -2815,353 +2692,4 @@ body .main-window {
 .modal-footer .btn,
 .modal-header .btn {
     border-radius: $border-radius-pill !important;
-}
-
-// === ENHANCED TABLE HEADER STYLING ===
-// Ensure all controls in table header cells sit in a single line with proper alignment
-
-.table-header {
-  .xthead {
-    background: rgba(28, 28, 30, 0.7);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px) saturate(120%);
-    -webkit-backdrop-filter: blur(10px) saturate(120%);
-
-    .xtr {
-      display: flex;
-      align-items: center;
-
-      .xth {
-        padding: $spacing-sm;
-        border-right: 1px solid rgba(255, 255, 255, 0.05);
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        min-height: 40px; // Ensure consistent height
-
-        &:last-child {
-          border-right: none;
-        }
-
-        // Main header content container - ensure single line layout
-        > div[style*="flex-direction: column"] {
-          display: flex !important;
-          flex-direction: row !important; // Force single-line header layout
-          align-items: center !important;
-          width: 100%;
-          gap: $spacing-xs;
-          justify-content: space-between; // Ensure proper spacing
-
-          // Header label and controls container
-          > .flex-fill {
-            display: flex !important;
-            flex-direction: row !important;
-            align-items: center !important;
-            flex: 1 1 auto;
-            min-width: 0; // Allow text truncation
-
-            // Header text
-            > div[style*="display: flex; align-items: center"] {
-              flex: 1 1 auto;
-              min-width: 0; // Allow text truncation
-              white-space: nowrap;
-              overflow: hidden;
-              text-overflow: ellipsis;
-              font-weight: $font-weight-semibold;
-              color: rgba(255, 255, 255, 0.9);
-              font-size: $font-size-small;
-              line-height: 1.2; // Ensure consistent line height
-            }
-
-            // Cell controls (sort icons, group buttons)
-            .cell-controls {
-              display: flex !important;
-              align-items: center !important;
-              gap: $spacing-xs;
-              margin-left: $spacing-xs;
-              flex: 0 0 auto;
-
-              // Sort icons
-              .icon {
-                width: 14px;
-                height: 14px;
-                opacity: 0.7;
-              }
-
-              // Group buttons
-              .btn-embed {
-                padding: 2px;
-                min-width: 20px;
-                height: 20px;
-
-                .icon {
-                  width: 12px;
-                  height: 12px;
-                }
-              }
-            }
-          }
-
-          // Filter controls container - inline on the same row
-          > :not(.flex-fill) {
-            display: flex !important;
-            align-items: center !important;
-            margin-top: 0 !important; // remove second-row spacing
-            margin-left: $spacing-sm; // small separation from title
-            min-height: 26px; // Ensure consistent height for filter controls
-            flex: 0 0 auto; // Don't allow shrinking
-            min-width: 0;
-            max-width: 200px; // Increase max width for better usability
-
-            // Text filter input
-            .form-field-compact {
-              flex: 0 0 120px; // Fixed width for consistency
-              height: 24px;
-              padding: 2px 6px;
-              font-size: $font-size-small;
-              background: rgba(255, 255, 255, 0.05);
-              border: 1px solid rgba(255, 255, 255, 0.15);
-              border-radius: 4px;
-              min-width: 80px;
-              max-width: 160px;
-              color: rgba(255, 255, 255, 0.85);
-              transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-
-              &::placeholder {
-                color: rgba(255, 255, 255, 0.45);
-              }
-
-              &:focus {
-                background: rgba(255, 255, 255, 0.08);
-                border-color: rgba(0, 122, 255, 0.5);
-                box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.3);
-                outline: none;
-              }
-            }
-
-            // Select filter controls
-            .select-compact,
-            .Select {
-              flex: 0 0 120px; // Fixed width for consistency
-              height: 24px;
-              min-height: 24px;
-              font-size: $font-size-small;
-              min-width: 80px;
-              max-width: 160px;
-
-              .Select-control {
-                height: 24px;
-                min-height: 24px;
-                border-radius: 4px;
-                background: rgba(255, 255, 255, 0.05);
-                border: 1px solid rgba(255, 255, 255, 0.15);
-                transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-
-                &:hover {
-                  background: rgba(255, 255, 255, 0.08);
-                  border-color: rgba(255, 255, 255, 0.2);
-                }
-
-                &:focus,
-                &.is-focused {
-                  background: rgba(255, 255, 255, 0.08);
-                  border-color: rgba(0, 122, 255, 0.5);
-                  box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.3);
-                  outline: none;
-                }
-
-                .Select-placeholder {
-                  line-height: 22px;
-                  font-size: $font-size-small;
-                  color: rgba(255, 255, 255, 0.45);
-                  padding-left: 6px;
-                  padding-right: 6px;
-                }
-
-                .Select-value {
-                  line-height: 22px;
-                  font-size: $font-size-small;
-                  color: rgba(255, 255, 255, 0.85);
-                  padding-left: 6px;
-                  padding-right: 6px;
-                }
-
-                .Select-input {
-                  height: 22px;
-                  padding-left: 6px;
-                  padding-right: 6px;
-
-                  input {
-                    height: 22px;
-                    padding: 0;
-                    width: auto; // allow shrink
-                    color: rgba(255, 255, 255, 0.85);
-                  }
-                }
-
-                .Select-arrow {
-                  top: 8px;
-                }
-              }
-            }
-
-            // Date filter controls
-            .datetime-filter {
-              flex: 0 1 180px;
-              height: 24px;
-              font-size: $font-size-small;
-              min-width: 96px;
-              max-width: 100%;
-              display: flex;
-
-              .input-group-addon {
-                padding: 2px 6px;
-                font-size: $font-size-small;
-                height: 24px;
-                border-radius: 4px 0 0 4px;
-                display: flex;
-                align-items: center;
-              }
-
-              .react-datepicker-wrapper {
-                flex: 1 1 auto;
-                min-width: 0;
-
-                .react-datepicker__input-container {
-                  height: 24px;
-
-                  .datetime-picker {
-                    width: 100%;
-                    height: 24px;
-                    padding: 2px 6px;
-                    font-size: $font-size-small;
-                    border-radius: 0 4px 4px 0;
-                    background: rgba(255, 255, 255, 0.05);
-                    border: 1px solid rgba(255, 255, 255, 0.15);
-
-                    &:focus {
-                      background: rgba(255, 255, 255, 0.08);
-                      border-color: rgba(0, 122, 255, 0.5);
-                      box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.3);
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-
-        // Actions column
-        &.header-action,
-        &.table-downloads {
-          min-width: 100px;
-          justify-content: flex-end;
-
-          > div {
-            display: flex;
-            align-items: center;
-            width: 100%;
-
-            .header-action-label {
-              flex: 1;
-              font-weight: $font-weight-semibold;
-              color: rgba(255, 255, 255, 0.9);
-              font-size: $font-size-small;
-              white-space: nowrap;
-              overflow: hidden;
-              text-overflow: ellipsis;
-            }
-
-            .table-actions {
-              display: flex;
-              align-items: center;
-
-              .btn-embed {
-                padding: 4px;
-                min-width: 24px;
-                height: 24px;
-
-                .icon {
-                  width: 14px;
-                  height: 14px;
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
-// Ensure consistent icon button styling in table headers
-.table-header .icon-button {
-  background: transparent;
-  border: none;
-  padding: 4px;
-  min-width: 24px;
-  height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  &:hover {
-    background: rgba(255, 255, 255, 0.1);
-  }
-
-  &:active {
-    background: rgba(255, 255, 255, 0.05);
-  }
-
-  .icon {
-    width: 14px;
-    height: 14px;
-  }
-}
-
-// === COMPACT FILTER STYLING FOR DOWNLOADS SCREEN ===
-// Enhanced filter styling for Downloads screen with single-line layout
-
-.download-panel {
-
-  // Style the filter controls in the Downloads screen
-  .select-filter,
-  .select-compact {
-    .Select-control {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: rgba(255, 255, 255, 0.15);
-      border-radius: 6px;
-      height: 26px;
-      min-height: 26px;
-
-      &:hover {
-        background: rgba(255, 255, 255, 0.12);
-        border-color: rgba(255, 255, 255, 0.2);
-      }
-
-      &:focus {
-        background: rgba(255, 255, 255, 0.12);
-        border-color: rgba(0, 122, 255, 0.5);
-        box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.3);
-      }
-    }
-
-    .Select-placeholder {
-      color: rgba(255, 255, 255, 0.6);
-      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', sans-serif;
-      font-size: 13px;
-      line-height: 24px;
-    }
-
-    .Select-value {
-      color: rgba(255, 255, 255, 0.85);
-      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', sans-serif;
-      font-size: 13px;
-      line-height: 24px;
-    }
-
-    .Select-arrow {
-      border-color: rgba(255, 255, 255, 0.7) transparent transparent;
-    }
-  }
 }
