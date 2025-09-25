@@ -9,176 +9,37 @@
 @import 'components';
 @import 'toolbar';
 
-// === COMPACT THEME INTEGRATION ===
-// Import compact theme toolbar behaviors and extend with macOS styling
-
-// Compact toolbar foundation - reduced paddings and icon-first approach
-.nav-tabs > li > a {
-  padding: 2px 16px;
-}
-
-// === COMPACT TOOLBAR WITH MACOS STYLING ===
-// Show only icons on toolbars unless hovered, with macOS appearance
-.mainpage-header {
-  height: $toolbar-height !important; // 32px compact height
-  background: rgba(30, 30, 30, 0.7); // More translucent like Safari
-  backdrop-filter: blur(20px) saturate(180%); // Enhanced blur effect
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px; // More rounded like Safari
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.2);
-  margin: $layout-margin-base;
-  transition: height 250ms ease 500ms, box-shadow $transition-fast;
-  position: relative;
-  overflow: hidden; // Ensure content doesn't overflow rounded corners
-
-  .menubar {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    gap: $spacing-xs;
-    margin-left: 13px;
-    padding: 0 8px; // Add some padding for better spacing
-  }
-
-  // macOS-styled toolbar buttons with icon-first behaviour
-  .btn {
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    color: rgba(255, 255, 255, 0.85);
-    border-radius: 8px; // Slightly more rounded like Safari buttons
-    padding: 6px 8px;
-    font-size: $font-size-base;
-    font-weight: $font-weight-medium;
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 28px;
-    height: 24px;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-
-    // Apply enhanced glass effect to all buttons
-    &:not(.toolbar-icon-btn) {
-      backdrop-filter: blur(15px) saturate(150%);
-      -webkit-backdrop-filter: blur(15px) saturate(150%);
-    }
-
-    // Text initially hidden, shown on hover
-    .button-text {
-      opacity: 0;
-      transition: opacity 250ms ease;
-      position: absolute;
-      top: $toolbar-height;
-      z-index: $z-index-tooltip;
-      background: $button-secondary-bg;
-      border: 1px solid $button-secondary-border;
-      border-radius: $border-radius-pill;
-      padding: $spacing-xs $spacing-sm;
-      font-size: $font-size-small;
-      pointer-events: none;
-      white-space: nowrap;
-      box-shadow: $button-shadow-hover;
-    }
-
-    &:hover {
-      background: rgba(255, 255, 255, 0.15);
-      border-color: rgba(255, 255, 255, 0.2);
-      color: rgba(255, 255, 255, 0.95);
-      transform: translateY(-0.5px);
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-
-      .button-text {
-        opacity: 1;
-        transition: opacity 250ms ease 100ms;
-      }
-    }
-
-    &:active {
-      background: rgba(255, 255, 255, 0.05);
-      transform: translateY(0);
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-    }
-
-    &:focus {
-      outline: none;
-      box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.4);
-    }
-  }
-
-  // Enhanced hover state for entire toolbar
-  &:hover {
-    height: $toolbar-height-expanded !important;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 2px 6px rgba(0, 0, 0, 0.3);
-    background: rgba(30, 30, 30, 0.8); // Slightly more opaque on hover
-    transition: height 250ms ease 100ms, box-shadow 0.2s ease, background 0.2s ease;
-  }
-}
-
-// Compact sidebar behaviours with macOS styling
-#main-nav-sidebar.sidebar-compact #main-nav-container {
-  overflow: visible;
-  z-index: $z-index-dropdown;
-}
-
-.sidebar-compact .nav-pills > li > a {
-  overflow: visible;
-}
-
-// Sidebar hover labels with macOS styling (from compact theme)
-.sidebar-compact .main-nav-group > li:hover a::after {
-  content: attr(title);
-  background: $button-secondary-bg;
-  border: 1px solid $button-secondary-border;
-  border-radius: 12px; // Pill-shaped to match all other buttons
-  margin-left: $spacing-sm;
-  padding: $spacing-xs $spacing-sm;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 100%;
-  display: flex;
-  align-items: center;
-  font-size: $font-size-small;
-  font-weight: $font-weight-medium;
-  color: $text-color;
-  white-space: nowrap;
-  z-index: $z-index-tooltip;
-  box-shadow: $button-shadow-hover;
-}
-
 // === COMPREHENSIVE TYPOGRAPHY SYSTEM ===
 // Global typography improvements with proper macOS font rendering
 
 // Global typography improvements
 body {
-  font-family: $theme-font-family-base !important;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-  font-feature-settings: "liga", "kern";
-  font-size: $font-size-base;
-  font-weight: $font-weight-regular;
-  letter-spacing: $letter-spacing-base;
-  line-height: $line-height-base;
-  background: transparent;
-
-  // Ensure main application container is transparent
-  #app,
-  .application,
-  .main-window,
-  .window-content {
+    font-family: $theme-font-family-base !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "liga", "kern";
+    font-size: $font-size-base;
+    font-weight: $font-weight-regular;
+    letter-spacing: $letter-spacing-base;
+    line-height: $line-height-base;
     background: transparent;
-  }
+
+    // Ensure main application container is transparent
+    #app,
+    .application,
+    .main-window,
+    .window-content {
+        background: transparent;
+    }
 }
 
 // === GLOBAL FONT ENFORCEMENT ===
 // Ensure San Francisco font is used throughout the application
 * {
-  font-family: $theme-font-family-base !important;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    font-family: $theme-font-family-base !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 // Typography hierarchy with proper macOS sizing and spacing
@@ -189,44 +50,44 @@ h4,
 h5,
 h6,
 .menu-label {
-  font-family: $theme-font-family-headings !important;
-  font-weight: $font-weight-semibold;
-  letter-spacing: $letter-spacing-headings;
-  line-height: $line-height-headings;
-  color: $text-color;
-  margin: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    font-family: $theme-font-family-headings !important;
+    font-weight: $font-weight-semibold;
+    letter-spacing: $letter-spacing-headings;
+    line-height: $line-height-headings;
+    color: $text-color;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 h1 {
-  font-size: $font-size-xxl;
-  font-weight: $font-weight-bold;
-  letter-spacing: $letter-spacing-large;
+    font-size: $font-size-xxl;
+    font-weight: $font-weight-bold;
+    letter-spacing: $letter-spacing-large;
 }
 
 h2 {
-  font-size: $font-size-xl;
-  font-weight: $font-weight-semibold;
-  letter-spacing: $letter-spacing-headings;
+    font-size: $font-size-xl;
+    font-weight: $font-weight-semibold;
+    letter-spacing: $letter-spacing-headings;
 }
 
 h3 {
-  font-size: $font-size-large;
-  font-weight: $font-weight-semibold;
+    font-size: $font-size-large;
+    font-weight: $font-weight-semibold;
 }
 
 h4 {
-  font-size: $font-size-base;
-  font-weight: $font-weight-semibold;
+    font-size: $font-size-base;
+    font-weight: $font-weight-semibold;
 }
 
 h5,
 h6 {
-  font-size: $font-size-small;
-  font-weight: $font-weight-medium;
-  letter-spacing: $letter-spacing-caps;
-  text-transform: uppercase;
+    font-size: $font-size-small;
+    font-weight: $font-weight-medium;
+    letter-spacing: $letter-spacing-caps;
+    text-transform: uppercase;
 }
 
 // Body text improvements
@@ -234,719 +95,818 @@ p,
 span,
 div,
 label {
-  font-family: $theme-font-family-base !important;
-  font-size: $font-size-base;
-  font-weight: $font-weight-regular;
-  letter-spacing: $letter-spacing-base;
-  line-height: $line-height-base;
-  color: $text-color;
+    font-family: $theme-font-family-base !important;
+    font-size: $font-size-base;
+    font-weight: $font-weight-regular;
+    letter-spacing: $letter-spacing-base;
+    line-height: $line-height-base;
+    color: $text-color;
 }
 
 // Small text styling
 small,
 .small {
-  font-size: $font-size-small;
-  font-weight: $font-weight-regular;
-  letter-spacing: $letter-spacing-xs;
-  color: $text-color-secondary;
+    font-size: $font-size-small;
+    font-weight: $font-weight-regular;
+    letter-spacing: $letter-spacing-xs;
+    color: $text-color-secondary;
 }
 
 // Caption and fine print
 .caption,
 .fine-print {
-  font-size: $font-size-xs;
-  font-weight: $font-weight-regular;
-  letter-spacing: $letter-spacing-xs;
-  color: $text-color-tertiary;
-  line-height: $line-height-xs;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-regular;
+    letter-spacing: $letter-spacing-xs;
+    color: $text-color-tertiary;
+    line-height: $line-height-xs;
 }
 
 // Link styling with macOS colors
 a {
-  color: $primary-color;
-  text-decoration: none;
-  font-weight: $font-weight-medium;
-  transition: color $transition-fast;
+    color: $primary-color;
+    text-decoration: none;
+    font-weight: $font-weight-medium;
+    transition: color $transition-fast;
 
-  &:hover {
-    color: rgba(0, 122, 255, 0.8);
-    text-decoration: underline;
-  }
+    &:hover {
+        color: rgba(0, 122, 255, 0.8);
+        text-decoration: underline;
+    }
 
-  &:focus {
-    outline: none;
-    text-decoration: underline;
-    text-decoration-color: $focus-ring-color;
-  }
+    &:focus {
+        outline: none;
+        text-decoration: underline;
+        text-decoration-color: $focus-ring-color;
+    }
 }
+
+// === COMPACT TOOLBAR WITH MACOS STYLING ===
+// Show only icons on toolbars unless hovered, with macOS appearance
+.mainpage-header {
+    height: $toolbar-height !important; // 32px compact height
+    background: rgba(30, 30, 30, 0.7); // More translucent like Safari
+    backdrop-filter: blur(20px) saturate(180%); // Enhanced blur effect
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px; // More rounded like Safari
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.2);
+    margin: $layout-margin-base;
+    transition: height 250ms ease 500ms, box-shadow $transition-fast;
+    position: relative;
+    overflow: hidden; // Ensure content doesn't overflow rounded corners
+
+    .menubar {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        gap: $spacing-xs;
+        margin-left: 13px;
+        padding: 0 8px; // Add some padding for better spacing
+    }
+
+    // macOS-styled toolbar buttons with icon-first behaviour
+    .btn {
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: rgba(255, 255, 255, 0.85);
+        border-radius: 8px; // Slightly more rounded like Safari buttons
+        padding: 6px 8px;
+        font-size: $font-size-base;
+        font-weight: $font-weight-medium;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 28px;
+        height: 24px;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+
+        // Apply enhanced glass effect to all buttons
+        &:not(.toolbar-icon-btn) {
+            backdrop-filter: blur(15px) saturate(150%);
+            -webkit-backdrop-filter: blur(15px) saturate(150%);
+        }
+
+        // Text initially hidden, shown on hover
+        .button-text {
+            opacity: 0;
+            transition: opacity 250ms ease;
+            position: absolute;
+            top: $toolbar-height;
+            z-index: $z-index-tooltip;
+            background: $button-secondary-bg;
+            border: 1px solid $button-secondary-border;
+            border-radius: $border-radius-pill;
+            padding: $spacing-xs $spacing-sm;
+            font-size: $font-size-small;
+            pointer-events: none;
+            white-space: nowrap;
+            box-shadow: $button-shadow-hover;
+        }
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.95);
+            transform: translateY(-0.5px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+
+            .button-text {
+                opacity: 1;
+                transition: opacity 250ms ease 100ms;
+            }
+        }
+
+        &:active {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(0);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        &:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.4);
+        }
+
+        // Enhanced hover state for entire toolbar
+        &:hover {
+            height: $toolbar-height-expanded !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 2px 6px rgba(0, 0, 0, 0.3);
+            background: rgba(30, 30, 30, 0.8); // Slightly more opaque on hover
+            transition: height 250ms ease 100ms, box-shadow 0.2s ease, background 0.2s ease;
+        }
+    }
+}
+
 
 // Remove Windows titlebar drag region
 .toolbar-app-region {
-  -webkit-app-region: none;
+    -webkit-app-region: none;
 }
 
 // macOS drag region
 .dragbar {
-  height: 28px;
-}
-
-// Ensure proper traffic light positioning
-#main-toolbar {
-  margin-left: $traffic-light-width; // Space for traffic lights
-
-  // Add padding to ensure content doesn't overlap with traffic lights
-  @media (max-width: 1200px) {
-    margin-left: $spacing-lg; // Reduce traffic light spacing on smaller screens
-  }
-
-  @media (max-width: 768px) {
-    margin-left: $spacing-md;
-  }
+    height: 28px;
 }
 
 // Hide any Windows-style maximize, minimize, close buttons in toolbar - comprehensive
 #window-control {
-  display: none !important;
+    display: none !important;
 }
 
 // Main toolbar with macOS spacing and traffic light accommodation
 #main-toolbar {
-  background: transparent;
-  backdrop-filter: none;
-  border: none;
-  height: auto;
-  min-height: $toolbar-height-expanded;
-  padding: $spacing-sm 0;
-  margin-left: $traffic-light-width; // Space for traffic lights
-  margin-right: $layout-margin-base;
-  margin-top: $layout-margin-base;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: relative;
-  font-family: $theme-font-family-base;
-  font-size: $font-size-base;
-  font-weight: $font-weight-regular;
-  letter-spacing: $letter-spacing-base;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  z-index: $z-index-sticky;
-
-  // Toolbar sections with proper flex layout
-  .main-toolbar-left,
-  .main-toolbar-center,
-  .main-toolbar-right {
+    background: transparent;
+    backdrop-filter: none;
+    border: none;
+    height: auto;
+    min-height: $toolbar-height-expanded;
+    padding: $spacing-sm 0;
+    margin-left: $traffic-light-width; // Space for traffic lights
+    margin-right: $layout-margin-base;
+    margin-top: $layout-margin-base;
     display: flex;
     align-items: center;
-    gap: $spacing-sm;
-    flex-wrap: nowrap;
-  }
+    justify-content: space-between;
+    position: relative;
+    font-family: $theme-font-family-base;
+    font-size: $font-size-base;
+    font-weight: $font-weight-regular;
+    letter-spacing: $letter-spacing-base;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    z-index: $z-index-sticky;
 
-  .main-toolbar-left {
-    flex: 0 0 auto;
-  }
-
-  .main-toolbar-center {
-    flex: 1 1 auto;
-    justify-content: center;
-    padding: 0 $spacing-md;
-  }
-
-  .main-toolbar-right {
-    flex: 0 0 auto;
-    margin-right: 0;
-    border-left: none;
-    padding-left: $spacing-sm;
-
-    > * {
-      margin-left: $spacing-xs;
-      margin-right: 0;
-
-      &:first-child {
-        margin-left: 0;
-      }
+    // Add padding to ensure content doesn't overlap with traffic lights
+    @media (max-width: 1200px) {
+        margin-left: $spacing-lg; // Reduce traffic light spacing on smaller screens
     }
 
-    .toolbar-version,
-    .application-icons-group {
-      position: relative;
-      font-size: $font-size-small;
-      color: $text-color-secondary;
-      gap: $spacing-sm;
+    @media (max-width: 768px) {
+        margin-left: $spacing-md;
     }
-  }
 
-  // === BANNER STYLING ===
-  // Enhanced Nexus banner with proper macOS integration
-  .banner {
-    flex: 1 1 auto;
-    padding: 0 $spacing-md;
-    min-width: 400px;
+    // Toolbar sections with proper flex layout
+    .main-toolbar-left,
+    .main-toolbar-center,
+    .main-toolbar-right {
+        display: flex;
+        align-items: center;
+        gap: $spacing-sm;
+        flex-wrap: nowrap;
+    }
 
-    .nexus-main-banner {
-      position: relative;
-      width: 100%;
-      max-width: none;
-      height: 28px;
-      padding: 4px 12px;
-      margin: 0;
-      background: rgba(0, 122, 255, 0.12);
-      border: 1px solid rgba(0, 122, 255, 0.25);
-      border-radius: $border-radius-medium;
-      backdrop-filter: blur(20px) saturate(120%);
-      -webkit-backdrop-filter: blur(20px) saturate(120%);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: $spacing-sm;
-      font-family: $theme-font-family-base;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
+    .main-toolbar-left {
+        flex: 0 0 auto;
+    }
 
-      div {
-        color: rgba(255, 255, 255, 0.9);
-        font-size: $font-size-small;
+    .main-toolbar-center {
+        flex: 1 1 auto;
+        justify-content: center;
+        padding: 0 $spacing-md;
+    }
+
+    .main-toolbar-right {
+        flex: 0 0 auto;
+        margin-right: 0;
+        border-left: none;
+        padding-left: $spacing-sm;
+
+        > * {
+            margin-left: $spacing-xs;
+            margin-right: 0;
+
+            &:first-child {
+                margin-left: 0;
+            }
+        }
+
+        .toolbar-version,
+        .application-icons-group {
+            position: relative;
+            font-size: $font-size-small;
+            color: $text-color-secondary;
+            gap: $spacing-sm;
+        }
+    }
+
+    // === BANNER STYLING ===
+    // Enhanced Nexus banner with proper macOS integration
+    .banner {
+        flex: 1 1 auto;
+        padding: 0 $spacing-md;
+        min-width: 400px;
+
+        .nexus-main-banner {
+            position: relative;
+            width: 100%;
+            max-width: none;
+            height: 28px;
+            padding: 4px 12px;
+            margin: 0;
+            background: rgba(0, 122, 255, 0.12);
+            border: 1px solid rgba(0, 122, 255, 0.25);
+            border-radius: $border-radius-medium;
+            backdrop-filter: blur(20px) saturate(120%);
+            -webkit-backdrop-filter: blur(20px) saturate(120%);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: $spacing-sm;
+            font-family: $theme-font-family-base;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+
+            div {
+                color: rgba(255, 255, 255, 0.9);
+                font-size: $font-size-small;
+                font-weight: $font-weight-medium;
+                letter-spacing: $letter-spacing-base;
+                line-height: 1.2;
+                margin: 0;
+                white-space: nowrap;
+
+                &:first-child {
+                    font-weight: $font-weight-semibold;
+                    color: rgba(255, 255, 255, 0.95);
+                }
+            }
+
+            .btn,
+            .right-center .btn {
+                background: $button-primary-bg;
+                border: 1px solid $button-primary-border;
+                color: $button-primary-text;
+                border-radius: $border-radius-pill;
+                padding: 2px 8px;
+                font-size: $font-size-xs;
+                font-weight: $font-weight-semibold;
+                letter-spacing: $letter-spacing-base;
+                height: 20px;
+                min-width: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all $transition-fast;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+
+                &:hover {
+                    background: $button-primary-bg-hover;
+                    border-color: $button-primary-border-hover;
+                    transform: translateY(-0.5px);
+                    box-shadow: $button-shadow-hover;
+                }
+
+                &:active {
+                    background: $button-primary-bg-active;
+                    transform: translateY(0);
+                    box-shadow: $button-shadow-active;
+                }
+
+                &:focus {
+                    outline: none;
+                    box-shadow: $button-shadow-focus;
+                }
+            }
+        }
+    }
+
+    // === TOOLBAR BUTTON STYLING ===
+    // macOS-styled buttons for toolbar
+    .btn {
+        background: $button-secondary-bg;
+        border: 1px solid $button-secondary-border;
+        color: $button-secondary-text;
+        border-radius: $border-radius-pill;
+        padding: $button-padding-sm;
+        font-family: $theme-font-family-base;
+        font-size: $font-size-base;
         font-weight: $font-weight-medium;
         letter-spacing: $letter-spacing-base;
-        line-height: 1.2;
-        margin: 0;
-        white-space: nowrap;
-
-        &:first-child {
-          font-weight: $font-weight-semibold;
-          color: rgba(255, 255, 255, 0.95);
-        }
-      }
-
-      .btn,
-      .right-center .btn {
-        background: $button-primary-bg;
-        border: 1px solid $button-primary-border;
-        color: $button-primary-text;
-        border-radius: $border-radius-pill;
-        padding: 2px 8px;
-        font-size: $font-size-xs;
-        font-weight: $font-weight-semibold;
-        letter-spacing: $letter-spacing-base;
-        height: 20px;
-        min-width: 50px;
+        transition: all $transition-fast;
+        // Removed backdrop-filter for icon buttons to reduce GPU load
+        box-shadow: $button-shadow-default;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        height: 28px;
+        min-width: 28px;
         display: flex;
         align-items: center;
         justify-content: center;
-        transition: all $transition-fast;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
+        margin: 0 2px; // Add margin to prevent buttons from touching edges
 
         &:hover {
-          background: $button-primary-bg-hover;
-          border-color: $button-primary-border-hover;
-          transform: translateY(-0.5px);
-          box-shadow: $button-shadow-hover;
+            background: $button-secondary-bg-hover;
+            border-color: $button-secondary-border-hover;
+            color: rgba(255, 255, 255, 0.95);
+            transform: translateY(-1px);
+            box-shadow: $button-shadow-hover;
         }
 
         &:active {
-          background: $button-primary-bg-active;
-          transform: translateY(0);
-          box-shadow: $button-shadow-active;
+            background: $button-secondary-bg-active;
+            transform: translateY(0);
+            box-shadow: $button-shadow-active;
         }
 
         &:focus {
-          outline: none;
-          box-shadow: $button-shadow-focus;
+            outline: none;
+            box-shadow: $button-shadow-focus;
         }
-      }
+
+        // Primary button variant
+        &.btn-primary {
+            background: $button-primary-bg;
+            border-color: $button-primary-border;
+            color: $button-primary-text;
+            font-weight: $font-weight-semibold;
+
+            &:hover {
+                background: $button-primary-bg-hover;
+                border-color: $button-primary-border-hover;
+                box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3), $button-shadow-hover;
+                transform: none;
+            }
+
+            &:active {
+                background: $button-primary-bg-active;
+            }
+        }
+
+        // Danger button variant
+        &.btn-danger {
+            background: $button-danger-bg;
+            border-color: $button-danger-border;
+            color: $button-danger-text;
+            font-weight: $font-weight-semibold;
+
+            &:hover {
+                background: $button-danger-bg-hover;
+                border-color: $button-danger-border-hover;
+                box-shadow: 0 4px 12px rgba(255, 59, 48, 0.3), $button-shadow-hover;
+            }
+        }
+
+        // Toolbar icon buttons - completely minimal styling
+        &.toolbar-icon-btn {
+            background: transparent;
+            border: none;
+            width: 28px;
+            min-width: 28px;
+            padding: 4px; // Add padding to prevent icons from touching edges
+            margin: 0 2px; // Keep small margin for spacing
+
+            &:hover {
+                background: rgba(255, 255, 255, 0.1);
+            }
+
+            &:active {
+                background: rgba(255, 255, 255, 0.05);
+            }
+
+            &:focus {
+                box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.3);
+            }
+        }
     }
-  }
-
-  // === TOOLBAR BUTTON STYLING ===
-  // macOS-styled buttons for toolbar
-  .btn {
-    background: $button-secondary-bg;
-    border: 1px solid $button-secondary-border;
-    color: $button-secondary-text;
-    border-radius: $border-radius-pill;
-    padding: $button-padding-sm;
-    font-family: $theme-font-family-base;
-    font-size: $font-size-base;
-    font-weight: $font-weight-medium;
-    letter-spacing: $letter-spacing-base;
-    transition: all $transition-fast;
-    // Removed backdrop-filter for icon buttons to reduce GPU load
-    box-shadow: $button-shadow-default;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    height: 28px;
-    min-width: 28px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 2px; // Add margin to prevent buttons from touching edges
-
-    &:hover {
-      background: $button-secondary-bg-hover;
-      border-color: $button-secondary-border-hover;
-      color: rgba(255, 255, 255, 0.95);
-      transform: translateY(-1px);
-      box-shadow: $button-shadow-hover;
-    }
-
-    &:active {
-      background: $button-secondary-bg-active;
-      transform: translateY(0);
-      box-shadow: $button-shadow-active;
-    }
-
-    &:focus {
-      outline: none;
-      box-shadow: $button-shadow-focus;
-    }
-
-    // Primary button variant
-    &.btn-primary {
-      background: $button-primary-bg;
-      border-color: $button-primary-border;
-      color: $button-primary-text;
-      font-weight: $font-weight-semibold;
-
-      &:hover {
-        background: $button-primary-bg-hover;
-        border-color: $button-primary-border-hover;
-        box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3), $button-shadow-hover;
-        transform: none;
-      }
-
-      &:active {
-        background: $button-primary-bg-active;
-      }
-    }
-
-    // Danger button variant
-    &.btn-danger {
-      background: $button-danger-bg;
-      border-color: $button-danger-border;
-      color: $button-danger-text;
-      font-weight: $font-weight-semibold;
-
-      &:hover {
-        background: $button-danger-bg-hover;
-        border-color: $button-danger-border-hover;
-        box-shadow: 0 4px 12px rgba(255, 59, 48, 0.3), $button-shadow-hover;
-      }
-    }
-
-    // Toolbar icon buttons - completely minimal styling
-    &.toolbar-icon-btn {
-      background: transparent;
-      border: none;
-      width: 28px;
-      min-width: 28px;
-      padding: 4px; // Add padding to prevent icons from touching edges
-      margin: 0 2px; // Keep small margin for spacing
-
-      &:hover {
-        background: rgba(255, 255, 255, 0.1);
-      }
-
-      &:active {
-        background: rgba(255, 255, 255, 0.05);
-      }
-
-      &:focus {
-        box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.3);
-      }
-    }
-  }
 }
 
 // === ENHANCED SIDEBAR LAYOUT ===
 // Fixed positioning and layout to prevent cutoff and improve alignment
 
 #main-nav-sidebar {
-  // Enhanced positioning: aligned with main content top
-  position: relative !important;
-  top: 0 !important; // Align with main content top
-  left: auto !important;
+    // Enhanced positioning: aligned with main content top
+    position: relative !important;
+    top: 0 !important; // Align with main content top
+    left: auto !important;
 
-  // Proper flex-based layout
-  display: flex;
-  flex-direction: column;
+    // Proper flex-based layout
+    display: flex;
+    flex-direction: column;
 
-  // Enhanced glass styling with improved translucency
-  background: rgba(28, 28, 30, 0.85);
-  backdrop-filter: blur(20px) saturate(120%);
-  -webkit-backdrop-filter: blur(20px) saturate(120%);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: $border-radius-large;
+    // Enhanced glass styling with improved translucency
+    background: rgba(28, 28, 30, 0.85);
+    backdrop-filter: blur(20px) saturate(120%);
+    -webkit-backdrop-filter: blur(20px) saturate(120%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: $border-radius-large;
 
-  // Proper sizing and spacing with better alignment
-  margin: $layout-margin-base;
-  margin-right: $layout-margin-base; // Add right margin
-  margin-top: $layout-margin-base; // Align with main content top
-  margin-bottom: calc(#{$layout-margin-base} - 4px); // Extra bottom margin to prevent cutoff
-  padding: 0;
+    // Proper sizing and spacing with better alignment
+    margin: $layout-margin-base;
+    margin-right: $layout-margin-base; // Add right margin
+    margin-top: $layout-margin-base; // Align with main content top
+    margin-bottom: calc(#{$layout-margin-base} - 4px); // Extra bottom margin to prevent cutoff
+    padding: 0;
 
-  // Improved height calculation to prevent cutoff - shorter height
-  height: auto;
+    // Improved height calculation to prevent cutoff - shorter height
+    height: auto;
 
-  // Enhanced shadows
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.35),
-    0 2px 16px rgba(0, 0, 0, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    // Enhanced shadows
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.35),
+        0 2px 16px rgba(0, 0, 0, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
 
-  // Smooth transitions (reduced to prevent flickering)
-  transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    // Smooth transitions (reduced to prevent flickering)
+    transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 
-  // Overflow management
-  overflow-y: auto;
-  overflow-x: hidden;
+    // Overflow management
+    overflow-y: auto;
+    overflow-x: hidden;
 
-  // Z-index for proper layering
-  z-index: $z-index-sticky;
+    // Z-index for proper layering
+    z-index: $z-index-sticky;
 
-  // State-specific sizing
-  &.sidebar-expanded {
-    width: $sidebar-width-expanded;
-    flex: 0 0 $sidebar-width-expanded;
-  }
-
-  &.sidebar-compact {
-    width: $sidebar-width-compact;
-    flex: 0 0 $sidebar-width-compact;
-
-    // Compact theme behaviors
-    #main-nav-container {
-      overflow: visible;
-      z-index: $z-index-dropdown;
+    // State-specific sizing
+    &.sidebar-expanded {
+        width: $sidebar-width-expanded;
+        flex: 0 0 $sidebar-width-expanded;
     }
-  }
 
-  // Glass reflection enhancement
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg,
-        transparent 0%,
-        rgba(255, 255, 255, 0.3) 50%,
-        transparent 100%);
-    pointer-events: none;
-    z-index: 1;
-  }
+    &.sidebar-compact {
+        width: $sidebar-width-compact;
+        flex: 0 0 $sidebar-width-compact;
 
-  #main-nav-container {
-    background: transparent;
-    border: none;
-    padding: $spacing-md;
-    max-width: 100%;
-    width: 100%;
-    margin-bottom: $spacing-lg;
+        // Compact theme behaviors
+        #main-nav-container {
+            overflow: visible;
+            z-index: $z-index-dropdown;
+        }
+    }
 
-    // Navigation items
-    .main-nav-group li {
-      background: transparent;
-      border: none;
-      border-radius: $border-radius-medium;
-      margin: $spacing-xs;
-      margin-bottom: 2px;
-      padding: 0;
-      transition: all $transition-fast;
-      position: relative;
-      overflow: hidden;
-      border-bottom: none;
+    // Glass reflection enhancement
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg,
+                transparent 0%,
+                rgba(255, 255, 255, 0.3) 50%,
+                transparent 100%);
+        pointer-events: none;
+        z-index: 1;
+    }
 
-      a {
-        font-size: $font-size-base;
-        font-weight: $font-weight-medium;
-        color: rgba(255, 255, 255, 0.9);
-        margin-bottom: 0;
-        padding: $spacing-sm $spacing-md;
+    #main-nav-container {
         background: transparent;
         border: none;
-        border-radius: $border-radius-medium;
-        transition: all $transition-fast;
+        padding: $spacing-md;
+        max-width: 100%;
+        width: 100%;
+        margin-bottom: $spacing-lg;
 
-        div span {
-          font-size: $font-size-base;
-          letter-spacing: -0.007em;
-          font-weight: 500;
+        // Navigation items
+        .main-nav-group li {
+            background: transparent;
+            border: none;
+            border-radius: $border-radius-medium;
+            margin: $spacing-xs;
+            margin-bottom: 2px;
+            padding: 0;
+            transition: all $transition-fast;
+            position: relative;
+            overflow: hidden;
+            border-bottom: none;
+
+            a {
+                font-size: $font-size-base;
+                font-weight: $font-weight-medium;
+                color: rgba(255, 255, 255, 0.9);
+                margin-bottom: 0;
+                padding: $spacing-sm $spacing-md;
+                background: transparent;
+                border: none;
+                border-radius: $border-radius-medium;
+                transition: all $transition-fast;
+
+                div span {
+                    font-size: $font-size-base;
+                    letter-spacing: -0.007em;
+                    font-weight: 500;
+                }
+
+                &:hover {
+                    background: rgba(255, 255, 255, 0.08);
+                    color: rgba(255, 255, 255, 0.95);
+                    transform: translateY(-1px);
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                }
+
+                &.active,
+                &:focus {
+                    background: rgba(0, 122, 255, 0.15);
+                    color: rgba(0, 122, 255, 1);
+                    box-shadow: 0 2px 7px rgba(0, 122, 255, 0.2);
+                }
+            }
         }
+
+
+        // Dashboard item as headline
+        .main-nav-group:first-child li:first-child a {
+            font-weight: $font-weight-semibold;
+            color: rgba(255, 255, 255, 0.9);
+            padding: $spacing-sm $spacing-md;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            margin-top: $spacing-md;
+
+            div span {
+                font-size: $font-size-lg;
+            }
+
+            &::after {
+                display: none;
+            }
+
+            &::before {
+                display: none;
+            }
+        }
+
+        > :not(:last-child) {
+            box-shadow: none;
+        }
+    }
+
+    // Native macOS sidebar toggle button - Standard UI element
+    .btn-menu-minimize {
+        position: absolute;
+        bottom: 7px;
+        left: 7px;
+        width: 20px;
+        height: 20px;
+        border-radius: 4px; // Smaller radius for native feel
+        background: rgba(255, 255, 255, 0.08);
+        border: 0.5px solid rgba(255, 255, 255, 0.12);
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 11px;
+        line-height: 1;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.15s ease;
+        z-index: 1001;
+        box-shadow:
+            0 0.5px 1px rgba(0, 0, 0, 0.1),
+            inset 0 0.5px 0 rgba(255, 255, 255, 0.1);
 
         &:hover {
-          background: rgba(255, 255, 255, 0.08);
-          color: rgba(255, 255, 255, 0.95);
-          transform: translateY(-1px);
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.18);
+            box-shadow:
+                0 1px 2px rgba(0, 0, 0, 0.15),
+                inset 0 0.5px 0 rgba(255, 255, 255, 0.15);
+            transform: translateY(-1px);
         }
 
-        &.active,
+        &:active {
+            background: rgba(255, 255, 255, 0.06);
+            box-shadow:
+                inset 0 1px 2px rgba(0, 0, 0, 0.1),
+                0 0.5px 1px rgba(0, 0, 0, 0.05);
+            transform: translateY(0);
+        }
+
         &:focus {
-          background: rgba(0, 122, 255, 0.15);
-          color: rgba(0, 122, 255, 1);
-          box-shadow: 0 2px 7px rgba(0, 122, 255, 0.2);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.3); // macOS focus ring
         }
-      }
+
+        .icon {
+            width: 12px;
+            height: 12px;
+            opacity: 0.85;
+            transition: opacity 0.15s ease;
+        }
+
+        &:hover .icon {
+            opacity: 1;
+        }
+
+        .sidebar-compact & {
+            width: 17px;
+            height: 17px;
+
+            .icon {
+                width: 7px;
+                height: 7px;
+            }
+        }
+
+        // Remove default button styling
+        background-image: none;
+        text-shadow: none;
+
+        &:hover,
+        &:focus,
+        &:active {
+            background-image: none;
+        }
     }
-
-
-    // Dashboard item as headline
-    .main-nav-group:first-child li:first-child a {
-      font-weight: $font-weight-semibold;
-      color: rgba(255, 255, 255, 0.9);
-      padding: $spacing-sm $spacing-md;
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 6px;
-      margin-top: $spacing-md;
-
-      div span {
-        font-size: $font-size-lg;
-      }
-
-      &::after {
-        display: none;
-      }
-
-      &::before {
-        display: none;
-      }
-    }
-
-    > :not(:last-child) {
-      box-shadow: none;
-    }
-  }
-
-  // Native macOS sidebar toggle button - Standard UI element
-  .btn-menu-minimize {
-    position: absolute;
-    bottom: 7px;
-    left: 7px;
-    width: 20px;
-    height: 20px;
-    border-radius: 4px; // Smaller radius for native feel
-    background: rgba(255, 255, 255, 0.08);
-    border: 0.5px solid rgba(255, 255, 255, 0.12);
-    color: rgba(255, 255, 255, 0.85);
-    font-size: 11px;
-    line-height: 1;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.15s ease;
-    z-index: 1001;
-    box-shadow:
-      0 0.5px 1px rgba(0, 0, 0, 0.1),
-      inset 0 0.5px 0 rgba(255, 255, 255, 0.1);
-
-    &:hover {
-      background: rgba(255, 255, 255, 0.12);
-      border-color: rgba(255, 255, 255, 0.18);
-      box-shadow:
-        0 1px 2px rgba(0, 0, 0, 0.15),
-        inset 0 0.5px 0 rgba(255, 255, 255, 0.15);
-      transform: translateY(-1px);
-    }
-
-    &:active {
-      background: rgba(255, 255, 255, 0.06);
-      box-shadow:
-        inset 0 1px 2px rgba(0, 0, 0, 0.1),
-        0 0.5px 1px rgba(0, 0, 0, 0.05);
-      transform: translateY(0);
-    }
-
-    &:focus {
-      outline: none;
-      box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.3); // macOS focus ring
-    }
-
-    .icon {
-      width: 12px;
-      height: 12px;
-      opacity: 0.85;
-      transition: opacity 0.15s ease;
-    }
-
-    &:hover .icon {
-      opacity: 1;
-    }
-
-    .sidebar-compact & {
-      width: 17px;
-      height: 17px;
-
-      .icon {
-        width: 7px;
-        height: 7px;
-      }
-    }
-
-    // Remove default button styling
-    background-image: none;
-    text-shadow: none;
-
-    &:hover,
-    &:focus,
-    &:active {
-      background-image: none;
-    }
-  }
 }
 
 // === TOGGLE SWITCH STYLING WITH LIQUID GLASS EFFECT ===
 // macOS Tahoe themed toggle switches with translucency and backdrop filtering
 
 .toggle-container {
-  display: flex;
-  margin-bottom: $half-gutter;
-  gap: $slim-gutter;
+    display: flex;
+    margin-bottom: $half-gutter;
+    gap: $slim-gutter;
 
-  &.toggle-disabled {
-    filter: brightness(0.5);
-  }
+    &.toggle-disabled {
+        filter: brightness(0.5);
+    }
 }
 
 .toggle {
-  position: relative;
-  width: 32px;
-  display: flex;
-  align-items: center;
-  margin-right: 0.33em;
-  height: 16px;
-  margin-top: auto;
-  margin-bottom: auto;
+    position: relative;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    margin-right: 0.33em;
+    height: 16px;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 .toggle-track {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  border-radius: 8px;
-  line-height: 100%;
-  display: flex;
-  align-items: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    border-radius: 8px;
+    line-height: 100%;
+    display: flex;
+    align-items: center;
 
-  // Apply liquid glass effect to toggle track
-  background: rgba(58, 58, 60, 0.6);
-  backdrop-filter: blur(10px) saturate(120%);
-  -webkit-backdrop-filter: blur(10px) saturate(120%);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow:
-    0 2px 4px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    // Apply liquid glass effect to toggle track
+    background: rgba(58, 58, 60, 0.6);
+    backdrop-filter: blur(10px) saturate(120%);
+    -webkit-backdrop-filter: blur(10px) saturate(120%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
 
-  .icon {
-    width: 0.75em;
-    height: 0.75em;
-  }
+    .icon {
+        width: 0.75em;
+        height: 0.75em;
+    }
 }
 
 .toggle-handle {
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  border-radius: 8px;
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 8px;
 
-  // Apply liquid glass effect to toggle handle
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(5px) saturate(120%);
-  -webkit-backdrop-filter: blur(5px) saturate(120%);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow:
-    0 1px 3px rgba(0, 0, 0, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    // Apply liquid glass effect to toggle handle
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(5px) saturate(120%);
+    -webkit-backdrop-filter: blur(5px) saturate(120%);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
 
-  transition: left ease 200ms;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    transition: left ease 200ms;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-  svg {
-    color: rgba(0, 0, 0, 0.7);
-    width: 0.7em;
-    height: 0.7em;
-  }
+    svg {
+        color: rgba(0, 0, 0, 0.7);
+        width: 0.7em;
+        height: 0.7em;
+    }
 }
 
 .toggle-off .toggle-track {
-  background: rgba(58, 58, 60, 0.6);
-  border-color: rgba(255, 255, 255, 0.15);
+    background: rgba(58, 58, 60, 0.6);
+    border-color: rgba(255, 255, 255, 0.15);
 
-  svg {
-    margin-left: 18px;
-    color: rgba(255, 255, 255, 0.5);
-  }
+    svg {
+        margin-left: 18px;
+        color: rgba(255, 255, 255, 0.5);
+    }
 }
 
 .toggle-off .toggle-handle {
-  left: 0px;
+    left: 0px;
 }
 
 .toggle-on .toggle-track {
-  background: rgba(52, 199, 89, 0.3); // macOS green with translucency
-  border-color: rgba(52, 199, 89, 0.4);
+    background: rgba(52, 199, 89, 0.3); // macOS green with translucency
+    border-color: rgba(52, 199, 89, 0.4);
 
-  svg {
-    margin-left: 4px;
-    color: rgba(255, 255, 255, 0.9);
-  }
+    svg {
+        margin-left: 4px;
+        color: rgba(255, 255, 255, 0.9);
+    }
 }
 
 .toggle-on .toggle-handle {
-  left: 16px;
-  background: rgba(52, 199, 89, 0.9); // Solid green for handle
-  border-color: rgba(52, 199, 89, 0.5);
+    left: 16px;
+    background: rgba(52, 199, 89, 0.9); // Solid green for handle
+    border-color: rgba(52, 199, 89, 0.5);
 }
 
 .modal-content {
-  background-color: rgba(28, 28, 30, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(20px) saturate(120%);
-  -webkit-backdrop-filter: blur(20px) saturate(120%);
-  border-radius: 8px;
-  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    background-color: rgba(28, 28, 30, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px) saturate(120%);
+    -webkit-backdrop-filter: blur(20px) saturate(120%);
+    border-radius: 8px;
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
-.modal-content .modal-header {
-  border-bottom: none; // Remove horizontal border for macOS Tahoe look
-  border-radius: 8px 8px 0 0;
-  padding: 12px 16px;
-  display: flex;
-  align-items: start;
-}
-.modal-content .modal-header .modal-title {
-  color: rgba(255, 255, 255, 0.85);
-  font-weight: 600;
-  font-size: 15px;
-  display: flex;
-  align-items: left;
-  margin: 0; // Remove default margin
 
-  // Hide icons for macOS Tahoe look
-  svg {
-    display: none;
-  }
+.modal-content .modal-header {
+    border-bottom: none; // Remove horizontal border for macOS Tahoe look
+    border-radius: 8px 8px 0 0;
+    padding: 12px 16px;
+    display: flex;
+    align-items: start;
 }
+
+.modal-content .modal-header .modal-title {
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 600;
+    font-size: 15px;
+    display: flex;
+    align-items: left;
+    margin: 0; // Remove default margin
+
+    // Hide icons for macOS Tahoe look
+    svg {
+        display: none;
+    }
+}
+
 .modal-content .modal-body {
-  color: rgba(255, 255, 255, 0.85);
-  padding: 0 16px 12px; // Reduced top padding since there's no header border
+    color: rgba(255, 255, 255, 0.85);
+    padding: 0 16px 12px; // Reduced top padding since there's no header border
 }
+
 .modal-content .modal-footer {
-  border-top: none; // Remove horizontal border for macOS Tahoe look
-  background-color: rgba(28, 28, 30, 0.7);
-  border-radius: 0 0 8px 8px;
-  padding: 12px 16px 16px;
-  display: flex;
-  justify-content: flex-end;
-  gap: 8px; // Add spacing between buttons
+    border-top: none; // Remove horizontal border for macOS Tahoe look
+    background-color: rgba(28, 28, 30, 0.7);
+    border-radius: 0 0 8px 8px;
+    padding: 12px 16px 16px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px; // Add spacing between buttons
 }
 
 // === CONTENT AREA ALIGNMENT AND LAYOUT ===
@@ -954,73 +914,73 @@ a {
 
 // Main Layout - Enhanced responsive flex layout with proper window margins
 #main-window-content {
-  background: transparent;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  padding-bottom: calc(#{$layout-margin-base} + 12px); // Enhanced window bottom padding
-  padding-right: calc(#{$layout-margin-base} + 8px); // Enhanced right margin for window edge spacing
-  box-sizing: border-box;
-
-  // Enhanced flex layout with proper alignment
-  .flex-layout-row {
+    background: transparent;
     display: flex;
-    align-items: stretch;
-    gap: 0;
-    flex: 1;
+    flex-direction: column;
+    min-height: 100vh;
+    padding-bottom: calc(#{$layout-margin-base} + 12px); // Enhanced window bottom padding
+    padding-right: calc(#{$layout-margin-base} + 8px); // Enhanced right margin for window edge spacing
+    box-sizing: border-box;
 
-    // Sidebar area (handled by sidebar styles above)
-    .flex-layout-nav {
-      flex: 0 0 auto;
+    // Enhanced flex layout with proper alignment
+    .flex-layout-row {
+        display: flex;
+        align-items: stretch;
+        gap: 0;
+        flex: 1;
 
-      &.sidebar-expanded {
-        width: $sidebar-width-expanded;
-      }
+        // Sidebar area (handled by sidebar styles above)
+        .flex-layout-nav {
+            flex: 0 0 auto;
 
-      &.sidebar-compact {
-        width: $sidebar-width-compact;
-      }
-    }
+            &.sidebar-expanded {
+                width: $sidebar-width-expanded;
+            }
 
-    // Content area takes remaining space with proper alignment and margins
-    .flex-layout-flex {
-      flex: 1;
-      padding: $layout-margin-base;
-      padding-left: $layout-margin-base;
-      padding-right: calc(#{$layout-margin-base} + 8px); // Extra right padding for window edge
-      padding-bottom: calc(#{$layout-margin-base} + 8px); // Extra bottom padding for window edge
-      box-sizing: border-box;
-      min-height: calc(100vh - #{$toolbar-height-expanded + $layout-margin-base * 2});
-      overflow-x: hidden;
-      overflow-y: auto;
-
-      // Ensure scrollbar doesn't touch window edge - increased margin
-      margin-right: calc(#{$spacing-xs} + 4px);
-      margin-bottom: calc(#{$spacing-xs} + 4px);
-
-      // Ensure content aligns with sidebar
-      .main-page {
-        background: transparent;
-        padding: 0;
-        margin: 0;
-        width: 100%;
-
-        .main-page-body {
-          background: transparent;
-          backdrop-filter: none;
-          -webkit-backdrop-filter: none;
-          border-radius: 0;
-          margin: 0;
-          padding: $spacing-lg;
-          border: none;
-          box-shadow: none;
-          min-height: calc(100vh - #{$toolbar-height-expanded + $layout-margin-base * 4});
-          box-sizing: border-box;
-          width: 100%;
+            &.sidebar-compact {
+                width: $sidebar-width-compact;
+            }
         }
-      }
+
+        // Content area takes remaining space with proper alignment and margins
+        .flex-layout-flex {
+            flex: 1;
+            padding: $layout-margin-base;
+            padding-left: $layout-margin-base;
+            padding-right: calc(#{$layout-margin-base} + 8px); // Extra right padding for window edge
+            padding-bottom: calc(#{$layout-margin-base} + 8px); // Extra bottom padding for window edge
+            box-sizing: border-box;
+            min-height: calc(100vh - #{$toolbar-height-expanded + $layout-margin-base * 2});
+            overflow-x: hidden;
+            overflow-y: auto;
+
+            // Ensure scrollbar doesn't touch window edge - increased margin
+            margin-right: calc(#{$spacing-xs} + 4px);
+            margin-bottom: calc(#{$spacing-xs} + 4px);
+
+            // Ensure content aligns with sidebar
+            .main-page {
+                background: transparent;
+                padding: 0;
+                margin: 0;
+                width: 100%;
+
+                .main-page-body {
+                    background: transparent;
+                    backdrop-filter: none;
+                    -webkit-backdrop-filter: none;
+                    border-radius: 0;
+                    margin: 0;
+                    padding: $spacing-lg;
+                    border: none;
+                    box-shadow: none;
+                    min-height: calc(100vh - #{$toolbar-height-expanded + $layout-margin-base * 4});
+                    box-sizing: border-box;
+                    width: 100%;
+                }
+            }
+        }
     }
-  }
 }
 
 // === RESPONSIVE LAYOUT ADJUSTMENTS ===
@@ -1028,65 +988,65 @@ a {
 
 // Page content adjustments
 .page-content {
-  background: transparent;
-  border: none;
-  box-shadow: none;
-  border-radius: 0;
-  padding: 0;
-  margin: 0;
-  width: 100%;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
+    width: 100%;
 }
 
 // Content containers with enhanced macOS styling
 .table-container,
 .list-container,
 .content-container {
-  background: rgba(50, 50, 52, 0.65);
-  border-radius: $border-radius-medium;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(20px) saturate(120%);
-  -webkit-backdrop-filter: blur(20px) saturate(120%);
-  box-shadow:
-    0 4px 16px rgba(0, 0, 0, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  margin: $spacing-md 0;
-  padding: $spacing-lg;
-  transition: all $transition-medium;
-
-  &:hover {
-    background: rgba(50, 50, 52, 0.75);
-    border-color: rgba(255, 255, 255, 0.12);
+    background: rgba(50, 50, 52, 0.65);
+    border-radius: $border-radius-medium;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px) saturate(120%);
+    -webkit-backdrop-filter: blur(20px) saturate(120%);
     box-shadow:
-      0 6px 24px rgba(0, 0, 0, 0.25),
-      inset 0 1px 0 rgba(255, 255, 255, 0.15);
-  }
+        0 4px 16px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    margin: $spacing-md 0;
+    padding: $spacing-lg;
+    transition: all $transition-medium;
+
+    &:hover {
+        background: rgba(50, 50, 52, 0.75);
+        border-color: rgba(255, 255, 255, 0.12);
+        box-shadow:
+            0 6px 24px rgba(0, 0, 0, 0.25),
+            inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
 }
 
 // Responsive breakpoints for different screen sizes
 @media (max-width: 1200px) {
-  #main-toolbar {
-    margin-left: $spacing-lg; // Reduce traffic light spacing on smaller screens
-  }
+    #main-toolbar {
+        margin-left: $spacing-lg; // Reduce traffic light spacing on smaller screens
+    }
 
-  .flex-layout-flex {
-    padding: $spacing-sm;
-  }
+    .flex-layout-flex {
+        padding: $spacing-sm;
+    }
 }
 
 @media (max-width: 768px) {
-  #main-toolbar {
-    margin-left: $spacing-md;
+    #main-toolbar {
+        margin-left: $spacing-md;
 
-    .banner {
-      min-width: 300px;
+        .banner {
+            min-width: 300px;
+        }
     }
-  }
 
-  #main-nav-sidebar {
-    &.sidebar-expanded {
-      width: calc(#{$sidebar-width-expanded} - 20px);
+    #main-nav-sidebar {
+        &.sidebar-expanded {
+            width: calc(#{$sidebar-width-expanded} - 20px);
+        }
     }
-  }
 }
 
 // === MAIN PAGE CONTENT STYLING ===
@@ -1096,602 +1056,600 @@ a {
 .table-container,
 .list-container,
 .content-container {
-  background: rgba(50, 50, 52, 0.65);
-  border-radius: $border-radius-medium;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(20px) saturate(120%);
-  -webkit-backdrop-filter: blur(20px) saturate(120%);
-  box-shadow:
-    0 4px 16px rgba(0, 0, 0, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  margin: $spacing-md 0;
-  padding: $spacing-lg;
-  transition: all $transition-medium;
-
-  &:hover {
-    background: rgba(50, 50, 52, 0.75);
-    border-color: rgba(255, 255, 255, 0.12);
+    background: rgba(50, 50, 52, 0.65);
+    border-radius: $border-radius-medium;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px) saturate(120%);
+    -webkit-backdrop-filter: blur(20px) saturate(120%);
     box-shadow:
-      0 6px 24px rgba(0, 0, 0, 0.25),
-      inset 0 1px 0 rgba(255, 255, 255, 0.15);
-  }
+        0 4px 16px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    margin: $spacing-md 0;
+    padding: $spacing-lg;
+    transition: all $transition-medium;
+
+    &:hover {
+        background: rgba(50, 50, 52, 0.75);
+        border-color: rgba(255, 255, 255, 0.12);
+        box-shadow:
+            0 6px 24px rgba(0, 0, 0, 0.25),
+            inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
 }
 
 // Main Page Header - Clean Tahoe headline styling
 
 * .mainpage-header-container,
 * .panel {
-  background: transparent;
+    background: transparent;
 }
 
 .mainpage-header {
-  border: none;
-  border-bottom: none;
-  border-left: none;
-  border-right: none;
-  border-top: none;
-  background: transparent;
-  backdrop-filter: none;
-  padding: $spacing-lg 0 $spacing-lg 0;
-  height: auto;
-  margin: 0;
-
-  // Clean headline layout
-  display: block;
-  text-align: left;
-
-  // Typography - clean Tahoe headline style with explicit SF Pro font
-  font-family: $theme-font-family-headings !important;
-  font-size: 27px;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.95);
-  letter-spacing: -0.02em;
-  line-height: 1.2;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  // Remove any inherited styling
-  box-shadow: none;
-  border-radius: 0;
-
-  // Ensure all child elements have no borders or backgrounds
-  *,
-  *::before,
-  *::after {
     border: none;
     border-bottom: none;
     border-left: none;
     border-right: none;
     border-top: none;
     background: transparent;
-    box-shadow: none;
-  }
-
-  // Style the main heading text
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: $theme-font-family-headings !important;
-    font-size: $font-size-lg;
-    font-weight: $font-weight-semibold;
-    color: $text-color;
+    backdrop-filter: none;
+    padding: $spacing-lg 0 $spacing-lg 0;
+    height: auto;
     margin: 0;
-    padding: 0;
-    border: none;
-    background: transparent;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
 
-  // Button styling within header
-  .btn {
-    font-family: $theme-font-family-base !important;
-    font-size: $font-size-base;
-    font-weight: $font-weight-medium;
-    border-radius: $border-radius-medium;
-    padding: $spacing-xs $spacing-md;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    color: $text-color;
-    transition: all $transition-fast;
+    // Clean headline layout
+    display: block;
+    text-align: left;
+
+    // Typography - clean Tahoe headline style with explicit SF Pro font
+    font-family: $theme-font-family-headings !important;
+    font-size: 27px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.95);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
-    &:hover {
-      background: rgba(255, 255, 255, 0.15);
-      border-color: rgba(255, 255, 255, 0.2);
-      color: rgba(255, 255, 255, 0.95);
-      transform: translateY(-1px);
-      box-shadow: 0 2px 7px rgba(0, 0, 0, 0.15);
+    // Remove any inherited styling
+    box-shadow: none;
+    border-radius: 0;
+
+    // Ensure all child elements have no borders or backgrounds
+    *,
+    *::before,
+    *::after {
+        border: none;
+        border-bottom: none;
+        border-left: none;
+        border-right: none;
+        border-top: none;
+        background: transparent;
+        box-shadow: none;
     }
 
-    &:active {
-      background: rgba(255, 255, 255, 0.2);
-      transform: translateY(0);
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    // Style the main heading text
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: $theme-font-family-headings !important;
+        font-size: $font-size-lg;
+        font-weight: $font-weight-semibold;
+        color: $text-color;
+        margin: 0;
+        padding: 0;
+        border: none;
+        background: transparent;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
     }
 
-    &:focus {
-      outline: none;
-      box-shadow: 0 0 0 2px $focus-ring-color;
+    // Button styling within header
+    .btn {
+        font-family: $theme-font-family-base !important;
+        font-size: $font-size-base;
+        font-weight: $font-weight-medium;
+        border-radius: $border-radius-medium;
+        padding: $spacing-xs $spacing-md;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: $text-color;
+        transition: all $transition-fast;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.95);
+            transform: translateY(-1px);
+            box-shadow: 0 2px 7px rgba(0, 0, 0, 0.15);
+        }
+
+        &:active {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(0);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        &:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px $focus-ring-color;
+        }
     }
-  }
 }
 
 // Dashboard styling - Remove background panels behind applets
 
 
 #page-dashboard {
-  // Ensure proper positioning context for floating customize button
-  position: relative;
-  background: transparent;
-
-  .dashboard-editbar {
-    // Remove positioning context from editbar - set height to 0 for proper layout
-    height: 0;
+    // Ensure proper positioning context for floating customize button
     position: relative;
-    padding: 0;
-    margin: 0;
-    overflow: visible;
-  }
-
-  // Customize button positioning and container styling
-  .dashlet-customize-btn {
-    // Position in top-right corner floating above content
-    position: absolute;
-    top: 48px;
-    right: 48px;
-    z-index: 100;
-
-    // Style the actual button element (IconButton)
-    .btn {
-      // Liquid glass styling with gradient border and enhanced visual effects
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 40px !important;
-      height: 40px !important;
-      padding: 0 !important;
-      border: 2px solid transparent;
-      border-radius: 50% !important;
-
-      // Liquid glass background with multiple layers
-      background:
-        linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.05) 100%),
-        radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 50%),
-        rgba(255, 255, 255, 0.08) !important;
-
-      // Enhanced backdrop filter for liquid glass effect
-      backdrop-filter: blur(20px) saturate(180%) brightness(110%) !important;
-      -webkit-backdrop-filter: blur(20px) saturate(180%) brightness(110%) !important;
-
-      // Gradient border using pseudo-element
-      &::before {
-        content: '';
-        position: absolute;
-        top: -2px;
-        left: -2px;
-        right: -2px;
-        bottom: -2px;
-        border-radius: 50%;
-        background: linear-gradient(135deg,
-          rgba(255, 255, 255, 0.6) 0%,
-          rgba(255, 255, 255, 0.2) 25%,
-          rgba(0, 122, 255, 0.3) 50%,
-          rgba(255, 255, 255, 0.2) 75%,
-          rgba(255, 255, 255, 0.6) 100%
-        );
-        z-index: -1;
-        opacity: 0.8;
-      }
-
-      // Inner glow effect
-      &::after {
-        content: '';
-        position: absolute;
-        top: 2px;
-        left: 2px;
-        right: 2px;
-        bottom: 2px;
-        border-radius: 50%;
-        background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.4) 0%, transparent 70%);
-        pointer-events: none;
-      }
-
-      color: rgba(255, 255, 255, 0.9) !important;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-
-      // Enhanced shadow for floating effect
-      box-shadow:
-        0 8px 32px rgba(0, 0, 0, 0.12),
-        0 4px 16px rgba(0, 0, 0, 0.08),
-        inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
-
-      // Icon styling (both svg and .icon class)
-      svg, .icon {
-        width: 18px !important;
-        height: 18px !important;
-        flex-shrink: 0;
-        filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
-        z-index: 1;
-        fill: currentColor !important;
-        margin: 0 !important;
-      }
-
-      &:hover {
-        // Enhanced hover state with more pronounced liquid glass effect
-        background:
-          linear-gradient(135deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.08) 100%),
-          radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.4) 0%, transparent 50%),
-          rgba(255, 255, 255, 0.12) !important;
-
-        color: rgba(255, 255, 255, 1) !important;
-        transform: translateY(-2px) scale(1.05) !important;
-
-        box-shadow:
-          0 12px 40px rgba(0, 0, 0, 0.15),
-          0 6px 20px rgba(0, 0, 0, 0.1),
-          inset 0 1px 0 rgba(255, 255, 255, 0.4) !important;
-
-        &::before {
-          opacity: 1;
-          background: linear-gradient(135deg,
-            rgba(255, 255, 255, 0.8) 0%,
-            rgba(255, 255, 255, 0.3) 25%,
-            rgba(0, 122, 255, 0.5) 50%,
-            rgba(255, 255, 255, 0.3) 75%,
-            rgba(255, 255, 255, 0.8) 100%
-          );
-        }
-      }
-
-      &:active {
-        background:
-          linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.08) 50%, rgba(255, 255, 255, 0.04) 100%),
-          rgba(255, 255, 255, 0.06) !important;
-
-        transform: translateY(-1px) scale(1.02) !important;
-
-        box-shadow:
-          0 6px 24px rgba(0, 0, 0, 0.12),
-          0 3px 12px rgba(0, 0, 0, 0.08),
-          inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
-      }
-
-      &:focus {
-        outline: none !important;
-        box-shadow:
-          0 8px 32px rgba(0, 0, 0, 0.12),
-          0 4px 16px rgba(0, 0, 0, 0.08),
-          inset 0 1px 0 rgba(255, 255, 255, 0.3),
-          0 0 0 3px rgba(0, 122, 255, 0.4) !important;
-      }
-    }
-  }
-
-  .dynamic-dashlets {
     background: transparent;
-    padding: 0;
-    padding-right: $spacing-lg;
-    padding-top: 24px; // Increased from 6px to 24px for better spacing when editing dashboard
-    position: relative;
-    height: auto !important;
-  }
 
-  .dashboard-background-grid {
-    display: none; // Remove background grid
-  }
-
-  // Applet Styling - Add borders and proper styling
-  .dashlet,
-  .applet,
-  .widget {
-    background: rgba(28, 28, 30, 0.6);
-    backdrop-filter: blur(20px) saturate(120%);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: $border-radius-large;
-    padding: $spacing-md;
-    // Remove margins that interfere with grid layout
-    margin: 0;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-    position: relative;
-    width: 100%;
-    box-sizing: border-box;
-
-    // Headers within applets
-    .dashlet-header,
-    .applet-header,
-    .widget-header {
-      border: none;
-      border-bottom: none;
-      background: transparent;
-      padding-bottom: $spacing-sm;
-      margin-bottom: $spacing-sm;
-
-      h3,
-      h4,
-      h5 {
-        border: none;
-        border-bottom: none;
-        color: rgba(255, 255, 255, 0.9);
-        font-weight: $font-weight-semibold;
-      }
+    .dashboard-editbar {
+        // Remove positioning context from editbar - set height to 0 for proper layout
+        height: 0;
+        position: relative;
+        padding: 0;
+        margin: 0;
+        overflow: visible;
     }
 
-    // Content styling
-    .content {
-      background: transparent;
-      padding: $spacing-md;
-      margin: 0;
+    // Customize button positioning and container styling
+    .dashlet-customize-btn {
+        // Position in top-right corner floating above content
+        position: absolute;
+        top: 48px;
+        right: 48px;
+        z-index: 100;
 
-      // Custom scrollbar for macOS feel
-      &::-webkit-scrollbar {
-        width: 7px;
-      }
-
-      &::-webkit-scrollbar-track {
-        background: transparent;
-      }
-
-      &::-webkit-scrollbar-thumb {
-        background: rgba(255, 255, 255, 0.2);
-        border-radius: 4px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-      }
-
-      &::-webkit-scrollbar-thumb:hover {
-        background: rgba(255, 255, 255, 0.3);
-      }
-
-      overflow-y: auto;
-      overflow-x: hidden;
-    }
-
-    .nav-group {
-      margin-bottom: $spacing-sm;
-
-      // Navigation items
-      .nav-item {
-        transition: all $transition-fast;
-        background: transparent;
-        border: none;
-        margin: $spacing-xs;
-        margin-bottom: 2px;
-
-        // Icon styling
-        .icon {
-          width: 16px;
-          height: 16px;
-          margin-right: $spacing-xs;
-          opacity: 0.8;
-          transition: opacity $transition-fast;
-        }
-
-        // Text styling
-        span {
-          font-size: $font-size-base;
-          font-weight: $font-weight-regular;
-          color: inherit;
-          opacity: 0.9;
-          transition: opacity $transition-fast;
-        }
-
-        // Hover state
-        &:hover {
-          background: rgba(255, 255, 255, 0.08);
-          color: rgba(255, 255, 255, 0.95);
-          transform: translateY(-1px);
-
-          .icon {
-            opacity: 1;
-          }
-
-          span {
-            opacity: 1;
-          }
-        }
-
-        // Active/selected state
-        &.active,
-        &:focus {
-          background: rgba(0, 122, 255, 0.2);
-          color: rgba(255, 255, 255, 1);
-          box-shadow:
-            0 1px 3px rgba(0, 122, 255, 0.3),
-            0 0 0 2px rgba(0, 122, 255, 0.4);
-        }
-
-        // Group titles - Finder-style section headers
-        .main-nav-group-title {
-          width: 100%;
-          max-width: 100%;
-          box-sizing: border-box;
-          overflow: hidden;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-
-          font-size: $font-size-sm;
-          font-weight: $font-weight-semibold;
-          color: rgba(255, 255, 255, 0.6);
-          text-transform: uppercase;
-          padding: $spacing-sm $spacing-sm $spacing-xs $spacing-sm;
-          margin-bottom: $spacing-xs;
-          border-bottom: none;
-          background: transparent;
-        }
-
-        // Dashboard specific styling
-        &.headline {
-          background: rgba(255, 255, 255, 0.08);
-          border: 1px solid rgba(255, 255, 255, 0.12);
-          border-radius: 6px;
-          padding: 6px 7px;
-          margin-bottom: 7px;
-
-          span {
-            text-transform: uppercase;
-            font-weight: 500;
-          }
-
-          &:hover {
-            background: rgba(255, 255, 255, 0.12);
-            border-color: rgba(255, 255, 255, 0.18);
-          }
-
-          &:active {
-            background: rgba(255, 255, 255, 0.06);
-          }
-
-          .nav-link {
-            width: 100%;
-            max-width: 100%;
-            box-sizing: border-box;
-            overflow: hidden;
-            white-space: nowrap;
-
-            // Finder-style navigation item
+        // Style the actual button element (IconButton)
+        .btn {
+            // Liquid glass styling with gradient border and enhanced visual effects
             display: flex;
             align-items: center;
-            padding: $spacing-xs;
-            border-radius: 6px;
-            font-size: $font-size-base;
-            font-weight: $font-weight-regular;
-            color: $text-color;
-            text-decoration: none;
-          }
+            justify-content: center;
+            width: 40px !important;
+            height: 40px !important;
+            padding: 0 !important;
+            border: 2px solid transparent;
+            border-radius: 50% !important;
+
+            // Liquid glass background with multiple layers
+            background:
+                linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.05) 100%),
+                radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 50%),
+                rgba(255, 255, 255, 0.08) !important;
+
+            // Enhanced backdrop filter for liquid glass effect
+            backdrop-filter: blur(20px) saturate(180%) brightness(110%) !important;
+            -webkit-backdrop-filter: blur(20px) saturate(180%) brightness(110%) !important;
+
+            // Gradient border using pseudo-element
+            &::before {
+                content: '';
+                position: absolute;
+                top: -2px;
+                left: -2px;
+                right: -2px;
+                bottom: -2px;
+                border-radius: 50%;
+                background: linear-gradient(135deg,
+                        rgba(255, 255, 255, 0.6) 0%,
+                        rgba(255, 255, 255, 0.2) 25%,
+                        rgba(0, 122, 255, 0.3) 50%,
+                        rgba(255, 255, 255, 0.2) 75%,
+                        rgba(255, 255, 255, 0.6) 100%);
+                z-index: -1;
+                opacity: 0.8;
+            }
+
+            // Inner glow effect
+            &::after {
+                content: '';
+                position: absolute;
+                top: 2px;
+                left: 2px;
+                right: 2px;
+                bottom: 2px;
+                border-radius: 50%;
+                background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.4) 0%, transparent 70%);
+                pointer-events: none;
+            }
+
+            color: rgba(255, 255, 255, 0.9) !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+
+            // Enhanced shadow for floating effect
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12),
+            0 4px 16px rgba(0, 0, 0, 0.08),
+            inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+
+            // Icon styling (both svg and .icon class)
+            svg,
+            .icon {
+                width: 18px !important;
+                height: 18px !important;
+                flex-shrink: 0;
+                filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+                z-index: 1;
+                fill: currentColor !important;
+                margin: 0 !important;
+            }
+
+            &:hover {
+                // Enhanced hover state with more pronounced liquid glass effect
+                background:
+                    linear-gradient(135deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.08) 100%),
+                    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.4) 0%, transparent 50%),
+                    rgba(255, 255, 255, 0.12) !important;
+
+                color: rgba(255, 255, 255, 1) !important;
+                transform: translateY(-2px) scale(1.05) !important;
+
+                box-shadow:
+                    0 12px 40px rgba(0, 0, 0, 0.15),
+                    0 6px 20px rgba(0, 0, 0, 0.1),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.4) !important;
+
+                &::before {
+                    opacity: 1;
+                    background: linear-gradient(135deg,
+                            rgba(255, 255, 255, 0.8) 0%,
+                            rgba(255, 255, 255, 0.3) 25%,
+                            rgba(0, 122, 255, 0.5) 50%,
+                            rgba(255, 255, 255, 0.3) 75%,
+                            rgba(255, 255, 255, 0.8) 100%);
+                }
+            }
+
+            &:active {
+                background:
+                    linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.08) 50%, rgba(255, 255, 255, 0.04) 100%),
+                    rgba(255, 255, 255, 0.06) !important;
+
+                transform: translateY(-1px) scale(1.02) !important;
+
+                box-shadow:
+                    0 6px 24px rgba(0, 0, 0, 0.12),
+                    0 3px 12px rgba(0, 0, 0, 0.08),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+            }
+
+            &:focus {
+                outline: none !important;
+                box-shadow:
+                    0 8px 32px rgba(0, 0, 0, 0.12),
+                    0 4px 16px rgba(0, 0, 0, 0.08),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                    0 0 0 3px rgba(0, 122, 255, 0.4) !important;
+            }
         }
-      }
-    }
-  }
-
-  // Go Premium Dashlet - Premium banner style integrated with dashlet system
-  .dashlet-go-premium {
-    background: rgba(28, 28, 30, 0.6);
-    backdrop-filter: blur(20px) saturate(120%);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: $border-radius-large;
-    padding: $spacing-md;
-    // Remove margins that interfere with grid layout
-    margin: 0;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-    position: relative;
-    width: 100%;
-    box-sizing: border-box;
-
-    // Premium banner styling
-    background: linear-gradient(135deg, #007AFF 0%, #5856D6 100%);
-    backdrop-filter: blur(20px) saturate(120%);
-    -webkit-backdrop-filter: blur(20px) saturate(120%);
-    border: 1px solid rgba(0, 122, 255, 0.3);
-    border-radius: $border-radius-large;
-    box-shadow: 0 7px 32px rgba(0, 122, 255, 0.2),
-      0 2px 16px rgba(0, 122, 255, 0.1);
-    padding: $spacing-lg;
-    z-index: auto;
-    overflow: hidden;
-
-    // Ensure it's part of the normal content flow
-    &::before,
-    &::after {
-      display: none;
     }
 
-    // Dashlet header styling (like other dashlets)
-    .dashlet-header {
-      border: none;
-      border-bottom: none;
-      background: transparent;
-      padding-bottom: $spacing-sm;
-      margin-bottom: $spacing-md;
-
-      h3,
-      h4,
-      h5 {
-        border: none;
-        color: rgba(255, 255, 255, 0.9);
-        font-weight: $font-weight-semibold;
-        font-size: $font-size-lg;
-        margin: 0;
-      }
-    }
-
-    .nexus-ad-image {
-      display: none; // Hide background image
-    }
-
-    .gopremium-widget-text {
-      font-size: $font-size-base;
-      font-weight: $font-weight-medium;
-      color: rgba(255, 255, 255, 0.9);
-      margin: 0 0 $spacing-sm 0;
-      line-height: 1.4;
-      width: 100%;
-    }
-
-    .gopremium-widget-text:first-child {
-      font-size: $font-size-lg;
-      font-weight: $font-weight-semibold;
-      color: white;
-      margin-bottom: $spacing-sm;
-      border-bottom: none;
-      padding-bottom: $spacing-sm;
-    }
-
-    .right-center {
-      position: absolute;
-      bottom: $spacing-lg;
-      left: $spacing-lg;
-      right: $spacing-lg;
-      top: unset;
-      margin-top: $spacing-md;
-
-      .btn {
-        padding: $spacing-sm $spacing-md !important;
-        font-size: $font-size-sm !important;
-        background: rgba(255, 255, 255, 0.2) !important;
-        border: 1px solid rgba(255, 255, 255, 0.3) !important;
-        color: white !important;
-        border-radius: $border-radius-large !important;
-        font-weight: $font-weight-semibold !important;
-        white-space: nowrap !important;
-        transition: all $transition-fast !important;
-        display: inline-block !important;
-        backdrop-filter: blur(7px) !important;
-        -webkit-backdrop-filter: blur(7px) !important;
-        width: auto !important;
+    .dynamic-dashlets {
+        background: transparent;
+        padding: 0;
+        padding-right: $spacing-lg;
+        padding-top: 24px; // Increased from 6px to 24px for better spacing when editing dashboard
+        position: relative;
         height: auto !important;
-        min-width: auto !important;
-        justify-content: flex-start !important;
-        gap: 0 !important;
-
-        &:hover {
-          background: rgba(255, 255, 255, 0.3) !important;
-          border-color: rgba(255, 255, 255, 0.4) !important;
-          transform: translateY(-1px) !important;
-          box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2) !important;
-        }
-      }
     }
-  }
 
-  // Dashlet container - ensure proper grid behavior
-  .dashlet-container,
-  .content-dashlets,
-  .main-content-dashlets {
-    // display: contents;
-    width: 100%;
-    box-sizing: border-box;
-  }
+    .dashboard-background-grid {
+        display: none; // Remove background grid
+    }
+
+    // Applet Styling - Add borders and proper styling
+    .dashlet,
+    .applet,
+    .widget {
+        background: rgba(28, 28, 30, 0.6);
+        backdrop-filter: blur(20px) saturate(120%);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: $border-radius-large;
+        padding: $spacing-md;
+        // Remove margins that interfere with grid layout
+        margin: 0;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        position: relative;
+        width: 100%;
+        box-sizing: border-box;
+
+        // Headers within applets
+        .dashlet-header,
+        .applet-header,
+        .widget-header {
+            border: none;
+            border-bottom: none;
+            background: transparent;
+            padding-bottom: $spacing-sm;
+            margin-bottom: $spacing-sm;
+
+            h3,
+            h4,
+            h5 {
+                border: none;
+                border-bottom: none;
+                color: rgba(255, 255, 255, 0.9);
+                font-weight: $font-weight-semibold;
+            }
+        }
+
+        // Content styling
+        .content {
+            background: transparent;
+            padding: $spacing-md;
+            margin: 0;
+
+            // Custom scrollbar for macOS feel
+            &::-webkit-scrollbar {
+                width: 7px;
+            }
+
+            &::-webkit-scrollbar-track {
+                background: transparent;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background: rgba(255, 255, 255, 0.2);
+                border-radius: 4px;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            &::-webkit-scrollbar-thumb:hover {
+                background: rgba(255, 255, 255, 0.3);
+            }
+
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .nav-group {
+            margin-bottom: $spacing-sm;
+
+            // Navigation items
+            .nav-item {
+                transition: all $transition-fast;
+                background: transparent;
+                border: none;
+                margin: $spacing-xs;
+                margin-bottom: 2px;
+
+                // Icon styling
+                .icon {
+                    width: 16px;
+                    height: 16px;
+                    margin-right: $spacing-xs;
+                    opacity: 0.8;
+                    transition: opacity $transition-fast;
+                }
+
+                // Text styling
+                span {
+                    font-size: $font-size-base;
+                    font-weight: $font-weight-regular;
+                    color: inherit;
+                    opacity: 0.9;
+                    transition: opacity $transition-fast;
+                }
+
+                // Hover state
+                &:hover {
+                    background: rgba(255, 255, 255, 0.08);
+                    color: rgba(255, 255, 255, 0.95);
+                    transform: translateY(-1px);
+
+                    .icon {
+                        opacity: 1;
+                    }
+
+                    span {
+                        opacity: 1;
+                    }
+                }
+
+                // Active/selected state
+                &.active,
+                &:focus {
+                    background: rgba(0, 122, 255, 0.2);
+                    color: rgba(255, 255, 255, 1);
+                    box-shadow:
+                        0 1px 3px rgba(0, 122, 255, 0.3),
+                        0 0 0 2px rgba(0, 122, 255, 0.4);
+                }
+
+                // Group titles - Finder-style section headers
+                .main-nav-group-title {
+                    width: 100%;
+                    max-width: 100%;
+                    box-sizing: border-box;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+
+                    font-size: $font-size-sm;
+                    font-weight: $font-weight-semibold;
+                    color: rgba(255, 255, 255, 0.6);
+                    text-transform: uppercase;
+                    padding: $spacing-sm $spacing-sm $spacing-xs $spacing-sm;
+                    margin-bottom: $spacing-xs;
+                    border-bottom: none;
+                    background: transparent;
+                }
+
+                // Dashboard specific styling
+                &.headline {
+                    background: rgba(255, 255, 255, 0.08);
+                    border: 1px solid rgba(255, 255, 255, 0.12);
+                    border-radius: 6px;
+                    padding: 6px 7px;
+                    margin-bottom: 7px;
+
+                    span {
+                        text-transform: uppercase;
+                        font-weight: 500;
+                    }
+
+                    &:hover {
+                        background: rgba(255, 255, 255, 0.12);
+                        border-color: rgba(255, 255, 255, 0.18);
+                    }
+
+                    &:active {
+                        background: rgba(255, 255, 255, 0.06);
+                    }
+
+                    .nav-link {
+                        width: 100%;
+                        max-width: 100%;
+                        box-sizing: border-box;
+                        overflow: hidden;
+                        white-space: nowrap;
+
+                        // Finder-style navigation item
+                        display: flex;
+                        align-items: center;
+                        padding: $spacing-xs;
+                        border-radius: 6px;
+                        font-size: $font-size-base;
+                        font-weight: $font-weight-regular;
+                        color: $text-color;
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+    }
+
+    // Go Premium Dashlet - Premium banner style integrated with dashlet system
+    .dashlet-go-premium {
+        background: rgba(28, 28, 30, 0.6);
+        backdrop-filter: blur(20px) saturate(120%);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: $border-radius-large;
+        padding: $spacing-md;
+        // Remove margins that interfere with grid layout
+        margin: 0;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        position: relative;
+        width: 100%;
+        box-sizing: border-box;
+
+        // Premium banner styling
+        background: linear-gradient(135deg, #007AFF 0%, #5856D6 100%);
+        backdrop-filter: blur(20px) saturate(120%);
+        -webkit-backdrop-filter: blur(20px) saturate(120%);
+        border: 1px solid rgba(0, 122, 255, 0.3);
+        border-radius: $border-radius-large;
+        box-shadow: 0 7px 32px rgba(0, 122, 255, 0.2),
+            0 2px 16px rgba(0, 122, 255, 0.1);
+        padding: $spacing-lg;
+        z-index: auto;
+        overflow: hidden;
+
+        // Ensure it's part of the normal content flow
+        &::before,
+        &::after {
+            display: none;
+        }
+
+        // Dashlet header styling (like other dashlets)
+        .dashlet-header {
+            border: none;
+            border-bottom: none;
+            background: transparent;
+            padding-bottom: $spacing-sm;
+            margin-bottom: $spacing-md;
+
+            h3,
+            h4,
+            h5 {
+                border: none;
+                color: rgba(255, 255, 255, 0.9);
+                font-weight: $font-weight-semibold;
+                font-size: $font-size-lg;
+                margin: 0;
+            }
+        }
+
+        .nexus-ad-image {
+            display: none; // Hide background image
+        }
+
+        .gopremium-widget-text {
+            font-size: $font-size-base;
+            font-weight: $font-weight-medium;
+            color: rgba(255, 255, 255, 0.9);
+            margin: 0 0 $spacing-sm 0;
+            line-height: 1.4;
+            width: 100%;
+        }
+
+        .gopremium-widget-text:first-child {
+            font-size: $font-size-lg;
+            font-weight: $font-weight-semibold;
+            color: white;
+            margin-bottom: $spacing-sm;
+            border-bottom: none;
+            padding-bottom: $spacing-sm;
+        }
+
+        .right-center {
+            position: absolute;
+            bottom: $spacing-lg;
+            left: $spacing-lg;
+            right: $spacing-lg;
+            top: unset;
+            margin-top: $spacing-md;
+
+            .btn {
+                padding: $spacing-sm $spacing-md !important;
+                font-size: $font-size-sm !important;
+                background: rgba(255, 255, 255, 0.2) !important;
+                border: 1px solid rgba(255, 255, 255, 0.3) !important;
+                color: white !important;
+                border-radius: $border-radius-large !important;
+                font-weight: $font-weight-semibold !important;
+                white-space: nowrap !important;
+                transition: all $transition-fast !important;
+                display: inline-block !important;
+                backdrop-filter: blur(7px) !important;
+                -webkit-backdrop-filter: blur(7px) !important;
+                width: auto !important;
+                height: auto !important;
+                min-width: auto !important;
+                justify-content: flex-start !important;
+                gap: 0 !important;
+
+                &:hover {
+                    background: rgba(255, 255, 255, 0.3) !important;
+                    border-color: rgba(255, 255, 255, 0.4) !important;
+                    transform: translateY(-1px) !important;
+                    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2) !important;
+                }
+            }
+        }
+    }
+
+    // Dashlet container - ensure proper grid behavior
+    .dashlet-container,
+    .content-dashlets,
+    .main-content-dashlets {
+        // display: contents;
+        width: 100%;
+        box-sizing: border-box;
+    }
 }
 
 // Additional macOS font overrides for comprehensive coverage
 
 // Global font enforcement
 body * {
-  font-family: inherit !important;
+    font-family: inherit !important;
 }
 
 // Specific overrides for elements that might inherit non-macOS fonts
@@ -1703,10 +1661,10 @@ body * {
 .modal-header h4,
 .dropdown-header,
 .list-group-item-heading {
-  font-family: $theme-font-family-headings !important;
-  font-weight: $font-weight-semibold;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    font-family: $theme-font-family-headings !important;
+    font-weight: $font-weight-semibold;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 // Sidebar and navigation elements
@@ -1715,9 +1673,9 @@ body * {
 .navbar-nav,
 .breadcrumb,
 .pagination {
-  font-family: $theme-font-family-base !important;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    font-family: $theme-font-family-base !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 // Form and input elements
@@ -1726,367 +1684,368 @@ body * {
 .form-control,
 .input-group-addon,
 .help-block {
-  font-family: $theme-font-family-base !important;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    font-family: $theme-font-family-base !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 // Tab and accordion headers
 .nav-tabs > li > a,
 .nav-pills > li > a,
 .panel-heading > .panel-title {
-  font-family: $theme-font-family-base !important;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    font-family: $theme-font-family-base !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 // Alert and notification headers
 .alert-heading,
 .notification-title,
 .toast-title {
-  font-family: $theme-font-family-headings !important;
-  font-weight: $font-weight-semibold;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    font-family: $theme-font-family-headings !important;
+    font-weight: $font-weight-semibold;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 // Toolbar quick launch integration
 .toolbar-app-region .container-quicklaunch .tool-icon-container {
-  width: 200px;
-  height: $toolbar-height;
+    width: 200px;
+    height: $toolbar-height;
 }
 
 .container-quicklaunch .tool-icon-container {
-  height: $toolbar-height;
+    height: $toolbar-height;
 }
 
 // Main toolbar app region adjustments
 #main-toolbar.toolbar-app-region {
-  height: unset;
+    height: unset;
 
-  .main-toolbar-right {
-    margin-bottom: auto;
-    margin-right: $layout-margin-base;
-    border-right: none;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    border-left: none;
-    padding-left: $spacing-md;
+    .main-toolbar-right {
+        margin-bottom: auto;
+        margin-right: $layout-margin-base;
+        border-right: none;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        border-left: none;
+        padding-left: $spacing-md;
 
-    .toolbar-version {
-      position: static;
-      margin-right: $spacing-sm;
-      font-family: $theme-font-family-base !important;
-      font-size: $font-size-small;
-      color: $text-color-secondary;
+        .toolbar-version {
+            position: static;
+            margin-right: $spacing-sm;
+            font-family: $theme-font-family-base !important;
+            font-size: $font-size-small;
+            color: $text-color-secondary;
 
-      .toolbar-version-dev {
-        .toolbar-version-text {
-          color: rgba(0, 0, 0, 0.9) !important;
+            .toolbar-version-dev {
+                .toolbar-version-text {
+                    color: rgba(0, 0, 0, 0.9) !important;
+                }
+            }
+
+            .toolbar-version-stable {
+                .toolbar-version-text {
+                    color: rgba(255, 255, 255, 0.9) !important;
+                }
+            }
         }
-      }
-
-      .toolbar-version-stable {
-        .toolbar-version-text {
-          color: rgba(255, 255, 255, 0.9) !important;
-        }
-      }
     }
-  }
 }
 
 // Banner text sizing with proper typography
 #main-toolbar .nexus-main-banner div {
-  font-size: $font-size-xs !important;
-  font-family: $theme-font-family-base !important;
-  font-weight: $font-weight-medium;
-  letter-spacing: $letter-spacing-base;
+    font-size: $font-size-xs !important;
+    font-family: $theme-font-family-base !important;
+    font-weight: $font-weight-medium;
+    letter-spacing: $letter-spacing-base;
 
-  &:first-child {
-    font-size: $font-size-small !important;
-    font-weight: $font-weight-semibold;
-    margin-bottom: 0;
-  }
+    &:first-child {
+        font-size: $font-size-small !important;
+        font-weight: $font-weight-semibold;
+        margin-bottom: 0;
+    }
 }
 
 #main-toolbar .nexus-main-banner .right-center {
-  font-size: inherit;
+    font-size: inherit;
 }
 
 // Table hover effects with macOS styling
 // Optimized to prevent flickering by using specific properties instead of !important
 .table-hover > .xtbody > .xtr:hover {
-  background-color: rgba(255, 255, 255, 0.08);
-  transition: background-color 0.15s ease;
-  will-change: background-color;
+    background-color: rgba(255, 255, 255, 0.08);
+    transition: background-color 0.15s ease;
+    will-change: background-color;
 }
 
 // Form validation styling
 .has-success .control-label {
-  color: $success-color;
-  filter: none;
+    color: $success-color;
+    filter: none;
 }
 
 .has-error .control-label {
-  color: $danger-color;
-  filter: none;
+    color: $danger-color;
+    filter: none;
 }
 
 // Enhanced error message styling for dropdowns
 .has-error {
-  .control-label {
-    color: $danger-color;
-    font-weight: $font-weight-semibold; // Make error text more prominent
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); // Subtle shadow for better contrast
-  }
-
-  .form-control {
-    border-color: rgba(255, 59, 48, 0.6); // More visible error border
-    background-color: rgba(255, 59, 48, 0.05); // Subtle error background
-
-    &:focus {
-      border-color: $danger-color;
-      box-shadow: 0 0 0 2px rgba(255, 59, 48, 0.3); // Error focus ring
+    .control-label {
+        color: $danger-color;
+        font-weight: $font-weight-semibold; // Make error text more prominent
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); // Subtle shadow for better contrast
     }
 
-    // Dropdown-specific enhancements
-    &.dropdown-error {
-      background-color: rgba(255, 59, 48, 0.1); // More visible in dropdowns
-      color: rgba(255, 255, 255, 0.95); // High contrast text
-    }
-  }
+    .form-control {
+        border-color: rgba(255, 59, 48, 0.6); // More visible error border
+        background-color: rgba(255, 59, 48, 0.05); // Subtle error background
 
-  // Dropdown menu error items
-  .dropdown-menu {
-    .has-error > a {
-      background-color: rgba(255, 59, 48, 0.15);
-      color: rgba(255, 255, 255, 0.95);
+        &:focus {
+            border-color: $danger-color;
+            box-shadow: 0 0 0 2px rgba(255, 59, 48, 0.3); // Error focus ring
+        }
 
-      &:hover {
-        background-color: rgba(255, 59, 48, 0.25);
-      }
+        // Dropdown-specific enhancements
+        &.dropdown-error {
+            background-color: rgba(255, 59, 48, 0.1); // More visible in dropdowns
+            color: rgba(255, 255, 255, 0.95); // High contrast text
+        }
     }
-  }
+
+    // Dropdown menu error items
+    .dropdown-menu {
+        .has-error > a {
+            background-color: rgba(255, 59, 48, 0.15);
+            color: rgba(255, 255, 255, 0.95);
+
+            &:hover {
+                background-color: rgba(255, 59, 48, 0.25);
+            }
+        }
+    }
 }
 
 // === MODAL/DIALOG STYLING FOR DARK MODE READABILITY ===
 // Enhanced modal styling with proper contrast for dark mode
 
 .modal-content {
-  background-color: rgba(28, 28, 30, 0.85); // More translucent like macOS system dialogs
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(40px) saturate(180%); // Stronger blur for system dialog feel
-  -webkit-backdrop-filter: blur(40px) saturate(180%);
-  border-radius: 12px; // macOS system dialog corner radius
-  box-shadow:
-    0 32px 64px rgba(0, 0, 0, 0.5), // Deeper shadow like system dialogs
-    0 16px 32px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
-  min-width: 320px; // Minimum width for system dialogs
-  max-width: 480px; // Maximum width for system dialogs
+    background-color: rgba(28, 28, 30, 0.85); // More translucent like macOS system dialogs
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(40px) saturate(180%); // Stronger blur for system dialog feel
+    -webkit-backdrop-filter: blur(40px) saturate(180%);
+    border-radius: 12px; // macOS system dialog corner radius
+    box-shadow:
+        0 32px 64px rgba(0, 0, 0, 0.5), // Deeper shadow like system dialogs
+        0 16px 32px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    min-width: 320px; // Minimum width for system dialogs
+    max-width: 480px; // Maximum width for system dialogs
 
-  .modal-header {
-    border-bottom: none; // Remove horizontal border for macOS Tahoe
-    border-radius: 12px 12px 0 0;
-    padding: 20px 24px 16px 24px; // macOS system dialog padding
-    text-align: left; // Left-aligned for macOS Tahoe system dialogs
-    justify-content: start;
+    .modal-header {
+        border-bottom: none; // Remove horizontal border for macOS Tahoe
+        border-radius: 12px 12px 0 0;
+        padding: 20px 24px 16px 24px; // macOS system dialog padding
+        text-align: left; // Left-aligned for macOS Tahoe system dialogs
+        justify-content: start;
 
-    .modal-title {
-      color: $text-color;
-      font-weight: 600; // System font weight
-      font-size: 17px; // macOS system dialog title size
-      line-height: 1.3;
-      margin: 0;
-      text-align: left;
-    }
-  }
-
-  .modal-body {
-    color: rgba(255, 255, 255, 0.85); // Slightly muted body text
-    padding: 16px 24px 20px 24px; // System dialog body padding
-    text-align: left; // Left-aligned for macOS Tahoe system dialogs
-    font-size: 13px; // macOS system dialog body text size
-    line-height: 1.4;
-
-    .close-button {
-      position: absolute;
-      vertical-align: unset;
-
-        svg {
-          height: 12px;
-          width: 12px;
+        .modal-title {
+            color: $text-color;
+            font-weight: 600; // System font weight
+            font-size: 17px; // macOS system dialog title size
+            line-height: 1.3;
+            margin: 0;
+            text-align: left;
         }
     }
-  }
 
-  .modal-footer {
-    border-top: none; // Remove horizontal border for macOS Tahoe
-    background-color: rgba(28, 28, 30, 0.6); // More translucent footer
-    border-radius: 0 0 12px 12px;
-    padding: 16px 24px 20px 24px; // System dialog footer padding
-    display: flex;
-    justify-content: flex-end; // Right-aligned buttons like system dialogs
-    gap: 12px; // Space between buttons
+    .modal-body {
+        color: rgba(255, 255, 255, 0.85); // Slightly muted body text
+        padding: 16px 24px 20px 24px; // System dialog body padding
+        text-align: left; // Left-aligned for macOS Tahoe system dialogs
+        font-size: 13px; // macOS system dialog body text size
+        line-height: 1.4;
 
-    .btn {
-      min-width: 80px; // Minimum button width
-      height: 32px; // macOS system button height
-      padding: 0 16px; // System button padding
-      border-radius: 6px; // System button corner radius
-      font-size: 13px; // System button font size
-      font-weight: 500; // System button font weight
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      background-color: rgba(255, 255, 255, 0.1);
-      color: $text-color;
-      transition: all 0.15s ease; // Quick system-like transition
+        .close-button {
+            position: absolute;
+            vertical-align: unset;
 
-      &:hover {
-        background-color: rgba(255, 255, 255, 0.15);
-        border-color: rgba(255, 255, 255, 0.2);
-        transform: none; // No transform for system dialogs
-      }
-
-      &:active {
-        background-color: rgba(255, 255, 255, 0.08);
-        transform: none;
-      }
-
-      &:focus {
-        outline: 2px solid rgba(0, 122, 255, 0.5); // System focus ring
-        outline-offset: 2px;
-        box-shadow: none;
-      }
-
-      // Primary button (usually the rightmost)
-      &.btn-primary {
-        background-color: rgba(0, 122, 255, 0.9); // System blue
-        border-color: rgba(0, 122, 255, 1);
-        color: white;
-
-        &:hover {
-          background-color: rgba(0, 122, 255, 1);
-          border-color: rgba(0, 122, 255, 1);
+            svg {
+                height: 12px;
+                width: 12px;
+            }
         }
-
-        &:active {
-          background-color: rgba(0, 100, 210, 0.9);
-        }
-      }
-
-      // Destructive button
-      &.btn-danger {
-        background-color: rgba(255, 59, 48, 0.9); // System red
-        border-color: rgba(255, 59, 48, 1);
-        color: white;
-
-        &:hover {
-          background-color: rgba(255, 59, 48, 1);
-          border-color: rgba(255, 59, 48, 1);
-        }
-
-        &:active {
-          background-color: rgba(215, 0, 21, 0.9);
-        }
-      }
     }
-  }
+
+    .modal-footer {
+        border-top: none; // Remove horizontal border for macOS Tahoe
+        background-color: rgba(28, 28, 30, 0.6); // More translucent footer
+        border-radius: 0 0 12px 12px;
+        padding: 16px 24px 20px 24px; // System dialog footer padding
+        display: flex;
+        justify-content: flex-end; // Right-aligned buttons like system dialogs
+        gap: 12px; // Space between buttons
+
+        .btn {
+            min-width: 80px; // Minimum button width
+            height: 32px; // macOS system button height
+            padding: 0 16px; // System button padding
+            border-radius: 6px; // System button corner radius
+            font-size: 13px; // System button font size
+            font-weight: 500; // System button font weight
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background-color: rgba(255, 255, 255, 0.1);
+            color: $text-color;
+            transition: all 0.15s ease; // Quick system-like transition
+
+            &:hover {
+                background-color: rgba(255, 255, 255, 0.15);
+                border-color: rgba(255, 255, 255, 0.2);
+                transform: none; // No transform for system dialogs
+            }
+
+            &:active {
+                background-color: rgba(255, 255, 255, 0.08);
+                transform: none;
+            }
+
+            &:focus {
+                outline: 2px solid rgba(0, 122, 255, 0.5); // System focus ring
+                outline-offset: 2px;
+                box-shadow: none;
+            }
+
+            // Primary button (usually the rightmost)
+            &.btn-primary {
+                background-color: rgba(0, 122, 255, 0.9); // System blue
+                border-color: rgba(0, 122, 255, 1);
+                color: white;
+
+                &:hover {
+                    background-color: rgba(0, 122, 255, 1);
+                    border-color: rgba(0, 122, 255, 1);
+                }
+
+                &:active {
+                    background-color: rgba(0, 100, 210, 0.9);
+                }
+            }
+
+            // Destructive button
+            &.btn-danger {
+                background-color: rgba(255, 59, 48, 0.9); // System red
+                border-color: rgba(255, 59, 48, 1);
+                color: white;
+
+                &:hover {
+                    background-color: rgba(255, 59, 48, 1);
+                    border-color: rgba(255, 59, 48, 1);
+                }
+
+                &:active {
+                    background-color: rgba(215, 0, 21, 0.9);
+                }
+            }
+        }
+    }
 }
 
 // Modal backdrop styling to match macOS system dialogs
 .modal-backdrop {
-  background-color: rgba(0, 0, 0, 0.25); // Reduced opacity for less intrusive background
-  backdrop-filter: blur(20px) saturate(120%);
-  -webkit-backdrop-filter: blur(20px) saturate(120%);
+    background-color: rgba(0, 0, 0, 0.25); // Reduced opacity for less intrusive background
+    backdrop-filter: blur(20px) saturate(120%);
+    -webkit-backdrop-filter: blur(20px) saturate(120%);
 
-  &.in {
-    opacity: 1;
-  }
+    &.in {
+        opacity: 1;
+    }
 }
 
 // Modal dialog positioning for better centering
 .modal {
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
 
-  .modal-dialog {
-    margin: auto;
-    max-width: 90vw;
-    max-height: 90vh;
-    display: flex;
-    flex-direction: column;
-  }
+    .modal-dialog {
+        margin: auto;
+        max-width: 90vw;
+        max-height: 90vh;
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 * #login-dialog .modal-dialog {
-  width: auto;
-  background: transparent;
+    width: auto;
+    background: transparent;
 
-  .login-content {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    position: relative;
+    .login-content {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        position: relative;
 
-    // Icon at the top
-    .nexus-header {
-      align-self: flex-start;
-      margin-bottom: 1rem;
+        // Icon at the top
+        .nexus-header {
+            align-self: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        // Content wrapper for text and button
+        > div {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+
+            // Text content at top-left
+            h2,
+            p {
+                text-align: left;
+                margin-bottom: 0.5rem;
+            }
+
+            // Button container at bottom-right
+            .btn {
+                align-self: flex-end;
+                margin-top: auto;
+            }
+        }
     }
-
-    // Content wrapper for text and button
-    > div {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      height: 100%;
-
-      // Text content at top-left
-      h2, p {
-        text-align: left;
-        margin-bottom: 0.5rem;
-      }
-
-      // Button container at bottom-right
-      .btn {
-        align-self: flex-end;
-        margin-top: auto;
-      }
-    }
-  }
 }
 
 // === DROPDOWN MENU STYLING FOR DARK MODE READABILITY ===
 // Enhanced dropdown styling with proper contrast for dark mode
 
 .dropdown-menu {
-  background-color: $dropdown-bg;
-  border: 1px solid $dropdown-border;
-  backdrop-filter: blur(20px) saturate(120%);
-  -webkit-backdrop-filter: blur(20px) saturate(120%);
+    background-color: $dropdown-bg;
+    border: 1px solid $dropdown-border;
+    backdrop-filter: blur(20px) saturate(120%);
+    -webkit-backdrop-filter: blur(20px) saturate(120%);
 
-  > li > a {
-    color: $dropdown-link-color;
+    > li > a {
+        color: $dropdown-link-color;
 
-    &:hover,
-    &:focus {
-      background-color: $dropdown-link-hover-bg;
-      color: $dropdown-link-color;
+        &:hover,
+        &:focus {
+            background-color: $dropdown-link-hover-bg;
+            color: $dropdown-link-color;
+        }
     }
-  }
 
-  > .active > a {
+    > .active > a {
 
-    &,
-    &:hover,
-    &:focus {
-      background-color: $dropdown-link-active-bg;
-      color: white;
+        &,
+        &:hover,
+        &:focus {
+            background-color: $dropdown-link-active-bg;
+            color: white;
+        }
     }
-  }
 }
 
 // === TOOLBAR DROPDOWN SPECIFIC STYLING ===
@@ -2095,289 +2054,210 @@ body * {
 .main-toolbar-right .dropdown-menu,
 .main-toolbar-left .dropdown-menu,
 .main-toolbar-center .dropdown-menu {
-  background-color: rgba(28, 28, 30, 0.95);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px) saturate(120%);
-  -webkit-backdrop-filter: blur(20px) saturate(120%);
-  border-radius: $border-radius-medium;
+    background-color: rgba(28, 28, 30, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px) saturate(120%);
+    -webkit-backdrop-filter: blur(20px) saturate(120%);
+    border-radius: $border-radius-medium;
 
-  > li > a {
-    color: $text-color;
-    padding: $spacing-sm $spacing-md;
+    > li > a {
+        color: $text-color;
+        padding: $spacing-sm $spacing-md;
 
-    &:hover,
-    &:focus {
-      background-color: rgba(255, 255, 255, 0.1);
-      color: $text-color;
+        &:hover,
+        &:focus {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: $text-color;
+        }
     }
-  }
 }
 
 // === POPOVER AND NOTIFICATION STYLING ===
 // Enhanced popover styling for proper contrast in dark mode
 
 .popover {
-  background-color: rgba(28, 28, 30, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(20px) saturate(120%);
-  -webkit-backdrop-filter: blur(20px) saturate(120%);
-  border-radius: $border-radius-medium;
-  color: $text-color;
-  max-width: fit-content; // Only as wide as content needs
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.35),
-    0 4px 16px rgba(0, 0, 0, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-
-  &.bottom .arrow {
-    border-bottom-color: rgba(255, 255, 255, 0.15);
-
-    &:after {
-      border-bottom-color: rgba(28, 28, 30, 0.9);
-    }
-  }
-
-  .popover-title {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding: $spacing-sm $spacing-md;
-    margin-bottom: $spacing-sm;
-    font-weight: $font-weight-semibold;
-  }
-
-  .popover-content {
+    background-color: rgba(28, 28, 30, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px) saturate(120%);
+    -webkit-backdrop-filter: blur(20px) saturate(120%);
+    border-radius: $border-radius-medium;
     color: $text-color;
-    padding: $spacing-sm $spacing-md;
-  }
+    width: fit-content;
+    max-width: fit-content; // Only as wide as content needs
+    min-width: fit-content;
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.35),
+        0 4px 16px rgba(0, 0, 0, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+    &.bottom .arrow {
+        border-bottom-color: rgba(255, 255, 255, 0.15);
+
+        &:after {
+            border-bottom-color: rgba(28, 28, 30, 0.9);
+        }
+    }
+
+    .popover-title {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding: $spacing-sm $spacing-md;
+        margin-bottom: $spacing-sm;
+        font-weight: $font-weight-semibold;
+    }
+
+    .popover-content {
+        color: $text-color;
+        padding: $spacing-sm $spacing-md;
+    }
 }
 
 // === NOTIFICATION STYLING ===
 // Enhanced notification styling with proper vertical alignment
 
 .notification {
-  background-color: rgba(58, 58, 60, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: $border-radius-medium;
-  color: $text-color;
-  backdrop-filter: blur(20px) saturate(120%);
-  -webkit-backdrop-filter: blur(20px) saturate(120%);
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.35),
-    0 4px 16px rgba(0, 0, 0, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  transition: all $transition-notification;
-  display: flex;
-  align-items: center;
-  padding: 8px 12px; // Compact padding for content-only container
-  margin: 4px; // Minimal margin
-  min-height: auto; // Remove fixed height constraints
-  width: fit-content;
-  max-width: fit-content; // Only as wide as content needs
-  min-width: fit-content;
-
-  .notification-textbox {
+    background-color: rgba(58, 58, 60, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: $border-radius-medium;
     color: $text-color;
-    flex: 1 1 auto;
-    margin: 0; // Remove extra margins
-    padding: 0; // Remove extra padding
+    backdrop-filter: blur(20px) saturate(120%);
+    -webkit-backdrop-filter: blur(20px) saturate(120%);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.35),
+        0 4px 16px rgba(0, 0, 0, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all $transition-notification;
     display: flex;
-    flex-direction: column;
-    justify-content: left;
-    z-index: 1;
-    overflow: hidden;
+    align-items: center;
+    padding: 8px 12px; // Compact padding for content-only container
+    margin: 4px; // Minimal margin
+    min-height: auto; // Remove fixed height constraints
+    min-width: 500px;
 
-    span {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap; // Prevent text wrapping for compact display
-    }
-  }
+    .notification-textbox {
+        color: $text-color;
+        flex: 1 1 auto;
+        margin: 0; // Remove extra margins
+        padding: 0; // Remove extra padding
+        display: flex;
+        flex-direction: column;
+        justify-content: left;
+        z-index: 1;
+        overflow: hidden;
 
-  .notification-message {
-    color: $text-color;
-    font-size: $font-size-small; // Smaller font for compact display
-    line-height: 1.3; // Tighter line height
-    margin: 0; // Remove default margins
-    padding: 0; // Remove default padding
-  }
-
-  .notification-title {
-    color: $text-color;
-    font-weight: $font-weight-semibold;
-    font-size: $font-size-base; // Slightly smaller title
-    margin: 0 0 2px 0; // Minimal bottom margin
-    padding: 0; // Remove default padding
-  }
-
-  &.alert-warning {
-    background-color: rgba(255, 149, 0, 0.2);
-    border-color: rgba(255, 149, 0, 0.4);
-    color: $text-color;
-  }
-
-  &.alert-info {
-    background-color: rgba(0, 122, 255, 0.2);
-    border-color: rgba(0, 122, 255, 0.4);
-    color: $text-color;
-  }
-
-  &.alert-danger {
-    background-color: rgba(255, 59, 48, 0.2);
-    border-color: rgba(255, 59, 48, 0.4);
-    color: $text-color;
-  }
-
-  .btn {
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: $text-color;
-    border-radius: $border-radius-small;
-    transition: all $transition-fast;
-
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.15);
-      border-color: rgba(255, 255, 255, 0.25);
-      transform: translateY(-1px);
+        span {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap; // Prevent text wrapping for compact display
+        }
     }
 
-    &:active {
-      background-color: rgba(255, 255, 255, 0.08);
-      transform: translateY(0);
+    .notification-message {
+        color: $text-color;
+        font-size: $font-size-small; // Smaller font for compact display
+        line-height: 1.3; // Tighter line height
+        margin: 0; // Remove default margins
+        padding: 0; // Remove default padding
     }
 
-    &:focus {
-      box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.3);
+    .notification-title {
+        color: $text-color;
+        font-weight: $font-weight-semibold;
+        font-size: $font-size-base; // Slightly smaller title
+        margin: 0 0 2px 0; // Minimal bottom margin
+        padding: 0; // Remove default padding
     }
 
-    &:disabled {
-      background-color: rgba(255, 255, 255, 0.05);
-      border-color: rgba(255, 255, 255, 0.1);
-      color: rgba(255, 255, 255, 0.25);
-      box-shadow: none;
+    &.alert-warning {
+        background-color: rgba(255, 149, 0, 0.2);
+        border-color: rgba(255, 149, 0, 0.4);
+        color: $text-color;
     }
 
-    &.icon-button {
-      background-color: transparent;
-      border: none;
-      background-filter: none;
-      color: $text-color;
-      border-radius: unset;
-      transition: all $transition-fast;
-
-      &:hover {
-        background-color: rgba(255, 255, 255, 0.15);
-        border-color: rgba(255, 255, 255, 0.25);
-      }
-
-      &:active {
-        background-color: rgba(255, 255, 255, 0.08);
-      }
-
-      &:focus {
-        box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.3);
-      }
+    &.alert-info {
+        background-color: rgba(0, 122, 255, 0.2);
+        border-color: rgba(0, 122, 255, 0.4);
+        color: $text-color;
     }
-  }
 
+    &.alert-danger {
+        background-color: rgba(255, 59, 48, 0.2);
+        border-color: rgba(255, 59, 48, 0.4);
+        color: $text-color;
+    }
 
-  // Notification entrance animation
-  &.notification-enter {
-    opacity: 0;
-    transform: translateX(100%);
-  }
+    .btn {
+        background-color: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: $text-color;
+        border-radius: $border-radius-small;
+        transition: all $transition-fast;
 
-  &.notification-enter-active {
-    opacity: 1;
-    transform: translateX(0);
-  }
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.25);
+            transform: translateY(-1px);
+        }
 
-  // Notification exit animation
-  &.notification-exit {
-    opacity: 1;
-    transform: translateX(0);
-  }
+        &:active {
+            background-color: rgba(255, 255, 255, 0.08);
+            transform: translateY(0);
+        }
 
-  &.notification-exit-active {
-    opacity: 0;
-    transform: translateX(100%);
-  }
-}
+        &:focus {
+            box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.3);
+        }
 
-// === MAC-LIKE SEARCH FIELDS ===
-// Native macOS search field styling
+        &:disabled {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.25);
+            box-shadow: none;
+        }
 
-// Mac-like search field styling
-.form-control[type="search"] {
-  border-radius: 6px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  padding: 4px 8px 4px 24px;
-  color: rgba(255, 255, 255, 0.85);
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', sans-serif;
-  font-size: 13px;
-  font-weight: 400;
-  letter-spacing: -0.003em;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        &.icon-button {
+            background-color: transparent;
+            border: none;
+            background-filter: none;
+            color: $text-color;
+            border-radius: unset;
+            transition: all $transition-fast;
 
-  &::placeholder {
-    color: rgba(255, 255, 255, 0.45);
-  }
+            &:hover {
+                background-color: rgba(255, 255, 255, 0.15);
+                border-color: rgba(255, 255, 255, 0.25);
+            }
 
-  &:focus {
-    outline: none;
-    border-color: rgba(0, 122, 255, 0.5);
-    box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.3);
-    background: rgba(255, 255, 255, 0.08);
-  }
+            &:active {
+                background-color: rgba(255, 255, 255, 0.08);
+            }
 
-  // Search icon
-  &::-webkit-search-decoration {
-    display: none;
-  }
+            &:focus {
+                box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.3);
+            }
+        }
+    }
 
-  &::-webkit-search-cancel-button {
-    -webkit-appearance: none;
-    appearance: none;
-    height: 16px;
-    width: 16px;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6' fill='rgba(255,255,255,0.7)'/%3E%3Cpath d='M5.5 5.5L10.5 10.5M10.5 5.5L5.5 10.5' stroke='rgba(0,0,0,0.7)' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center;
-    cursor: pointer;
-  }
-}
+    // Notification entrance animation
+    &.notification-enter {
+        opacity: 0;
+        transform: translateX(100%);
+    }
 
-// General form control styling improvements
-.form-control {
-  border-radius: 6px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  padding: 4px 8px;
-  color: rgba(255, 255, 255, 0.85);
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', sans-serif;
-  font-size: 13px;
-  font-weight: 400;
-  letter-spacing: -0.003em;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    &.notification-enter-active {
+        opacity: 1;
+        transform: translateX(0);
+    }
 
-  &::placeholder {
-    color: rgba(255, 255, 255, 0.45);
-  }
+    // Notification exit animation
+    &.notification-exit {
+        opacity: 1;
+        transform: translateX(0);
+    }
 
-  &:focus {
-    outline: none;
-    border-color: rgba(0, 122, 255, 0.5);
-    box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.3);
-    background: rgba(255, 255, 255, 0.08);
-  }
-
-  &:disabled {
-    background: rgba(255, 255, 255, 0.03);
-    border-color: rgba(255, 255, 255, 0.1);
-    color: rgba(255, 255, 255, 0.35);
-    cursor: not-allowed;
-  }
+    &.notification-exit-active {
+        opacity: 0;
+        transform: translateX(100%);
+    }
 }
 
 // === MAC-LIKE FILTERS AND DROPDOWNS ===
@@ -2385,63 +2265,29 @@ body * {
 
 // Mac-like filter/dropdown styling for react-select components
 .select-filter {
-  .Select-control {
-    border-radius: 6px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    height: 24px;
-    min-height: 24px;
-    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', sans-serif;
-    font-size: 13px;
-    font-weight: 400;
-    letter-spacing: -0.003em;
+    .Select-control {
+        border-radius: 6px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        height: 24px;
+        min-height: 24px;
+        font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', sans-serif;
+        font-size: 13px;
+        font-weight: 400;
+        letter-spacing: -0.003em;
 
-    &:hover {
-      border-color: rgba(255, 255, 255, 0.3);
-      background: rgba(255, 255, 255, 0.08);
+        &:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        &:focus {
+            border-color: rgba(0, 122, 255, 0.5);
+            box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.3);
+        }
     }
-
-    &:focus {
-      border-color: rgba(0, 122, 255, 0.5);
-      box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.3);
-    }
-  }
-
-  .Select-placeholder {
-    color: rgba(255, 255, 255, 0.45);
-    line-height: 22px;
-  }
-
-  .Select-value {
-    line-height: 22px;
-    color: rgba(255, 255, 255, 0.85);
-  }
-
-  .Select-arrow {
-    border-color: rgba(255, 255, 255, 0.7) transparent transparent;
-  }
-}
-
-// Enhanced filter styling to blend seamlessly with toolbar
-.toolbar .select-filter {
-  .Select-control {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.15);
-    height: 26px;
-    min-height: 26px;
-
-    &:hover {
-      background: rgba(255, 255, 255, 0.12);
-      border-color: rgba(255, 255, 255, 0.2);
-    }
-
-    &:focus {
-      background: rgba(255, 255, 255, 0.12);
-      border-color: rgba(0, 122, 255, 0.5);
-    }
-  }
 }
 
 // === TAHOE-SPECIFIC CORE OVERRIDES ===
@@ -2450,109 +2296,110 @@ body * {
 
 // Logout avatar styling - override any red color from core
 .logout-avatar {
-  color: inherit !important;
+    color: inherit !important;
 }
 
 // Enhanced main window styling with glass effects
 // Override any existing main-window styles with high specificity
 body .main-window {
-  // Application icon group styling
-  .application-icons {
-    background-color: rgba(255, 255, 255, 0.08) !important;
-    border: 1px solid rgba(255, 255, 255, 0.15) !important;
-    border-radius: 16px !important;
-    padding: 8px !important;
-    margin: 8px !important;
-    backdrop-filter: blur(15px) !important;
-    -webkit-backdrop-filter: blur(15px) !important;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
-    gap: 8px !important;
-  }
 
-  // Navigation buttons styling
-  .nav-button {
-    background-color: rgba(255, 255, 255, 0.1) !important;
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
-    border-radius: 8px !important;
-    backdrop-filter: blur(10px) !important;
-    -webkit-backdrop-filter: blur(10px) !important;
-    transition: all 0.2s ease !important;
-
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.2) !important;
-      border-color: rgba(255, 255, 255, 0.4) !important;
-      transform: translateY(-1px) !important;
+    // Application icon group styling
+    .application-icons {
+        background-color: rgba(255, 255, 255, 0.08) !important;
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        border-radius: 16px !important;
+        padding: 8px !important;
+        margin: 8px !important;
+        backdrop-filter: blur(15px) !important;
+        -webkit-backdrop-filter: blur(15px) !important;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+        gap: 8px !important;
     }
-  }
+
+    // Navigation buttons styling
+    .nav-button {
+        background-color: rgba(255, 255, 255, 0.1) !important;
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        border-radius: 8px !important;
+        backdrop-filter: blur(10px) !important;
+        -webkit-backdrop-filter: blur(10px) !important;
+        transition: all 0.2s ease !important;
+
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.2) !important;
+            border-color: rgba(255, 255, 255, 0.4) !important;
+            transform: translateY(-1px) !important;
+        }
+    }
 }
 
 // === PREMIUM BUTTON STYLING ===
 // Style the nexus-header-ad premium button to match toolbar icons
 #nexus-header-ad {
-  // Keep container with pill border-radius
-  border-radius: $border-radius-large !important;
-
-  // Style the button inside to match pill shape
-  button {
-    border-radius: $border-radius-pill !important;
-    background: $button-toolbar-bg !important;
-    border: 1px solid $button-toolbar-border !important;
-    transition: all $transition-fast !important;
-
-    &:hover {
-      background: $button-toolbar-bg-hover !important;
-      border-color: $button-toolbar-border-hover !important;
-      transform: translateY(-1px) !important;
-      box-shadow: $button-shadow-hover !important;
-
-      .hover-overlay {
-        border-radius: $border-radius-large !important;
-      }
-    }
-
-    &:active {
-      background: rgba(255, 255, 255, 0.05) !important;
-      transform: translateY(0) !important;
-      box-shadow: $button-shadow-active !important;
-    }
-  }
-
-  // Ensure hover overlay also has pill border-radius
-  .hover-overlay {
+    // Keep container with large border-radius
     border-radius: $border-radius-large !important;
-  }
+
+    // Style the button inside to match pill shape
+    button {
+        border-radius: $border-radius-pill !important;
+        background: $button-toolbar-bg !important;
+        border: 1px solid $button-toolbar-border !important;
+        transition: all $transition-fast !important;
+
+        &:hover {
+            background: $button-toolbar-bg-hover !important;
+            border-color: $button-toolbar-border-hover !important;
+            transform: translateY(-1px) !important;
+            box-shadow: $button-shadow-hover !important;
+
+            .hover-overlay {
+                border-radius: $border-radius-large !important;
+            }
+        }
+
+        &:active {
+            background: rgba(255, 255, 255, 0.05) !important;
+            transform: translateY(0) !important;
+            box-shadow: $button-shadow-active !important;
+        }
+    }
+
+    // Ensure hover overlay also has pill border-radius
+    .hover-overlay {
+        border-radius: $border-radius-large !important;
+    }
 }
 
 // Dropdown menu styling
 .Select-menu-outer {
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 6px;
-  background: rgba(28, 28, 30, 0.95);
-  backdrop-filter: blur(10px) saturate(120%);
-  -webkit-backdrop-filter: blur(10px) saturate(120%);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    background: rgba(28, 28, 30, 0.95);
+    backdrop-filter: blur(10px) saturate(120%);
+    -webkit-backdrop-filter: blur(10px) saturate(120%);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 
-  .Select-option {
-    color: rgba(255, 255, 255, 0.85);
-    background: transparent;
-    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', sans-serif;
-    font-size: 13px;
-    font-weight: 400;
-    letter-spacing: -0.003em;
-    padding: 4px 8px;
+    .Select-option {
+        color: rgba(255, 255, 255, 0.85);
+        background: transparent;
+        font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', sans-serif;
+        font-size: 13px;
+        font-weight: 400;
+        letter-spacing: -0.003em;
+        padding: 4px 8px;
 
-    &:hover {
-      background: rgba(255, 255, 255, 0.1);
+        &:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        &.is-selected {
+            background: rgba(0, 122, 255, 0.2);
+        }
+
+        &.is-focused {
+            background: rgba(255, 255, 255, 0.05);
+        }
     }
-
-    &.is-selected {
-      background: rgba(0, 122, 255, 0.2);
-    }
-
-    &.is-focused {
-      background: rgba(255, 255, 255, 0.05);
-    }
-  }
 }
 
 // === ENHANCED MAC-LIKE BUTTONS ===
@@ -2573,12 +2420,6 @@ body .main-window {
     height: 32px; // Increased height for true pill shape (rectangle with semi-circles)
     min-height: 32px;
     transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
-
-    // Apply glass effect to all buttons except icon-only ones (.icon-button without .has-children)
-    &:not(.icon-button:not(.has-children)) {
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-    }
 
     &:hover {
         background: rgba(255, 255, 255, 0.12);
@@ -2606,6 +2447,12 @@ body .main-window {
         cursor: not-allowed;
         transform: none;
         box-shadow: none;
+    }
+
+    // Apply glass effect to all buttons except icon-only ones (.icon-button without .has-children)
+    &:not(.icon-button:not(.has-children)) {
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
     }
 
     // Primary button variant
