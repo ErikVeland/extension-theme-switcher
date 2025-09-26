@@ -2138,6 +2138,7 @@ body * {
         flex: 1 1 auto;
         margin: 0; // Remove extra margins
         padding: 0; // Remove extra padding
+        padding-left: $layout-gap-small;
         display: flex;
         flex-direction: column;
         justify-content: left;
@@ -2217,6 +2218,7 @@ body * {
         &.icon-button {
             background-color: transparent;
             border: none;
+            margin-right: $layout-gap-small;
             background-filter: none;
             color: $text-color;
             border-radius: unset;
