@@ -903,10 +903,10 @@ a {
     border-top: none; // Remove horizontal border for macOS Tahoe look
     background-color: rgba(28, 28, 30, 0.7);
     border-radius: 0 0 8px 8px;
-    padding: 12px 16px 16px;
+    padding: 12px 24px 16px; // Match right margin to Login dialog
     display: flex;
     justify-content: flex-end;
-    gap: 8px; // Add spacing between buttons
+    gap: 8px; // Consistent spacing between buttons across dialogs
 }
 
 // === CONTENT AREA ALIGNMENT AND LAYOUT ===
@@ -1886,9 +1886,10 @@ body * {
         padding: 16px 24px 20px 24px; // System dialog footer padding
         display: flex;
         justify-content: flex-end; // Right-aligned buttons like system dialogs
-        gap: 12px; // Space between buttons
+        gap: 8px; // Consistent spacing between buttons across dialogs
 
         .btn {
+            margin: 0; // Remove extra margins on both sides of buttons
             min-width: 80px; // Minimum button width
             height: 32px; // macOS system button height
             padding: 0 16px; // System button padding
