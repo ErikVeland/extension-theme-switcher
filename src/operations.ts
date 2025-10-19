@@ -9,7 +9,7 @@ let themes: string[] = [];
 export function readThemes() {
   const bundledPath = path.join(__dirname, 'themes');
   return util.readExtensibleDir('theme', bundledPath, themesPath())
-    .tap(extThemes => {
+    .then(extThemes => {
       themes = extThemes;
     });
 }
